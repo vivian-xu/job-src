@@ -1,0 +1,371 @@
+@import './reset.scss';
+
+body {
+    background-color: #eee;
+    color: #333;
+}
+
+#app {
+    padding: 10px;
+}
+
+a {
+    color: #333;
+}
+
+nav {
+    @extend .clearfix;
+
+    .iconfont {
+        padding: 1px 5px;
+        background-color: #fff;
+        border-radius: 4px;
+    }
+
+    .icon-left {
+        float: left;
+    }
+
+    .icon-star1,
+    .icon-updata {
+        float: right;
+    }
+
+}
+
+.wrap-block {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 15px 10px;
+    margin: 10px 0;
+    background-color: #fff;
+    border-radius: 4px;
+
+    &>div {
+        @extend .clearfix;
+    }
+}
+
+.flex-box {
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    display: -webkit-box;  /* 兼容 andior 微信 */
+
+    .flex-item {
+        -webkit-flex:1;
+           -moz-box-flex:1;
+            -ms-flex:1;
+                flex:1;
+        -webkit-box-flex: 1; /* 兼容 andior 微信 */
+    }
+}
+
+.rightBlock-title {
+    @extend .clearfix;
+
+    span {
+        float: right;
+        color: #ccc;
+        font-size: 12px;
+    }
+}
+
+.section-title {
+    height: 25px;
+    color: #ccc;
+    font-size: 12px;
+}
+/*
+
+    pages : Profile
+
+*/
+/*info*/
+.info {
+    .img {
+        float: right;
+        width: 50px;
+        height: 50px;
+        margin-left: 5px;
+        background-color: #eee;
+    }
+
+    .section-title .industry {
+        padding: 1px 8px;
+        margin-right: 7px;
+        border: 1px solid #ccc;
+        border-radius: 15px;
+    }
+
+    .name {
+        font-size: 25px;
+        font-weight: bold;
+    }
+}
+
+
+/*resume*/
+.resume {
+    .ps-word {
+        color: #ccc;
+        font-size: 13px;
+    }
+
+    .mentor .title {
+        @extend .section-title;
+        display: block;
+    }
+}
+
+/*comments*/
+.comments {
+    #comments-list {
+        .comment-body {
+            overflow: hidden;
+            line-height: 21px;
+         }
+        .foldBtn {
+            position: absolute;
+            right: 5px;
+            bottom: 22px;
+            color: #7fffd4;
+            font-size: 12px;
+        }
+
+        .author {
+            color: #ccc;
+
+            .time {
+                margin-left: 5px;
+                color: #eee;
+                font-size: 12px;
+            }
+        }
+    }
+
+    #comments-list li {
+          display: -webkit-flex;
+          display: -moz-box;
+          display: -ms-flexbox;
+          display: flex;
+          display: -webkit-box;  /* 兼容 andior 微信 */
+
+          width: 100%;
+
+        .img {
+            width: 20%;
+        }
+
+        div.comment {
+            position: relative;
+            -webkit-flex:1;
+               -moz-box-flex:1;
+                -ms-flex:1;
+                    flex:1;
+            -webkit-box-flex: 1; /* 兼容 andior 微信 */
+        }
+    }
+}
+.show-comments {
+    display: block;
+    min-width: 150px;
+    padding: 5px 20px;
+
+    margin: 10px auto;
+    color: #7fffd4;
+    background-color: #fff;
+    border: 1px solid #7fffd4;
+}
+
+/* date */
+.date .contact-server {
+    @extend .show-comments;
+}
+
+/* call */
+
+.call .rightBlock-title{
+    font-size: 12px;
+
+    strong {
+        font-size: 14px;
+    }
+    span{
+        color: #7fffd4;
+
+        .iconfont {
+            font-size: 12px;
+        }
+    }
+}
+
+/*
+
+    pages : ArticleList
+
+*/
+
+.slideBox {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 150px;
+
+    .hd {
+        position: absolute;
+        z-index: 9;
+        bottom: 9px;
+        width: 100%;
+
+        ul {
+            text-align: center;
+
+            li {
+                display: inline-block;
+                width: 5px;
+                height: 5px;
+                margin: 3px;
+                background-color: #BEC7C2;
+                border-radius: 50%;
+                text-indent: -99999px;
+
+                &.on {
+                    background-color: #3B3C3F;
+                }
+            }
+        }
+    }
+
+    .bd {
+        position: relative;
+        height: 100%;
+        z-index: 0;
+
+        li {
+            img {
+                width: 100%;
+            }
+        }
+    }
+}
+
+.articleList {
+    li {
+        width: 100%;
+
+        a {
+            @extend .flex-box;
+            div {
+                @extend .flex-item;
+            }
+            .flex-img {
+                width: 35%;
+                margin-left: 10px;
+            }
+        }
+    }
+
+
+    .article-body {
+        font-size: 14px;
+        line-height: 21px;
+    }
+
+}
+
+.articleList .tag,
+.article .tag {
+    color: #ccc;
+    font-size: 12px;
+
+    span {
+        padding: 2px 8px;
+        margin-right: 5px;
+        color: #fff;
+        background-color: #7fffd4;
+    }
+}
+
+.articleList h2,
+.article h2 {
+    font-size: 16px;
+    margin: 5px 0;
+}
+/*
+
+    Article
+
+*/
+
+.article {
+    nav {
+        .iconfont {
+            color: #fff;
+        }
+
+        .icon-left {
+            background-color: #333;
+        }
+
+        .icon-star1 {
+            margin-right: 5px;
+            background-color: #EC828A;
+        }
+
+        .icon-updata {
+            background-color: #9ADCFC;
+        }
+    }
+
+    h2 {
+        text-align: center;
+    }
+
+    .date {
+        margin: 5px 0 10px;
+        color: #AFB0B1;
+    }
+
+    .note {
+        padding: 10px;
+        background-color: #ECFBF8;
+        @extend .flex-box;
+
+        div,
+        p {
+            @extend .flex-item ;
+        }
+
+        .author{
+            @extend .clearfix;
+            color: #C1CCCA;
+            font-size: 12px;
+
+            .img {
+                float: left;
+                margin-right:10px;
+            }
+
+            .name {
+                color: #333;
+                font-size: 16px;
+            }
+        }
+
+        .icon {
+            width: 20px;
+            text-align: right;
+            .iconfont {
+                display: inline-block;
+                margin-top: 10px;
+            }
+        }
+    }
+
+    .article-body {
+        line-height: 2;
+    }
+}
+

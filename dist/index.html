@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta name="author" content="">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+    <script type="text/javascript" src="./libs/touchslide.js"></script>
+    <link rel="stylesheet" href="./css/style.css">
+    <style type="text/css">
+
+
+    @font-face {font-family: "iconfont";
+      src: url('./fonts/iconfont.eot?t=1470403222'); /* IE9*/
+      src: url('./fonts/iconfont.eot?t=1470403222#iefix') format('embedded-opentype'), /* IE6-IE8 */
+      url('./fonts/iconfont.woff?t=1470403222') format('woff'), /* chrome, firefox */
+      url('./fonts/iconfont.ttf?t=1470403222') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+      url('./fonts/iconfont.svg?t=1470403222#iconfont') format('svg'); /* iOS 4.1- */
+    }
+
+    .iconfont {
+      font-family:"iconfont" !important;
+      font-size:16px;
+      font-style:normal;
+      -webkit-font-smoothing: antialiased;
+      -webkit-text-stroke-width: 0.2px;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    .icon-right:before { content: "\e602"; }
+    .icon-star:before { content: "\e606"; }
+    .icon-icon25:before { content: "\e600"; }
+    .icon-left:before { content: "\e601"; }
+    .icon-iconhomepageselected:before { content: "\e603"; }
+    .icon-updata:before { content: "\e604"; }
+    .icon-star1:before { content: "\e605"; }
+
+
+    </style>
+    </head>
+    <body>
+        <div id="app"></div>
+        <script src="bundle.js"></script>
+      <script type="text/javascript" >
+        TouchSlide({
+          slideCell:"#slideBox",
+          titCell:".hd ul", //开启自动分页 autoPage:true ，此时设置 titCell 为导航元素包裹层
+          mainCell:".bd ul",
+          effect:"leftLoop",
+          autoPage:true,//自动分页
+          autoPlay:true //自动播放
+        });      </script>
+    </body>
+</html>
