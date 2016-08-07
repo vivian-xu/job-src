@@ -1,10 +1,10 @@
 import React from 'react';
 import { IndexLink, Link } from 'react-router';
 
-class ArticleBlock extends React.Component {
+class ArticleList extends React.Component {
     constructor(props) {
         super(props);
-        this.displayName = 'ArticleBlock';
+        this.displayName = 'ArticleList';
 
         this.state = {
             "articlelist" : [
@@ -37,7 +37,7 @@ class ArticleBlock extends React.Component {
             function( article, index ) {
                 return (
                     <li key={index}>
-                        <Link className="wrap-block"  to="Article">
+                        <Link className="wrap-block"  to="article">
                             <div>
                                 <p className="tag">
                                     <span >{article.topic}</span>
@@ -62,4 +62,4 @@ class ArticleBlock extends React.Component {
     }
 }
 
-export default ArticleBlock;
+export default ArticleList;

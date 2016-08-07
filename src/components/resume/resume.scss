@@ -1,0 +1,11 @@
+.resume {
+    .ps-word {
+        color: #ccc;
+        font-size: 13px;
+    }
+
+    .mentor .title {
+        @extend .section-title;
+        display: block;
+    }
+}

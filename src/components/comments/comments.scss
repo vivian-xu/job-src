@@ -1,0 +1,19 @@
+@import '../commentUl/commentUl.scss';
+
+.comments {
+    .rightBlock-title span{
+        color: #7fffd4;
+    }
+}
+.show-comments {
+    display: block;
+    width: 30%;
+    min-width: 150px;
+    padding: 5px 20px;
+
+    margin: 10px auto;
+    color: #7fffd4;
+    background-color: #fff;
+    border: 1px solid #7fffd4;
+    text-align: center;
+}

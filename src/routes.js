@@ -1,19 +1,17 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 
-import App from './pages/App';
-import Nav from './components/Nav';
+
 import Profile from './pages/Profile';
-import List from './pages/List';
-import Detail from './pages/Detail';
-import User from './pages/User';
+import ArticleListBlock from './pages/ArticleListBlock';
+import Article from './pages/Article';
+
+
 
 const routes = (
-    <Route path="/" component={ Nav }>
-        <IndexRoute component={ Profile } />
-        <Route path="detail/:repo" component={ Detail } />
-        <Route path="user/:user" component={ User } />
-    </Route>
+    <Route path="/" component={ ArticleListBlock } />
+    <Route path="/article" component={ Article } />
+    <Route path="/profile" component={ Profile } />
 );
 
 export default routes;

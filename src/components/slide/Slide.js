@@ -1,8 +1,8 @@
 import React from 'react';
 
-require('../imgs/img1.png');
-require('../imgs/img2.png');
-require('../imgs/img3.png');
+require('../../imgs/img1.png');
+require('../../imgs/img2.png');
+require('../../imgs/img3.png');
 
 
 class Slide extends React.Component {

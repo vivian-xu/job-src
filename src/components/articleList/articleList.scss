@@ -1,0 +1,43 @@
+
+.articleList {
+    li {
+        width: 100%;
+
+        a {
+            @extend .flex-box;
+            div {
+                @extend .flex-item;
+            }
+            .flex-img {
+                width: 35%;
+                margin-left: 10px;
+            }
+        }
+    }
+
+
+    .article-body {
+        font-size: 14px;
+        line-height: 21px;
+    }
+
+}
+
+.articleList .tag,
+.article .tag {
+    color: #ccc;
+    font-size: 12px;
+
+    span {
+        padding: 2px 8px;
+        margin-right: 5px;
+        color: #fff;
+        background-color: #7fffd4;
+    }
+}
+
+.articleList h2,
+.article h2 {
+    font-size: 16px;
+    margin: 5px 0;
+}

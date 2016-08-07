@@ -1,0 +1,52 @@
+
+.article {
+    h2 {
+        text-align: center;
+    }
+
+    .date {
+        margin: 5px 0 10px;
+        color: #AFB0B1;
+    }
+
+    .note {
+        padding: 10px;
+        background-color: #ECFBF8;
+        @extend .flex-box;
+
+        div,
+        p {
+            @extend .flex-item ;
+        }
+
+        .author{
+            @extend .clearfix;
+            color: #C1CCCA;
+            font-size: 12px;
+
+            .img {
+                float: left;
+                margin-right:10px;
+            }
+
+            .name {
+                color: #333;
+                font-size: 16px;
+            }
+        }
+
+        .icon {
+            width: 20px;
+            text-align: right;
+            .iconfont {
+                display: inline-block;
+                margin-top: 10px;
+            }
+        }
+    }
+
+    .article-body {
+        line-height: 2;
+    }
+}
+

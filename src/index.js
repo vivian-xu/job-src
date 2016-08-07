@@ -1,12 +1,20 @@
+var FastClick = require('fastclick');
+
+FastClick.attach(document.body);
+
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Route, IndexRoute, useRouterHistory } from 'react-router';
 
-import { IndexLink, Link } from 'react-router';
+import { Router } from 'react-router';
 import { createHashHistory } from 'history';
 
+// import routes from './routes';
+
+import { Route, IndexRoute } from 'react-router';
+import { useRouterHistory } from 'react-router';
+
+import ArticleListBlock from './pages/ArticleListBlock';
 import Profile from './pages/Profile';
-import ArticleList from './pages/ArticleList';
 import Article from './pages/Article';
 
 require('./styles/style.scss');
@@ -15,15 +23,13 @@ require('./fonts/iconfont.svg');
 require('./fonts/iconfont.ttf');
 require('./fonts/iconfont.woff');
 
+
 const appHistory = useRouterHistory(createHashHistory)({ queryKey: false });
-
 ReactDOM.render(
-
     <Router  history={appHistory}>
-        <Route path="/" component={ Profile } />
-        <Route path="/articlelist" component={ ArticleList } />
+        <Route path="/" component={ ArticleListBlock } />
         <Route path="/article" component={ Article } />
-
+        <Route path="/profile" component={ Profile } />
     </Router>,
     document.getElementById('app')
 );

@@ -1,10 +1,9 @@
 import React from 'react';
-import Nav from '../components/Nav';
-import Info from '../components/Info';
-import Resume from '../components/Resume';
-import Comments from '../components/Comments';
-import Date from '../components/Date';
-import Call from '../components/Call';
+import Info from '../components/info/Info';
+import Resume from '../components/resume/Resume';
+import Comments from '../components/comments/Comments';
+import Date from '../components/date/Date';
+import Call from '../components/call/Call';
 
 class Profile extends React.Component {
     constructor(props) {
@@ -14,7 +13,6 @@ class Profile extends React.Component {
     render() {
         return (
             <div>
-                <Nav />
                 <Info />
                 <Call />
                 <Resume />

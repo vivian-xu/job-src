@@ -16,9 +16,6 @@ class Date extends React.Component {
                     2. 文案文案文案  <br/>
                     3. 文案文案文案  <br/>
                 </p>
-                <button className="contact-server">
-                    联系客服
-                </button>
             </section>
         );
     }

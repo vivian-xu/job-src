@@ -1,0 +1,48 @@
+#comments-list {
+
+    .comment-body {
+        overflow: hidden;
+        line-height: 21px;
+     }
+
+    .foldBtn {
+        position: absolute;
+        right: 5px;
+        bottom: 22px;
+        color: #7fffd4;
+        font-size: 12px;
+    }
+
+    .author {
+        color: #ccc;
+
+        .time {
+            margin-left: 5px;
+            color: #eee;
+            font-size: 12px;
+        }
+    }
+
+  li {
+      display: -webkit-flex;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: flex;
+      display: -webkit-box;  /* 兼容 andior 微信 */
+
+      width: 100%;
+
+    .img {
+        width: 20%;
+    }
+
+    div.comment {
+        position: relative;
+        -webkit-flex:1;
+           -moz-box-flex:1;
+            -ms-flex:1;
+                flex:1;
+        -webkit-box-flex: 1; /* 兼容 andior 微信 */
+    }
+  }
+}

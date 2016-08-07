@@ -1,6 +1,5 @@
 import React from 'react';
-import Nav from '../components/ArticleNav';
-import ArticleBody from '../components/ArticleBody';
+import ArticleBody from '../components/articleBody/ArticleBody';
 
 class Article extends React.Component {
     constructor(props) {
@@ -10,7 +9,6 @@ class Article extends React.Component {
     render() {
         return (
             <div className="article">
-                <Nav />
                 <ArticleBody />
             </div>
         );
