@@ -3,6 +3,7 @@ import ajax from 'superagent';
 
 import Info from '../components/info/Info';
 import Resume from '../components/resume/Resume';
+import Mentor from '../components/mentor/Mentor';
 import Comments from '../components/comments/Comments';
 import Date from '../components/date/Date';
 import Call from '../components/call/Call';
@@ -19,20 +20,20 @@ class Profile extends React.Component {
     componentWillMount () {
         const baseURL = 'http://sf.jackon.me/api/accounts';
         const id = "1";
-        ajax.get(`${baseURL}/${id}/`)
-            .withCredentials()
-            .set({"dataType":"jsonp",
-                    'Content-type': 'application/json'
-        })
-            .end((error, response) => {
-                    if( !error && response ) {
-                        this.setState({profile: response.body });
-                } else {
-                    console.error(`Error fetching ${name} `, error);
-             }
-        });
+        // ajax.get(`${baseURL}/${id}/`)
+        //     .withCredentials()
+        //     .set({"dataType":"jsonp",
+        //             'Content-type': 'application/json'
+        // })
+        //     .end((error, response) => {
+        //             if( !error && response ) {
+        //                 this.setState({profile: response.body });
+        //         } else {
+        //             console.error(`Error fetching ${name} `, error);
+        //      }
+        // });
 
-        console.log(this.state.profile );
+        // console.log(this.state.profile );
     }
 
 
@@ -42,6 +43,7 @@ class Profile extends React.Component {
                 <Info />
                 <Call />
                 <Resume />
+                <Mentor />
                 <Comments />
                 <Date />
             </div>

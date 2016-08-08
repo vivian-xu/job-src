@@ -38,13 +38,6 @@ class Resume extends React.Component {
                         数字媒体技术 本科
                     </span>
                 </div>
-                <p className="mentor">
-                    <span className="title">
-                        师姐说
-                    </span>
-                    以前在豌豆荚负责产品，略懂产品设计和用户体验，对创业公司的一些坑，也比较清楚。
-                </p>
-
             </section>
         );
     }

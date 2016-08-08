@@ -27,12 +27,13 @@ class Call extends React.Component {
     alertCheckTime() {
         console.log("alert");
 
-        $("#wrap-timeList").show('400');
+        // $("#wrap-timeList").show('400');
+        $("#wrap-timeList").fadeIn('400');
 
         this.timeListBg();
 
         $("#wrap-timeList .mask-timeList").click(function( e ) {
-            $("#wrap-timeList").hide('400');
+            $("#wrap-timeList").fadeOut('400');
         });
     }
 

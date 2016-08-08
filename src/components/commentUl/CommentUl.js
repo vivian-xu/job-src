@@ -6,7 +6,7 @@ class CommentUl extends React.Component {
         this.displayName = 'CommentUl';
 
         this.state= {
-            "comments": [
+            comments: [
                 {
                     "body" : "以前在豌豆荚负责产品，略懂产品设计和用户，对创业公司的一些坑，也比较清楚。以前在豌豆荚负责产品，略懂产品设计和用户体验，对创业公司的一些坑，也比较清楚。以前在豌豆荚负责产品，略懂产品设计和用户体验.略懂产品设计和用htu",
                     "author": "尼莫",
@@ -18,31 +18,31 @@ class CommentUl extends React.Component {
                     "day": "6天前"
                 }
             ],
-            "shortComments": []
+            isOverThree: false,
+            shortComments: []
         }
     }
 
     componentWillMount() {
-        console.log( this.props);
+        console.log( "UL: props" + this.props.unfold);
 
-        if( this.state.comments.length > 1 ){
-            for( let i=0; i < 1; i++) {
+        if( this.state.comments.length > 3 ){
+            for( let i=0; i < 3; i++) {
                 this.state.shortComments.push(this.state.comments[i]);
             }
+            this.setState({isOverThree: true});
         };
     }
 
     render() {
         let commentsList ;
-
-        if( this.props.unfold ) {
+        console.log(this.state.isOverThree);
+        if( (this.props.unfold && this.state.isOverThree) || !this.state.isOverThree ) {
             console.log("unfold" +this.props.unfold );
 
             commentsList = this.state.comments.map(function(comment, index) {
-
                 return (<li key={index}>
                                 <div className="img">
-                                    <i className="iconfont icon-star" />
                                 </div>
                                 <div className="comment">
                                     <p className="comment-body">
@@ -76,7 +76,8 @@ class CommentUl extends React.Component {
                                 </div>
                             </li>)
             });
-        }
+        };
+        console.log(commentsList);
 
         return (
             <ul id="comments-list">

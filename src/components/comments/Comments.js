@@ -69,9 +69,9 @@ class Comments extends React.Component {
 
         return (
             <section className="wrap-block comments">
-                <p className="rightBlock-title section-title">
+                <p className="section-title">
                     同学们的评价
-                    <span> 查看全部评论<i className="iconfont icon-right" /></span>
+
                 </p>
                 <CommentUl unfold={this.state.unfold}/>
                 <a className="show-comments" onClick={this.checkAllComments.bind(this)}>
