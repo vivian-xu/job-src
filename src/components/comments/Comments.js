@@ -6,7 +6,7 @@ class Comments extends React.Component {
         super(props);
         this.displayName = 'Comments';
         this.state={
-            "unfold": "false"
+            unfold : false
         }
     }
 
@@ -54,7 +54,7 @@ class Comments extends React.Component {
     }
 
     checkAllComments() {
-        this.state.unfold = true;
+        this.setState({"unfold" : true});
     }
 
     componentWillMount() {
@@ -74,7 +74,7 @@ class Comments extends React.Component {
                     <span> 查看全部评论<i className="iconfont icon-right" /></span>
                 </p>
                 <CommentUl unfold={this.state.unfold}/>
-                <a className="show-comments" onClick={this.checkAllComments}>
+                <a className="show-comments" onClick={this.checkAllComments.bind(this)}>
                     查看全部评论
                 </a>
             </section>

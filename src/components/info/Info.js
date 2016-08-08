@@ -14,9 +14,9 @@ class Info extends React.Component {
                     </i>
                     <div>
                         <p className="section-title">
-                            <span className="industry"> 互联网
+                            <span className="circle"> 互联网
                             </span>
-                            <span> 师姐 </span>
+                             师姐
                         </p>
 
                         <p className="name">安然默默</p>

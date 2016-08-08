@@ -4,9 +4,8 @@ class Call extends React.Component {
     constructor(props) {
         super(props);
         this.displayName = 'Call';
-
         this.state = {
-            "checktimelist" : [
+            checktimelist : [
                 {
                      "day": "明天",
                      "date": "6月13日",
@@ -18,30 +17,40 @@ class Call extends React.Component {
                      "time": "22:00 ~ 22:45"
                  }
             ]
-        }
+        };
     }
 
     componentWillMount() {
        console.log(this.state.checktimelist);
     }
 
-    alertCheckTime ( ) {
+    alertCheckTime() {
         console.log("alert");
+
         $("#wrap-timeList").show('400');
-        $("#wrap-timeList .timeList li").each(function(index, el) {
-            $(this).click( function () {
-                $(this).css("background-color","#6BE4CD");
-            } )
+
+        this.timeListBg();
+
+        $("#wrap-timeList .mask-timeList").click(function( e ) {
+            $("#wrap-timeList").hide('400');
         });
     }
 
-    render() {
+    timeListBg() {
+        $("#wrap-timeList li").click(function(event) {
+            $(this).parent("ul").find("li.checked").removeClass('checked');
+            $(this).addClass('checked');
+        });
 
+    }
+
+    render() {
         let timesL = this.state.checktimelist.map(function(time, index) {
             console.log(index);
             let id = `time${index}`;
+            let ref = `checked${index}`;
             return (
-                <li key={index}>
+                <li key={index} >
                     <input type="radio" name="checkTime" id={id} />
                     <label htmlFor={id} >{time.day} {time.date}
                         <span className="right" htmlFor={id}>{time.time}</span>
@@ -49,7 +58,7 @@ class Call extends React.Component {
                     <div className="check"></div>
                 </li>
             )
-        })
+        }.bind(this))
 
         return(
             <section className="wrap-block call">
@@ -67,7 +76,7 @@ class Call extends React.Component {
                     电话咨询
                 </p>
                 <p className="rightBlock-title">
-                    <span onClick={this.alertCheckTime}> 查看时间表 <i className="iconfont icon-right" /> </span>
+                    <span onClick={this.alertCheckTime.bind(this)}> 查看时间表 <i className="iconfont icon-right" /> </span>
                     <strong>¥200</strong> 元 / 次 , 45 分钟
                 </p>
             </section>

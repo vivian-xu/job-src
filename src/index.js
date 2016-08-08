@@ -1,6 +1,5 @@
-var FastClick = require('fastclick');
-
-FastClick.attach(document.body);
+import Common from './components/common/common.js';
+require('./components/common/common.js');
 
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -25,6 +24,7 @@ require('./fonts/iconfont.woff');
 
 
 const appHistory = useRouterHistory(createHashHistory)({ queryKey: false });
+
 ReactDOM.render(
     <Router  history={appHistory}>
         <Route path="/" component={ ArticleListBlock } />

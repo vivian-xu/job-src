@@ -5,11 +5,15 @@
     pages : Profile
 
 */
+$section-title-color: #4c4d50;
+$section-title-color-rgba: rgba(76, 77, 80, 50);
+
+
 /* page: Profile 公用*/
 .section-title {
     height: 25px;
-    color: #ccc;
-    font-size: 12px;
+    color: $section-title-color-rgba;
+    font-size: 13px;
 
     span {
         .iconfont {
@@ -17,6 +21,7 @@
         }
     }
 }
+
 /*info*/
 @import '../components/info/info.scss';
 

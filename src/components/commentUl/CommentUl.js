@@ -35,8 +35,9 @@ class CommentUl extends React.Component {
     render() {
         let commentsList ;
 
-        if( this.props.unfold === "true" ) {
+        if( this.props.unfold ) {
             console.log("unfold" +this.props.unfold );
+
             commentsList = this.state.comments.map(function(comment, index) {
 
                 return (<li key={index}>
@@ -57,7 +58,6 @@ class CommentUl extends React.Component {
             });
         } else {
             console.log("shortComments" );
-            console.log( this.state.shortComments );
 
             commentsList = this.state.shortComments.map(function(comment, index) {
                 return (<li key={index}>

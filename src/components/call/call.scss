@@ -43,7 +43,7 @@
             text-align: center;
         }
 
-        ul li {
+        ul > li {
             @extend .clearfix;
             position: relative;
             margin: 3px;
@@ -69,7 +69,6 @@
                     color: #fff;
                 }
             }
-
 
             label {
                 display: block;
