@@ -1,17 +1,25 @@
-@import './reset.scss';
+@font-face {
+  font-family: "Yuanti-SC-Regular";
+  src: url('../fonts/Yuanti-SC-Regular.ttf') format( 'ttf' );
+  font-weight: normal;
+  font-style: normal;
+}
 
-// html {
-//     font-size: 100px;
-// }
+@font-face {
+  font-family: "Yuanti-SC-Bold";
+  src: url('../fonts/Yuanti-SC-Bold.ttf') format( 'ttf' );
+  font-weight: normal;
+  font-style: normal;
+}
 
 body {
+    font: 15px/30px Yuanti-SC-Regular,Tahoma,Verdana,Arial,sans-serif;
     background-color: #eee;
     color: #333;
 }
 
 #app {
     position: relative;
-    // padding: 10px;
 }
 
 a {
@@ -20,7 +28,7 @@ a {
 .wrap-block {
     box-sizing: border-box;
     // width: 100%;
-    padding: .5rem .4rem;
+    padding: .5rem .2rem;
     margin: .2rem;
     background-color: #fff;
     border-radius: 4px;

@@ -1,4 +1,5 @@
 .info {
+
     .img {
         float: right;
         width: 50px;
@@ -7,17 +8,31 @@
         background-color: #eee;
     }
 
+    .section-title {
+        height: 15px;
+        line-height: 15px;
+    }
+
     .section-title .circle {
-        padding: .08rem .21rem;
+        display: inline-block;
+        padding: 0 5px;
         margin-right: 7px;
         border: 1px solid #4c4d50;
         border-radius: 1rem;
         color: #4c4d50;
         font-size: 12px;
+        text-align: center;
     }
 
     .name {
+        margin: .2rem 0;
         font-size: 25px;
+        font-family: "Yuanti-SC-Bold";
         font-weight: bold;
+
+    }
+
+    &>p {
+        line-height: 30px;
     }
 }

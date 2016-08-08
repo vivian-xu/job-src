@@ -19,7 +19,7 @@ class Comments extends React.Component {
         let rowWordsNum = commentsList.width()/parseInt(commentsList.css("font-size"));
 
         console.log(commentsList.width());
-        console.log(commentsList.css("font-size"));
+        console.log("commentsList-font-size:"+commentsList.css("font-size"));
 
 
         commentsList.each(function(index, el) {
@@ -31,7 +31,7 @@ class Comments extends React.Component {
 
                 console.log(allStr.length+"/"+rowWordsNum +"="+allStr.length/rowWordsNum  );
 
-                let retStr=allStr.substring(0, rowWordsNum*5-4);
+                let retStr=allStr.substring(0, rowWordsNum*5-7);
                 let btnText = "展开";
                 let isFold = false;
 

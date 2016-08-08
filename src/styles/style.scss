@@ -1,3 +1,4 @@
+@import 'reset.scss';
 @import '../components/common/common.scss';
 
 /*
@@ -6,14 +7,13 @@
 
 */
 $section-title-color: #4c4d50;
-$section-title-color-rgba: rgba(76, 77, 80, 50);
-
 
 /* page: Profile 公用*/
 .section-title {
     height: 25px;
-    color: $section-title-color-rgba;
+    color: #{$section-title-color};
     font-size: 13px;
+    line-height: 25px;
 
     span {
         .iconfont {

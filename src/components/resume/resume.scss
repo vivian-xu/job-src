@@ -1,4 +1,9 @@
 .resume {
+    line-height: 20px;
+
+    .rightBlock-title {
+        line-height: 29px;
+    }
     .ps-word {
         color: #ccc;
         font-size: 13px;
@@ -7,5 +12,9 @@
     .mentor .title {
         @extend .section-title;
         display: block;
+    }
+
+    & > div {
+        margin: .25rem 0;
     }
 }
