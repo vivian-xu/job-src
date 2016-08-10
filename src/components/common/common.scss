@@ -14,8 +14,28 @@
 
 body {
     font: 15px/30px Yuanti-SC-Regular,Tahoma,Verdana,Arial,sans-serif;
-    background-color: #eee;
     color: rgb(76, 77, 80);
+
+    width: 100%;
+
+    /*普通显示屏(设备像素比例小于等于1)使用1倍的图*/
+    background: url(../imgs/bg.png) top left ;
+
+    /*高清显示屏(设备像素比例大于等于2)使用2倍图 */
+
+    @mediaonlyscreenand(-webkit-min-device-pixel-ratio:2){
+        .css{
+            background: url(../imgs/bg@2x.png) top left ;
+        }
+    }
+
+    /*高清显示屏(设备像素比例大于等于3)使用3倍图 */
+
+    @mediaonlyscreenand(-webkit-min-device-pixel-ratio:3){
+        .css{
+            background: url(../imgs/bg@3x.png) top left ;
+        }
+    }
 }
 
 #app {

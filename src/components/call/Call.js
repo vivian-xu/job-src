@@ -21,7 +21,7 @@ class Call extends React.Component {
     }
 
     componentWillMount() {
-       console.log(this.state.checktimelist);
+       // console.log(this.state.checktimelist);
     }
 
     alertCheckTime() {
@@ -47,7 +47,7 @@ class Call extends React.Component {
 
     render() {
         let timesL = this.state.checktimelist.map(function(time, index) {
-            console.log(index);
+            // console.log(index);
             let id = `time${index}`;
             let ref = `checked${index}`;
             return (

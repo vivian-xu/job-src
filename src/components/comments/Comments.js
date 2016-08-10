@@ -6,21 +6,16 @@ class Comments extends React.Component {
         super(props);
         this.displayName = 'Comments';
         this.state={
-            unfold : false
+            unfold : false,
+            btnflag: true
         }
     }
 
-
     foldCommit ( ) {
-        console.log("Hi! I'm in!");
 
         let commentsList = $("#comments-list .comment-body");
 
         let rowWordsNum = commentsList.width()/parseInt(commentsList.css("font-size"));
-
-        console.log(commentsList.width());
-        console.log("commentsList-font-size:"+commentsList.css("font-size"));
-
 
         commentsList.each(function(index, el) {
             let that = $(this);
@@ -29,7 +24,6 @@ class Comments extends React.Component {
 
             if( allStr.length/rowWordsNum > 5 ){
 
-                console.log(allStr.length+"/"+rowWordsNum +"="+allStr.length/rowWordsNum  );
 
                 let retStr=allStr.substring(0, rowWordsNum*5-7);
                 let btnText = "展开";
@@ -53,12 +47,14 @@ class Comments extends React.Component {
         });
     }
 
-    checkAllComments() {
-        this.setState({"unfold" : true});
+    hasCheckAllComments( bool ) {
+        this.setState({
+            btnflag: bool
+        });
     }
 
-    componentWillMount() {
-        console.log("this.state:" + this.state.unfold );
+    checkAllComments() {
+        this.setState({"unfold" : true});
     }
 
     componentDidMount() {
@@ -66,6 +62,17 @@ class Comments extends React.Component {
     }
 
     render() {
+        console.log( 'comments render start');
+
+        let btn =( () => {
+            if( this.state.btnflag == true) {
+                return (
+                    <a className="show-comments" onClick={this.checkAllComments.bind(this)}>
+                        查看全部评论
+                    </a>
+                );
+            }
+        })();
 
         return (
             <section className="wrap-block comments">
@@ -73,10 +80,8 @@ class Comments extends React.Component {
                     同学们的评价
 
                 </p>
-                <CommentUl unfold={this.state.unfold}/>
-                <a className="show-comments" onClick={this.checkAllComments.bind(this)}>
-                    查看全部评论
-                </a>
+                <CommentUl unfold={this.state.unfold} onhandleBtn = {this.hasCheckAllComments.bind(this)}/>
+                {btn}
             </section>
         );
     }

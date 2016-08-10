@@ -1,11 +1,30 @@
 import React from 'react';
+import Child from './Child';
 
 class App extends React.Component {
+     constructor(props) {
+        super(props);
+        this.state = {
+            data: ""
+        }
+    }
+
+    componentWillMount () {
+        this.setState({
+            data: 'data'
+        });
+    }
+    componentDidMount() {
+        this.setState({
+            data: 'data2'
+        });
+    }
+
     render() {
         return (
                 <div>
                     <h1> Unofficial Github Browser v0.1 </h1>
-                    {this.props.children}
+                    <Child data={this.state.data} />
                 </div>
             );
     }

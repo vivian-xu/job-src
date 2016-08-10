@@ -1,40 +1,41 @@
 
 .slideBox {
     position: relative;
-    overflow: hidden;
-    width: 100%;
-    height: 150px;
 
+    overflow: hidden;
+
+    width: 100%;
+    // height: 150px;
     .hd {
         position: absolute;
         z-index: 1;
         bottom: 9px;
-        width: 100%;
 
+        width: 100%;
         ul {
             text-align: center;
-
             li {
                 display: inline-block;
+
                 width: 5px;
                 height: 5px;
                 margin: 3px;
-                background-color: #BEC7C2;
-                border-radius: 50%;
+
                 text-indent: -99999px;
 
+                border-radius: 50%;
+                background-color: #bec7c2;
                 &.on {
-                    background-color: #3B3C3F;
+                    background-color: #3b3c3f;
                 }
             }
         }
     }
-
     .bd {
         position: relative;
-        height: 100%;
         z-index: 0;
 
+        height: 100%;
         li {
             img {
                 width: 100%;

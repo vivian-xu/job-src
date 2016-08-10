@@ -16,6 +16,8 @@ import ArticleListBlock from './pages/ArticleListBlock';
 import Profile from './pages/Profile';
 import Article from './pages/Article';
 
+import Test from './pages/App';
+
 require('./styles/style.scss');
 require('./fonts/iconfont.eot');
 require('./fonts/iconfont.svg');
@@ -30,6 +32,8 @@ ReactDOM.render(
         <Route path="/" component={ ArticleListBlock } />
         <Route path="/article" component={ Article } />
         <Route path="/profile" component={ Profile } />
+        <Route path="/test" component={ Test } />
+
     </Router>,
     document.getElementById('app')
 );
