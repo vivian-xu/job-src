@@ -24,7 +24,6 @@ require('./fonts/iconfont.svg');
 require('./fonts/iconfont.ttf');
 require('./fonts/iconfont.woff');
 
-
 const appHistory = useRouterHistory(createHashHistory)({ queryKey: false });
 
 ReactDOM.render(
