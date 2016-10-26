@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 
 import {getDomStyle, _each} from '../../commons/utiles';
 
+import CommentItem from './CommentItem';
+
 class CommentUl extends React.Component {
     static defaultProps = {
         limit : 3,
@@ -201,9 +203,14 @@ class CommentUl extends React.Component {
         };
 
         return (
-            <ul id="comments-list" className="comments-list" ref={(c) => this.rootNode = c}>
-                {commentsList}
-            </ul>
+            <div>
+                <ul id="comments-list" className="comments-list" ref={(c) => this.rootNode = c}>
+                    {commentsList}
+                </ul>
+                <CommentItem comment = {this.props.comments[0]} />
+                <CommentItem comment = {this.props.comments[1]} />
+
+            </div>
         );
     }
 }
