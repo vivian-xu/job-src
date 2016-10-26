@@ -1,15 +1,24 @@
 import React from 'react';
 
 class Info extends React.Component {
+
+    static defaultProps = {
+        data : {
+            id: 1,
+            avatar: 'http://wuguishifu.com/media/user-avatar/default-avatar.png',
+            gender: "师姐",
+            nick_name: "安然默默",
+            latest_work: "中兴 移动终端",
+            industrys: "互联网"
+        }
+    }
+
+    static propTypes = {
+        data: React.PropTypes.object.isRequired
+     }
+
     constructor(props) {
         super(props);
-        this.state = {
-            id: props.data.id,
-            avatar: props.data.avatar,
-            gender: props.data.gender,
-            nick_name: props.data.nick_name,
-            industrys: props.data.industrys
-        }
     }
 
     componentWillMount ( ) {
@@ -18,39 +27,36 @@ class Info extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         console.log("info receive props");
+        console.log( this.props);
 
-        this.setState({
-            id: nextProps.data.id,
-            avatar: nextProps.data.avatar,
-            gender: nextProps.data.gender,
-            nick_name: nextProps.data.nick_name,
-            industrys: nextProps.data.industrys
-        });
     }
 
     render() {
         console.log("info render start");
-        let industryLi = this.state.industrys.map(function( industry, index ) {
+        let industryLi = this.props.data.industrys.map(function( industry, index ) {
             return (
-                <span className="circle"  key={index}> {industry}
+                <span className="circle"  key={index}> {industry.name}
                 </span>
             );
         });
 
         return (
             <section className = "wrap-block info">
-                <div >
-                     <img src={this.state.avatar} className="img" />
-                    <div>
+
+                <div className="flex-box">
+
+                    <div className="flex-item">
                         <p className="section-title">
                             {industryLi}
-                            {this.state.gender}
+                            {this.props.data.gender}
                         </p>
-                        <p className="name">{this.state.nick_name}</p>
+                        <p className="name">{this.props.data.nick_name}</p>
                     </div>
+                    <img src={this.props.data.avatar} className="img" />
                 </div>
+
                 <p>
-                    豌豆荚 产品总监 豌豆荚 产品总监 豌豆荚 产品总监 豌豆荚 产品总监 豌豆荚 产品总监 豌豆荚 产品总监 豌豆荚 产品总监
+                    {this.props.data.latest_work}
                 </p>
             </section>
         );

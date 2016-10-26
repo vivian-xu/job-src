@@ -1,6 +1,7 @@
-$commaSizeW: 21px;
-$commaSizeH:17px;
-#comments-list {
+$commaSizeW: 20px;
+// $commaSizeH:17px;
+$commaSizeH: 17px;
+.comments-list {
     margin: .25rem 0;
     text-align: left;
 
@@ -12,16 +13,17 @@ $commaSizeH:17px;
         position: absolute;
         right: .3rem;
         bottom: 30px;
-        color: #6be4cd;
+        color: $color-btn;
         font-size: 13px;
     }
 
     .author {
-        color: rgba( 76, 77, 80, .5);
+        color: $color-sub;
+        font-size: $font-size-small-text;
 
         .time {
             margin-left: .16rem;
-            color: rgba( 76, 77, 80, .3);
+            color: $color-sub-title;
         }
     }
 
@@ -72,7 +74,8 @@ $commaSizeH:17px;
                 flex:1;
         -webkit-box-flex: 1; /* 兼容 andior 微信 */
 
-        margin-left: 10px;
+        // margin-left: 10px;
+        margin-left: 0.21rem;
     }
   }
 }

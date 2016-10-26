@@ -29,7 +29,7 @@ html {
     // font: 16px/24px Tahoma,Verdana,Arial,sans-serif;
 }
 
-@media only screen and (max-width: 480px) {
+@media only screen and (imax-width: 480px) {
     // html ,body { font: 14px/21px Tahoma,Verdana,Arial,sans-serif; }
 }
 
@@ -37,8 +37,8 @@ html, body {
     width: 100%;
 }
 body {
-    height: 100%;
-    line-height:1.5;
+    // height: 100%;
+    // line-height:1.5;
 }
 
 :focus {

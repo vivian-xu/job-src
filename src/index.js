@@ -1,5 +1,4 @@
-import Common from './components/common/common.js';
-require('./components/common/common.js');
+require('./commons/common.js');
 
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -15,6 +14,8 @@ import { useRouterHistory } from 'react-router';
 import ArticleListBlock from './pages/ArticleListBlock';
 import Profile from './pages/Profile';
 import Article from './pages/Article';
+import Allcomments from './pages/Allcomments';
+
 
 import Test from './pages/App';
 
@@ -30,9 +31,9 @@ ReactDOM.render(
     <Router  history={appHistory}>
         <Route path="/" component={ ArticleListBlock } />
         <Route path="/article" component={ Article } />
-        <Route path="/profile" component={ Profile } />
+        <Route path="/mentors/:mentorId" component={ Profile } />
         <Route path="/test" component={ Test } />
-
+        <Route path="/allcomments" component={ Allcomments } />
     </Router>,
     document.getElementById('app')
 );

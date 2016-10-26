@@ -1,18 +1,19 @@
 .wrap-block.call {
-    padding: .4rem .2rem;
+    padding: .4rem;
 }
 
 .call .rightBlock-title{
-    font-size: 12px;
+    font-size: $font-size-sub-text;
+    line-height: 1;
 
     strong {
-        font-size: 17px;
+        font-size: $font-size-text;
     }
     span{
-        color: #6be4cd;
+        color: $color-btn;
 
         .iconfont {
-            font-size: 12px;
+            font-size: $font-size-sub-text;
         }
     }
 }

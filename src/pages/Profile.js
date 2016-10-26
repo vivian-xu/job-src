@@ -13,26 +13,18 @@ class Profile extends React.Component {
         super(props);
 
         this.state = {
-            test: [
-                {
-                    flag: '0',
-                    test: 'test1'
-                },
-                {
-                    flag: '0',
-                    test: 'test1'
-                },
-            ],
+            mentorId: this.props.params.mentorId,
             error: {
                 code: 0,
                 msg: "ok"
             },
             info: {
-                // id: "",
+                id: "",
                 avatar: "",
                 gender: "",
+                nick_name: "",
+                latest_work: "",
                 industrys: []
-                // email: "",
             },
             call: {},
             resume: {
@@ -40,59 +32,43 @@ class Profile extends React.Component {
                 edus: []
             },
             mentor: {},
-            date: {}
+            comments: []
         }
     }
 
     componentWillMount () {
-        const baseURL = '/api/accounts';
-        const id = "1";
+        const baseURL = '/api/mentors';
+        const id = this.props.params.mentorId;
 
-        ajax.get(`${baseURL}/${id}/`)
+        ajax.get(`${baseURL}/${id}`)
             .end((error, response) => {
                     if( !error && response ) {
 
                         let data = response.body.data;
                         console.log("set state kkkkkkk");
 
-                        let industrys = [];
-                        for( var key in data.mentorprofile ){
-                            if( key.indexOf('industry') != -1 ) {
-                                industrys.push( data.mentorprofile[key] );
-                            }
-                        }
-
                         this.setState({
-                            test: [
-                                   {
-                                       flag: '0',
-                                       test: 'test3'
-                                   },
-                                   {
-                                       flag: '0',
-                                       test: 'test4'
-                                   },
-                            ],
                             error: {
                                 code: response.body.errorCode,
                                 msg: response.body.errorMsg
                             },
                             info:{
-                                id: data.mentorprofile.id,
-                                avatar: data.avatar,
-                                gender: data.gender,
+                                id: data.id,
+                                avatar: data.avatar_url,
+                                gender: data.gender_description,
                                 nick_name: data.nick_name,
-                                industrys: industrys
-                                // name: offical_name
+                                latest_work: data.latest_work,
+                                industrys: data.industrys
                             },
                             resume: {
-                                works: data.workinfo_set,
-                                edus: data.eduinfo_set
+                                works: data.workinfos,
+                                edus: data.eduinfos
                             },
                             mentor: {
-                                gender: data.gender,
-                                text: ""
-                            }
+                                gender: data.gender_description,
+                                text: data.bio
+                            },
+                            comments: data.comments
                         });
                         console.log('data nnnnnnnnnn');
                     } else {
@@ -109,7 +85,7 @@ class Profile extends React.Component {
                 <Call />
                 <Resume data={this.state.resume} />
                 <Mentor data={this.state.mentor} />
-                <Comments />
+                <Comments data={this.state.comments} />
                 <Date />
             </div>
             );

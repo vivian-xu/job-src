@@ -1,0 +1,86 @@
+@font-face {
+  font-family: "Yuanti-SC-Regular";
+  src: url('../fonts/Yuanti-SC-Regular.ttf') format( 'ttf' );
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Yuanti-SC-Bold";
+  src: url('../fonts/Yuanti-SC-Bold.ttf') format( 'ttf' );
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+    font-family: Yuanti-SC-Regular,Tahoma,Verdana,Arial,sans-serif;
+    color: $color-text;
+    font-size: $font-size-text;
+    line-height: $line-height-text;
+    width: 100%;
+
+    /*普通显示屏(设备像素比例小于等于1)使用1倍的图*/
+    background: url(../imgs/bg.png) top left ;
+
+    /*高清显示屏(设备像素比例大于等于2)使用2倍图 */
+
+    @mediaonlyscreenand(-webkit-min-device-pixel-ratio:2){
+        .css{
+            background: url(../imgs/bg@2x.png) top left ;
+        }
+    }
+
+    /*高清显示屏(设备像素比例大于等于3)使用3倍图 */
+
+    @mediaonlyscreenand(-webkit-min-device-pixel-ratio:3){
+        .css{
+            background: url(../imgs/bg@3x.png) top left ;
+        }
+    }
+}
+
+#app {
+    position: relative;
+}
+
+a {
+    color: #333;
+}
+.wrap-block {
+    box-sizing: border-box;
+    // width: 100%;
+    padding: .5rem .4rem;
+    margin: .2rem;
+    background-color: #fff;
+    border-radius: 4px;
+
+    &>div {
+        @extend .clearfix;
+    }
+}
+
+.flex-box {
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    display: -webkit-box;  /* 兼容 andior 微信 */
+
+    .flex-item {
+        -webkit-flex:1;
+           -moz-box-flex:1;
+            -ms-flex:1;
+                flex:1;
+        -webkit-box-flex: 1; /* 兼容 andior 微信 */
+    }
+}
+
+.rightBlock-title {
+    @extend .clearfix;
+
+    span {
+        float: right;
+        color: $color-sub-title;
+        font-size: $font-size-sub-text;
+    }
+}

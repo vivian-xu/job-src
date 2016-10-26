@@ -1,22 +1,24 @@
 @import 'reset.scss';
-@import '../components/common/common.scss';
+// 字体，颜色变量
+@import 'variables.scss';
+
+// 全局共有
+@import '../commons/common.scss';
 
 /*
 
     pages : Profile
 
 */
-$section-title-color: rgba( 76, 77, 80, .5);
-
 /* page: Profile 公用*/
 .section-title {
-    height: 25px;
-    color: #{$section-title-color};
-    font-size: 13px;
-    line-height: 25px;
+    margin-bottom: .25rem;
+    color: $color-section-title;
+    font-size: $font-size-sub-text;
+    line-height: 1;
 
     span {
-        .iconfont {
+        .iconfont i{
             font-size: 12px;
         }
     }
@@ -44,10 +46,54 @@ $section-title-color: rgba( 76, 77, 80, .5);
 
 /*articleList*/
 @import '../components/articleList/articleList.scss';
-
 /*
 
     Article
 
 */
 @import '../components/articleBody/articleBody.scss';
+
+/*
+
+    pages : Allcomments
+
+*/
+
+.all-comments {
+    .wrap-block {
+        padding: .45rem .4rem;
+    }
+    .comments-list {
+        margin: 0;
+    }
+    .all-comments--title-block {
+        position: relative;
+        height: 47px;
+        margin: .2rem;
+        height: .86rem;
+        text-align: left;
+
+        span,
+        h1 {
+            height: 100%;
+            background-color: $color-bg;
+            line-height: 47px;
+            text-align: center;
+        }
+
+        span {
+            display: inline-block;
+            width: 47px;
+        }
+
+        h1 {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 3rem;
+            margin-left: -1.5rem;
+            font-weight: normal;
+        }
+    }
+}
+

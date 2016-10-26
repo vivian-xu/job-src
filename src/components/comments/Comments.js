@@ -2,9 +2,18 @@ import React from 'react';
 import CommentUl from '../commentUl/CommentUl'
 
 class Comments extends React.Component {
+
+    static propTypes = {
+        data: React.PropTypes.array.isRequired,
+     }
+
     constructor(props) {
         super(props);
         this.displayName = 'Comments';
+        // unfold 代表 是否展开全部评论
+        // btnflag 代表是否有 查看全部评论的 btn
+        //  true 有
+        //  false 没有
         this.state={
             unfold : false,
             btnflag: true
@@ -12,18 +21,19 @@ class Comments extends React.Component {
     }
 
     foldCommit ( ) {
-
+        console.log('fold Commit');
         let commentsList = $("#comments-list .comment-body");
 
         let rowWordsNum = commentsList.width()/parseInt(commentsList.css("font-size"));
 
+        console.log('commentsList');
+        console.log(this.refs.commentsList);
         commentsList.each(function(index, el) {
             let that = $(this);
 
             let allStr = that.text() ;
 
             if( allStr.length/rowWordsNum > 5 ){
-
 
                 let retStr=allStr.substring(0, rowWordsNum*5-7);
                 let btnText = "展开";
@@ -46,13 +56,14 @@ class Comments extends React.Component {
             } ;
         });
     }
-
+// 设置是否有 查看全部评论 按键
     hasCheckAllComments( bool ) {
         this.setState({
             btnflag: bool
         });
     }
 
+// 点击 查看全部评论 ，展开评论
     checkAllComments() {
         this.setState({"unfold" : true});
     }
@@ -78,9 +89,8 @@ class Comments extends React.Component {
             <section className="wrap-block comments">
                 <p className="section-title">
                     同学们的评价
-
                 </p>
-                <CommentUl unfold={this.state.unfold} onhandleBtn = {this.hasCheckAllComments.bind(this)}/>
+                <CommentUl limit = '3' unfold={this.state.unfold}  comments = {this.props.data} onhandleBtn = {this.hasCheckAllComments.bind(this)}/>
                 {btn}
             </section>
         );

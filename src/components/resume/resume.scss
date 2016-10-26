@@ -1,17 +1,29 @@
 .resume {
-    line-height: 20px;
-    .rightBlock-title {
-        line-height: 29px;
-    }
-    .ps-word {
-        font-size: 13px;
 
-        color: #ccc;
+    .rightBlock-title {
+        font-size: $font-size-text;
+        line-height: $line-height-text;
     }
+
+    .ps-word {
+        color: $color-sub;
+        font-size: $font-size-small-text;
+        line-height: $line-height-small-text;
+    }
+
+    ul {
+        margin-top: .2rem;
+
+        &:last-child > li:last-child {
+            margin-bottom: 0;
+        }
+    }
+
     li {
-        margin: .25rem 0;
+        margin: .2rem 0;
     }
-    hr {
-        margin: .25rem 0;
+
+    ul.border-bottom {
+        border-bottom: 1px solid $color-line;
     }
 }
