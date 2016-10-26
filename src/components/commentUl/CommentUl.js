@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 
 import {getDomStyle, _each} from '../../commons/utiles';
 
-import CommentItem from './CommentItem';
+import CommentItem from './CommentItem_test';
 
 class CommentUl extends React.Component {
     static defaultProps = {
@@ -36,7 +36,6 @@ class CommentUl extends React.Component {
 // 评价中将大于 5 行的评论，加上 展开／关闭按钮
 // 基础是 commentsUl ref = {(c) => this.rootNode = c}
     foldCommit ( ) {
-        console.log('fold Commit');
         let commentsUl = this.rootNode;
         let commentsList = commentsUl.getElementsByClassName('comment-body');
 
@@ -208,7 +207,6 @@ class CommentUl extends React.Component {
                     {commentsList}
                 </ul>
                 <CommentItem comment = {this.props.comments[0]} />
-                <CommentItem comment = {this.props.comments[1]} />
 
             </div>
         );

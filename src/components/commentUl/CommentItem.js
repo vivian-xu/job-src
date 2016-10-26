@@ -19,7 +19,10 @@ class commentItem extends React.Component {
     super(props);
     this.displayName = 'commentItem';
 
-    this.state = {}
+    this.state = {
+        isFold: false,
+
+    }
   }
 
   // 评价中将大于 5 行的评论，加上 展开／关闭按钮
