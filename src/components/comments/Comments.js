@@ -4,41 +4,28 @@ import CommentUl from '../commentUl/CommentUl'
 class Comments extends React.Component {
 
     static propTypes = {
-        data: React.PropTypes.array.isRequired,
+        data: React.PropTypes.object.isRequired,
      }
 
     constructor(props) {
         super(props);
         this.displayName = 'Comments';
-        // unfold 代表 是否展开全部评论
-        // btnflag 代表是否有 查看全部评论的 btn
-        //  true 有
-        //  false 没有
-        this.state={
-            unfold : false,
-            btnflag: true
-        }
+
+        this.checkAllComments = this.checkAllComments.bind(this);
     }
 
-// 设置是否有 查看全部评论 按键
-    hasCheckAllComments( bool ) {
-        this.setState({
-            btnflag: bool
-        });
-    }
-
-// 点击 查看全部评论 ，展开评论
     checkAllComments() {
-        this.setState({"unfold" : true});
+        console.log('点击了查看全部评论');
     }
 
     render() {
         console.log( 'comments render start');
+            console.log(this.props.data);
 
         let btn =( () => {
-            if( this.state.btnflag == true) {
+            if( this.props.data.commentsData.length < this.props.data.count) {
                 return (
-                    <a className="show-comments" onClick={this.checkAllComments.bind(this)}>
+                    <a className="show-comments" onClick={this.checkAllComments}>
                         查看全部评论
                     </a>
                 );
@@ -50,7 +37,7 @@ class Comments extends React.Component {
                 <p className="section-title">
                     同学们的评价
                 </p>
-                <CommentUl limit = '3' unfold={this.state.unfold}  comments = {this.props.data} onhandleBtn = {this.hasCheckAllComments.bind(this)}/>
+                <CommentUl comments = {this.props.data.commentsData} />
                 {btn}
             </section>
         );

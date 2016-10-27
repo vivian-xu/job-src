@@ -11,7 +11,7 @@ $commaSizeH: 17px;
     width: 100%;
     margin-bottom: .2rem;
 
-    .img {
+    .comma-img {
         width: $commaSizeW;
         // height: $commaSizeH;
         /*普通显示屏(设备像素比例小于等于1)使用1倍的图*/
@@ -72,23 +72,5 @@ $commaSizeH: 17px;
 
         color: $color-sub-title;
     }
-}
-
-.example-enter {
-  opacity: 0.01;
-}
-
-.example-enter.example-enter-active {
-  opacity: 1;
-  transition: opacity .5s ease-in;
-}
-
-.example-leave {
-  opacity: 1;
-}
-
-.example-leave.example-leave-active {
-  opacity: 0.01;
-  transition: opacity .5s ease-in;
 }
 

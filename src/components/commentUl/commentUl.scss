@@ -4,3 +4,22 @@
     margin: .25rem 0;
     text-align: left;
 }
+
+
+.commentComeOut-enter {
+  opacity: 0.01;
+}
+
+.commentComeOut-enter.commentComeOut-enter-active {
+  opacity: 1;
+  transition: opacity .5s ease-in;
+}
+
+.commentComeOut-leave {
+  opacity: 1;
+}
+
+.commentComeOut-leave.commentComeOut-leave-active {
+  opacity: 0.01;
+  transition: opacity .5s ease-in;
+}

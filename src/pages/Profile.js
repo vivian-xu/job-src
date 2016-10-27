@@ -32,7 +32,10 @@ class Profile extends React.Component {
                 edus: []
             },
             mentor: {},
-            comments: []
+            comments: {
+                commentsData: [],
+                count: 0
+            }
         }
     }
 
@@ -68,7 +71,10 @@ class Profile extends React.Component {
                                 gender: data.gender_description,
                                 text: data.bio
                             },
-                            comments: data.comments
+                            comments: {
+                                count: data.comments_count,
+                                commentsData: data.comments
+                            }
                         });
                         console.log('data nnnnnnnnnn');
                     } else {

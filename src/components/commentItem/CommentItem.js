@@ -11,7 +11,7 @@ class CommentItem extends React.Component {
     comment: []
   }
   static propTypes = {
-    comment: React.PropTypes.any.isRequired,
+    comment: React.PropTypes.object.isRequired,
   }
 
   constructor(props) {
@@ -26,6 +26,7 @@ class CommentItem extends React.Component {
       limitWords: 0
     }
 
+    this.foldCommit = this.foldCommit.bind(this);
     this.onhandleClickFold = this.onhandleClickFold.bind(this);
   }
 
@@ -82,15 +83,25 @@ class CommentItem extends React.Component {
   componentDidUpdate(prevProps, prevState) {
     console.log('DID UPDATE');
 
-    // props.comment 为空的时候为 false ，
+    // props.comment 为空的时候为 false
     // 不为空的时候为 true
     if (this.props !== prevProps && this.props.comment != false) {
       this.foldCommit();
     }
   }
 
+  componentWillAppear() {
+    console.warn("Will Appear");
+  }
+
+  componentWillLeave() {
+    console.warn("Will Leave");
+  }
+
   FirstChild(props) {
     const childrenArray = React.Children.toArray(props.children);
+
+    console.warn(childrenArray );
     return childrenArray[0] || null;
   }
 
@@ -99,9 +110,16 @@ class CommentItem extends React.Component {
     let commentNotes = this.state.hasFoldBtn && this.state.isFold ? allComment.substring(0, this.state.limitWords) : allComment;
     let btnStyle = this.state.hasFoldBtn ? {display: ''}: {display:'none'};
 
-
-    return (<li>
-        <div className="img"></div>
+    return (
+      <ReactCSSTransitionGroup
+          transitionName="commentComeOut"
+          transitionEnterTimeout={500}
+          transitionLeaveTimeout={300}
+          transitionAppearTimeout={1000}
+          component={this.FirstChild}
+      >
+      <li>
+        <div className="comma-img"></div>
         <div className = "comment"  >
             <p className="comment-body" ref={(c) => this.bodyNode = c } >
               {commentNotes}
@@ -116,10 +134,10 @@ class CommentItem extends React.Component {
                 </span>
             </p>
         </div>
-    </li>);
+    </li>
+      </ReactCSSTransitionGroup>
+    );
   }
 }
-        // </div>
-        // </ReactCSSTransitionGroup>
 
 export default CommentItem;
