@@ -1,4 +1,6 @@
 import React from 'react';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+
 import {
   getDomStyle,
   _each
@@ -87,10 +89,16 @@ class CommentItem extends React.Component {
     }
   }
 
+  FirstChild(props) {
+    const childrenArray = React.Children.toArray(props.children);
+    return childrenArray[0] || null;
+  }
+
   render() {
     let allComment = this.props.comment.notes;
     let commentNotes = this.state.hasFoldBtn && this.state.isFold ? allComment.substring(0, this.state.limitWords) : allComment;
     let btnStyle = this.state.hasFoldBtn ? {display: ''}: {display:'none'};
+
 
     return (<li>
         <div className="img"></div>
@@ -111,5 +119,7 @@ class CommentItem extends React.Component {
     </li>);
   }
 }
+        // </div>
+        // </ReactCSSTransitionGroup>
 
 export default CommentItem;

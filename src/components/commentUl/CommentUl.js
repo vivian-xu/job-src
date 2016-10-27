@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import {getDomStyle, _each} from '../../commons/utiles';
 
@@ -63,7 +64,16 @@ class CommentUl extends React.Component {
         return (
             <div>
                 <ul id="comments-list" className="comments-list" ref={(c) => this.rootNode = c}>
+                    <ReactCSSTransitionGroup
+                        transitionName="example"
+                        transitionEnterTimeout={500}
+                        transitionLeaveTimeout={300}
+                        component={this.FirstChild}
+                        transitionAppear={true}
+                        transitionAppearTimeout={1000}
+                    >
                     {commentsList}
+                    </ReactCSSTransitionGroup>
                 </ul>
             </div>
         );
