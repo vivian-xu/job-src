@@ -1,0 +1,75 @@
+$commaSizeW: 20px;
+$commaSizeH: 17px;
+
+.comments-list li {
+    display: -webkit-flex;
+    display:    -moz-box;
+    display: -ms-flexbox;
+    display:         flex;
+    display: -webkit-box;  /* 兼容 andior 微信 */
+
+    width: 100%;
+    margin-bottom: .2rem;
+    .img {
+        width: $commaSizeW;
+        /*普通显示屏(设备像素比例小于等于1)使用1倍的图*/
+
+        background: url(../imgs/comma.png) no-repeat top left ;
+        background-position-y: 8px;
+        background-size: $commaSizeW $commaSizeH;
+        /*高清显示屏(设备像素比例大于等于2)使用2倍图 */
+        @mediaonlyscreenand(-webkit-min-device-pixel-ratio:2) {
+            .css {
+                background: url(../imgs/comma@2x.png) no-repeat top left ;
+                background-position-y: 8px;
+                background-size: $commaSizeW $commaSizeH;
+            }
+        }
+        /*高清显示屏(设备像素比例大于等于3)使用3倍图 */
+        @mediaonlyscreenand(-webkit-min-device-pixel-ratio:3) {
+            .css {
+                background: url(../imgs/comma@3x.png) no-repeat top left ;
+                background-position-y: 8px;
+                background-size: $commaSizeW $commaSizeH;
+            }
+        }
+    }
+    div.comment {
+        position: relative;
+        // margin-left: 10px;
+
+        margin-left: .21rem;
+
+        -webkit-flex: 1;
+           -moz-box-flex: 1;
+            -ms-flex: 1;
+                flex: 1;
+        -webkit-box-flex: 1; /* 兼容 andior 微信 */
+    }
+}
+
+.comment-body {
+    overflow: hidden;
+}
+
+.foldBtn {
+    font-size: 13px;
+
+    position: absolute;
+    right: .3rem;
+    bottom: 30px;
+
+    color: $color-btn;
+}
+
+.author {
+    font-size: $font-size-small-text;
+
+    color: $color-sub;
+    .time {
+        margin-left: .16rem;
+
+        color: $color-sub-title;
+    }
+}
+
