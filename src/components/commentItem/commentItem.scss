@@ -10,7 +10,6 @@ $commaSizeH: 17px;
 
     width: 100%;
     margin-bottom: .2rem;
-
     .comma-img {
         width: $commaSizeW;
         // height: $commaSizeH;
@@ -36,9 +35,9 @@ $commaSizeH: 17px;
             }
         }
     }
-
     div.comment {
         position: relative;
+
         margin-left: .21rem;
 
         -webkit-flex: 1;
@@ -49,16 +48,17 @@ $commaSizeH: 17px;
     }
 }
 
-.comment-body {
-    overflow: hidden;
-}
-
 .foldBtn {
     font-size: 13px;
 
     position: absolute;
-    right: .3rem;
+    right: .5em;
     bottom: 30px;
+
+    width: 3em;
+    background-color: $color-bg;
+
+    text-align: right;
 
     color: $color-btn;
 }
@@ -71,6 +71,66 @@ $commaSizeH: 17px;
         margin-left: .16rem;
 
         color: $color-sub-title;
+    }
+}
+
+
+.comment-body {
+    overflow: hidden;
+}
+
+.down-in {
+  -webkit-animation: downIn 0.3s both;
+  animation: downIn 0.3s both;
+}
+
+@-webkit-keyframes downIn {
+    from {
+        transform: translate(0, 100%);
+        opacity: 0;
+    }
+    to {
+        transform: translate(0, 0);
+        opacity: 1;
+    }
+
+}
+
+@keyframes downIn {
+    from {
+        transform: translate(0, 100%);
+        opacity: 0;
+    }
+    to {
+        transform: translate(0, 0);
+        opacity: 1;
+    }
+}
+
+
+.down-out {
+  -webkit-animation: downOut 0.3s both;
+  animation: downOut 0.3s both;
+}
+
+@-webkit-keyframes downOut {
+    from {
+        transform: translate(0, 0);
+        opacity: 1;
+    }
+    to {
+        transform: translate(0, 100%);
+        opacity: 0;
+    }
+}
+@keyframes downOut {
+    from {
+        transform: translate(0, 0);
+        opacity: 1;
+    }
+    to {
+        transform: translate(0, 100%);
+        opacity: 0;
     }
 }
 
