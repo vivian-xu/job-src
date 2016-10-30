@@ -8,12 +8,6 @@ import {
   IndexRoute,
   browserHistory
 } from 'react-router';
-import {
-  createHashHistory
-} from 'history';
-import {
-  useRouterHistory
-} from 'react-router';
 
 import ArticleListBlock from './pages/ArticleListBlock';
 import Profile from './pages/Profile';
@@ -25,11 +19,6 @@ require('./fonts/iconfont.eot');
 require('./fonts/iconfont.svg');
 require('./fonts/iconfont.ttf');
 require('./fonts/iconfont.woff');
-
-const appHistory = useRouterHistory(createHashHistory)({
-  queryKey: false
-});
-// <Router  history={appHistory}>
 
 ReactDOM.render(
   <Router history={browserHistory}>

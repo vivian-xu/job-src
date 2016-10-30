@@ -38,7 +38,7 @@ module.exports = {
   ],
   output: {
     path: path.join(__dirname, 'dist'),
-    publicPath: '/',
+    publicPath: '/static/',
     filename: 'bundle.js'
   },
   module: {
@@ -49,11 +49,9 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        // loader: 'style!css!postcss!sass'
         loader: ExtractTextPlugin.extract('style-loader', 'css!postcss!sass')
       }, {
         test: /\.css$/,
-        // loader: "style!css"
         loader: ExtractTextPlugin.extract('style-loader', 'css'),
       }, {
         test: /\.(woff|woff2|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
@@ -64,7 +62,6 @@ module.exports = {
           // 'url?limit=10000&name=img/[hash:8].[name].[ext]', // 图片小于8k就转化为 base64, 或者单独作为文件
           // 'image-webpack' // 图片压缩
       }
-
     ]
   },
   resolve: {

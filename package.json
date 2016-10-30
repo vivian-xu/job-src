@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "webpack-dev-server",
     "lint": "eslint src",
-    "build": "rm -rf dist/*.js dist/*.html && webpack"
+    "build": "rm -rf dist/*.js dist/*.html dist/css/ && webpack"
   },
   "repository": {},
   "keywords": [],
