@@ -1,3 +1,4 @@
+
 import React from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
@@ -6,7 +7,6 @@ import {
   getDomStyle,
   _each,
 } from '../../commons/utiles';
-
 
 
 class CommentItem extends React.Component {

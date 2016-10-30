@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server",
-    "lint": "eslint src"
+    "lint": "eslint src",
+    "build": "rm -rf dist/*.js dist/*.html && webpack"
   },
   "repository": {},
   "keywords": [],
@@ -38,6 +39,7 @@
     "extract-text-webpack-plugin": "^1.0.1",
     "fastclick": "^1.0.6",
     "file-loader": "^0.8.5",
+    "html-webpack-plugin": "^2.24.0",
     "node-sass": "^3.8.0",
     "postcss-loader": "^0.9.1",
     "react-hot-loader": "^1.3.0",
