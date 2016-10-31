@@ -1,3 +1,6 @@
+// @import "../commons/common.scss";
+// @import "../../styles/variables.scss";
+
 $commaSizeW: 20px;
 $commaSizeH: 17px;
 
@@ -73,7 +76,6 @@ $commaSizeH: 17px;
         color: $color-sub-title;
     }
 }
-
 
 .comment-body {
     overflow: hidden;

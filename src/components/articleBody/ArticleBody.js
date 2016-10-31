@@ -14,7 +14,6 @@ class ArticleBody extends React.Component {
         };
     }
 
-
     componentDidMount() {
 
     }
@@ -35,7 +34,7 @@ class ArticleBody extends React.Component {
                 </p>
                 <h2>{this.state.title}</h2>
                 <p className="date">{this.state.date} {this.state.topic} </p>
-                <Link to="/profile">
+                <Link to="/mentors/5">
                     <div className="note">
 
                         <div className="author">

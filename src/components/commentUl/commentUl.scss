@@ -1,10 +1,10 @@
-@import '../commentItem/commentItem.scss';
+// @import "../../styles/variables.scss";
+// @import "../../commons/common.scss";
 
 .comments-list {
     margin: .25rem 0;
     text-align: left;
 }
-
 
 .commentComeOut-enter {
   opacity: 0.01;
