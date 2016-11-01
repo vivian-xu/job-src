@@ -1,5 +1,5 @@
 import React from 'react';
-import ArticleBody from '../components/articleBody/ArticleBody';
+import ArticleBody from '../../components/articleBody/ArticleBody';
 
 class Article extends React.Component {
     constructor(props) {

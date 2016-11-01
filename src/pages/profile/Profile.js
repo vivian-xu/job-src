@@ -1,12 +1,12 @@
 import React from 'react';
 import ajax from 'superagent';
 
-import Info from '../components/info/Info';
-import Resume from '../components/resume/Resume';
-import Mentor from '../components/mentor/Mentor';
-import Comments from '../components/comments/Comments';
-import Date from '../components/date/Date';
-import Call from '../components/call/Call';
+import Info from '../../components/info/Info';
+import Resume from '../../components/resume/Resume';
+import Mentor from '../../components/mentor/Mentor';
+import Comments from '../../components/comments/Comments';
+import Date from '../../components/date/Date';
+import Call from '../../components/call/Call';
 
 class Profile extends React.Component {
     constructor(props) {

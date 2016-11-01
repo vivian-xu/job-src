@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "webpack-dev-server --config server.js --progress --profile --colors",
     "lint": "eslint src",
-    "clear": "rm -rf dist/*.js dist/*.html dist/*.ttf dist/*.eot dist/*.woff dist/*.svg dist/css/",
+    "clear": "rm -rf dist/*.js dist/*.html dist/css/",
     "build": "npm run clear&&webpack --config webpack.prod.config.js --progress --profile --colors --display-error-details"
   },
   "repository": {
