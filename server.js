@@ -1,6 +1,6 @@
 var webpack = require('webpack');
 var WebpackDevServer = require('webpack-dev-server');
-var config = require('./config');
+var config = require('./webpack.config.js');
 
 
 var compiler = webpack(config);
@@ -10,7 +10,7 @@ var server = new WebpackDevServer(compiler, {
   publicPath: config.output.publicPath,
    // Can also be an array, or: contentBase: "http://localhost/",
   contentBase: './dist',
-  hot: true,
+  // hot: true,
   inline: true,
   noInfo: false,
   stats: { colors: true },
@@ -33,3 +33,5 @@ server.listen(7070, '0.0.0.0', function (err, result) {
   }
   console.log('Listening at localhost:7070/');
 });
+
+module.exports = server;

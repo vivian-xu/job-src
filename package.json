@@ -4,9 +4,10 @@
   "description": "job 前端",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server --progress --profile --colors server.js",
+    "dev": "webpack-dev-server --config server.js --progress --profile --colors",
     "lint": "eslint src",
-    "build": "rm -rf dist/*.js dist/*.html dist/css/ && webpack --display-error-details"
+    "clear": "rm -rf dist/*.js dist/*.html dist/*.ttf dist/*.eot dist/*.woff dist/*.svg dist/css/",
+    "build": "npm run clear&&webpack --config webpack.prod.config.js --progress --profile --colors --display-error-details"
   },
   "repository": {
     "type": "git",
