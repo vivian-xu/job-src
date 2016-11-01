@@ -1,18 +1,19 @@
 // import "./allComments.scss";
 
-import React from 'react';
+// import React from 'react';
 import ajax from 'superagent';
 
 import CommentUl from '../../components/commentUl/CommentUl'
+import InfiniteList from '../../components/infiniteList/InfiniteList'
 
 class Allcomments extends React.Component {
   constructor(props) {
     super(props);
+
+    this.onhandleBack = this.onhandleBack.bind(this);
   }
 
-  componentWillMount() {}
-
-  back() {
+  onhandleBack() {
     window.history.back();
   }
 
@@ -34,19 +35,16 @@ class Allcomments extends React.Component {
     return (
       <div className="all-comments">
         <div className="all-comments--title-block">
-            <span className="iconfont icon-left" onClick={this.back}></span>
+            <span className="iconfont icon-left" onClick={this.onhandleBack}></span>
             <h1> 全部评论 </h1>
         </div>
         <section className="wrap-block">
-            <CommentUl comments={comments} />
+            <InfiniteList />
         </section>
     </div>
     );
   }
 }
-
-Allcomments.propTypes = {
-  children: React.PropTypes.node
-}
+            // <CommentUl comments={comments} />
 
 export default Allcomments;

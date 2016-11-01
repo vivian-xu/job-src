@@ -40,7 +40,7 @@ class CommentItem extends React.Component {
     let h = body.clientHeight;
 
     if(h > lh * 5) {
-      console.log("%c over" ,"color: red");
+      // console.log("%c over" ,"color: red");
 
       this.foldHeight = lh*5 + "px";
 
@@ -52,7 +52,6 @@ class CommentItem extends React.Component {
     } else {
       console.log("%c not over", "color: green");
     }
-
   }
 
   onhandleClickFold() {
@@ -62,7 +61,7 @@ class CommentItem extends React.Component {
   }
 
   componentDidMount() {
-    console.log('DID MOUNT');
+    // console.log('DID MOUNT');
     if(this.props.comment != false) {
       this.foldCommit();
     }
@@ -107,7 +106,7 @@ class CommentItem extends React.Component {
       // >
 
     return (
-    <li>
+    <li className="commentItem">
         <div className="comma-img"></div>
         <div className = "comment"  key={this.props.comment.id}>
             <p

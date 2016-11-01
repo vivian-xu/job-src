@@ -20,7 +20,6 @@ import ArticleListBlock from './pages/articleListBlock/ArticleListBlock';
 import Profile from './pages/profile/Profile';
 import Article from './pages/article/Article';
 import AllComments from './pages/allComments/AllComments';
-
 ReactDOM.render(
   <Router history={browserHistory}  >
         <Route path="/" component={ ArticleListBlock } />
