@@ -34,7 +34,7 @@ module.exports = {
         test: /\.js?$/,
         exclude: /node_modules/,
         include: src,
-        loader: 'babel'
+        loader: 'react-hot!babel'
       },
       {
         test: /\.scss$/,
@@ -51,13 +51,16 @@ module.exports = {
       }
     ]
   },
-
+  postcss: function () {
+    return [require('autoprefixer')];
+  },
   resolve: {
     extensions: ['', '.js', '.jsx']
   },
 
   plugins: [
-    new ExtractTextPlugin('./css/style.[hash:8].css'),
+  // production 环境下加  hash
+    new ExtractTextPlugin('./css/style.css'),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     new webpack.ProvidePlugin({

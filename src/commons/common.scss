@@ -49,6 +49,7 @@
 
 
 body {
+    position: relative;
     font-family: Yuanti-SC-Regular;
     // font-family: Yuanti-SC-Regular,Tahoma,Verdana,Arial,sans-serif;
     color: $color-text;
@@ -77,17 +78,18 @@ body {
 }
 
 #app {
-    position: relative;
+    padding-top: .2rem;
 }
 
 a {
-    color: #333;
+    color: $color-text;
 }
+
 .wrap-block {
     box-sizing: border-box;
     // width: 100%;
     padding: .5rem .4rem;
-    margin: .2rem;
+    margin: 0 .2rem .2rem;
     background-color: #fff;
     border-radius: 4px;
 

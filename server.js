@@ -10,7 +10,6 @@ var server = new WebpackDevServer(compiler, {
   publicPath: config.output.publicPath,
    // Can also be an array, or: contentBase: "http://localhost/",
   contentBase: './dist',
-  // hot: true,
   inline: true,
   noInfo: false,
   stats: { colors: true },

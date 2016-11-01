@@ -8,6 +8,7 @@ import {
   IndexRoute,
   browserHistory
 } from 'react-router';
+// import { AppContainer } from 'react-hot-loader';
 
 // import routes from "./routes";
 
