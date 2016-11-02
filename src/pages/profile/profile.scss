@@ -1,0 +1,24 @@
+.section-title {
+    margin-bottom: .25rem;
+    color: $color-section-title;
+    font-size: $font-size-sub-text;
+    line-height: 1;
+
+    span {
+        .iconfont i{
+            font-size: 12px;
+        }
+    }
+}
+
+/*info*/
+@import '../../components/info/info.scss';
+
+/*resume*/
+@import '../../components/resume/resume.scss';
+
+/*comments*/
+@import '../../components/comments/comments.scss';
+
+/* call */
+@import '../../components/call/call.scss';

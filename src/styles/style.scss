@@ -10,56 +10,26 @@
     pages : Profile
 
 */
-/* page: Profile 公用*/
-.section-title {
-    margin-bottom: .25rem;
-    color: $color-section-title;
-    font-size: $font-size-sub-text;
-    line-height: 1;
+@import '../pages/profile/profile.scss';
 
-    span {
-        .iconfont i{
-            font-size: 12px;
-        }
-    }
-}
-
-/*info*/
-@import '../components/info/info.scss';
-
-/*resume*/
-@import '../components/resume/resume.scss';
-
-/*comments*/
-@import '../components/comments/comments.scss';
-
-/* call */
-@import '../components/call/call.scss';
 /*
 
     pages : ArticleList
 
 */
+@import '../pages/articleListBlock/articleListBlock.scss';
 
-/*slide*/
-@import '../components/slide/slide.scss';
-
-/*articleList*/
-@import '../components/articleList/articleList.scss';
 /*
 
     Article
 
 */
-@import '../components/articleBody/articleBody.scss';
+@import '../pages/article/article.scss';
 
 /*
 
     pages : Allcomments
 
 */
-
 @import '../pages/allComments/allComments.scss';
-@import '../components/commentItem/commentItem.scss';
-@import '../components/commentUl/commentUl.scss';
 
