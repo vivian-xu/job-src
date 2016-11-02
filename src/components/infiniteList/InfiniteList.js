@@ -2,13 +2,22 @@ import CommentItem from '../commentItem/CommentItem';
 import Infinite from 'react-infinite';
 import ajax from 'superagent';
 
+var ListItem = React.createClass({
+    render: function() {
+        return <div className="infinite-list-item">
+        List Item {this.props.data}
+        </div>;
+    }
+});
+
+
 class InfiniteList extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
       pages: 0,
-      elements: this.buildElements(0, 40),
+      elements: this.buildElements(0, 20),
       isInfiniteLoading: false
     };
 
@@ -17,11 +26,11 @@ class InfiniteList extends React.Component {
     this.buildElements = this.buildElements.bind(this);
     this.handleInfiniteLoad = this.handleInfiniteLoad.bind(this);
     this.elementInfiniteLoad = this.elementInfiniteLoad.bind(this);
-    this.fetchDatas = this.fetchDatas.bind(this);
+    // this.fetchingDatas = this.fetchingDatas.bind(this);
   }
 
 /*
-  fetchDatas(url, successback) {
+  fetchingDatas(url, successback) {
     ajax.get(url)
         .end((error, response) => {
                 if( !error && response ) {
@@ -48,25 +57,27 @@ class InfiniteList extends React.Component {
   componentWillMount() {
     let baseURL = '';
     let url = baseURL + this.state.pages + 1;
-    fetchDatas(url, this.handleSuccessFetch);
+    fetchingDatas(url, this.handleSuccessFetch);
   }
 */
   buildElements(start, end) {
       let elements = [];
-
-      for (let i = start; i < end; i++) {
-        let comment = {
+      console.log('%c' + start, 'color: green; background: yellow; font-size: 20px');
+      for (var i = start; i < end; i++) {
+/*        let comment = {
           id: i ,
-          notes: '以前在豌豆荚负责产品，略懂产品设计和用户，对创业公司的一些坑，也比较清楚。以前在豌豆荚负责产品，略懂产品设计和用户体验，对创业公司的一些坑，也比较清楚。以前在豌豆荚负责产品，略懂产品设计和用户体验.略懂产品设计和用htgfdg',
+          notes: '以前在豌豆荚负责产品，略懂产',
           student: '小明',
           day: i
-        };
-        elements.push(<CommentItem comment={comment} key={i}/>)
+        };*/
+        // elements.push(<CommentItem comment={comment} key={i}/>)
+        elements.push(<ListItem key={i} data={i}/>)
       }
       return elements;
   }
 
   handleInfiniteLoad() {
+    console.log('%c loading', 'color: green; background: yellow; font-size: 20px');
       let that = this;
       this.setState({
           isInfiniteLoading: true
@@ -89,21 +100,21 @@ class InfiniteList extends React.Component {
 
   render() {
     console.log('%c infiniteList', 'green');
-    return (<Infinite elementHeight={40}
+    return (<Infinite elementHeight={20}
                            containerHeight={250}
                            infiniteLoadingBeginBottomOffset={200}
                            onInfiniteLoad={this.handleInfiniteLoad}
                            loadingSpinnerDelegate={this.elementInfiniteLoad()}
                            isInfiniteLoading={this.state.isInfiniteLoading}
-                           useWindowAsScrollContainer={true}
-                           timeScrollStateLastsForAfterUserScrolls={1000}
 
                            >
-            <ul>
               {this.state.elements}
-            </ul>
           </Infinite>);
   }
+                           // preloadBatchSize={300}
+            // <ul>
+            // </ul>
 }
-
+                           // useWindowAsScrollContainer={true}
+                           // timeScrollStateLastsForAfterUserScrolls={1000}
 export default InfiniteList;

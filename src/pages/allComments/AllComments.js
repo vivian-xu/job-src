@@ -38,7 +38,7 @@ class Allcomments extends React.Component {
             <span className="iconfont icon-left" onClick={this.onhandleBack}></span>
             <h1> 全部评论 </h1>
         </div>
-        <section className="wrap-block">
+        <section className="wrap-block" id="all-comments-infiniteList">
             <InfiniteList />
         </section>
     </div>
