@@ -1,20 +1,56 @@
 import CommentItem from '../commentItem/CommentItem';
 import Infinite from 'react-infinite';
+import ajax from 'superagent';
 
 class InfiniteList extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      pages: 0,
       elements: this.buildElements(0, 40),
       isInfiniteLoading: false
     };
 
+    this.elements;
+
     this.buildElements = this.buildElements.bind(this);
     this.handleInfiniteLoad = this.handleInfiniteLoad.bind(this);
     this.elementInfiniteLoad = this.elementInfiniteLoad.bind(this);
+    this.fetchDatas = this.fetchDatas.bind(this);
   }
 
+/*
+  fetchDatas(url, successback) {
+    ajax.get(url)
+        .end((error, response) => {
+                if( !error && response ) {
+                    let data = response.body.data;
+
+                    console.log('data nnnnnnnnnn');
+                } else {
+                console.error(`Error fetching ${name} `, error);
+         }
+    });
+  }*/
+/*
+  handleSuccessFetch() {
+    let data = response.body.data;
+    把数据 push  到 this.elements 中
+    this.elements.concat(data);
+    this.setState({
+      pages: this.state.pages + 1,
+      isInfiniteLoading: false,
+    })
+
+  }
+
+  componentWillMount() {
+    let baseURL = '';
+    let url = baseURL + this.state.pages + 1;
+    fetchDatas(url, this.handleSuccessFetch);
+  }
+*/
   buildElements(start, end) {
       let elements = [];
 
