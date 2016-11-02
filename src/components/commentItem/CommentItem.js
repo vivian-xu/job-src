@@ -115,7 +115,7 @@ class CommentItem extends React.Component {
                 height : (this.state.isFold == true)? this.foldHeight : ""
               }}
               ref={(c) => this.bodyNode = c } >
-
+              {this.props.comment.id}<br/>
               {this.props.comment.notes}
               <span style={{visibility: "hidden"}}>占位</span>
 

@@ -20,6 +20,7 @@ class InfiniteList extends React.Component {
 
       for (let i = start; i < end; i++) {
         let comment = {
+          id: i ,
           notes: '以前在豌豆荚负责产品，略懂产品设计和用户，对创业公司的一些坑，也比较清楚。以前在豌豆荚负责产品，略懂产品设计和用户体验，对创业公司的一些坑，也比较清楚。以前在豌豆荚负责产品，略懂产品设计和用户体验.略懂产品设计和用htgfdg',
           student: '小明',
           day: i
@@ -59,6 +60,7 @@ class InfiniteList extends React.Component {
                            loadingSpinnerDelegate={this.elementInfiniteLoad()}
                            isInfiniteLoading={this.state.isInfiniteLoading}
                            useWindowAsScrollContainer={true}
+                           timeScrollStateLastsForAfterUserScrolls={1000}
 
                            >
             <ul>
