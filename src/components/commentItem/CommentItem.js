@@ -1,5 +1,4 @@
 // import "./commentItem.scss";
-import React from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import {
@@ -79,7 +78,6 @@ class CommentItem extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     // console.log('DID UPDATE');
-
     // props.comment 为空的时候为 false
     // 不为空的时候为 true
     if (this.props !== prevProps && this.props.comment != false) {
@@ -93,15 +91,14 @@ class CommentItem extends React.Component {
   }
 
   render() {
-
     let btnDisplay = this.state.hasFoldBtn ? {display: ''}: {display:'none'};
 
     return (
-    <li className="commentItem">
-        <div className="comma-img"></div>
-        <div className = "comment"  key={this.props.comment.id}>
+    <li className="comment-item">
+        <div className="c-comment__comma"></div>
+        <div className = "c-comment__body"  key={this.props.comment.id}>
             <p
-              className="comment-body"
+              className="c-comment__content"
               style={{
                 height : (this.state.isFold == true)? this.foldHeight : ""
               }}
@@ -109,11 +106,11 @@ class CommentItem extends React.Component {
               {this.props.comment.notes}
               <span style={{visibility: "hidden"}}>占位</span>
 
-              <span className="foldBtn" onClick={this.onhandleClickFold} style = {btnDisplay}>
+              <span className="c-comment__foldBtn" onClick={this.onhandleClickFold} style = {btnDisplay}>
                 {this.state.isFold? '展开' : '收回'}
                 </span>
             </p>
-            <p className = "author" >
+            <p className = "c-comment__author" >
                 {this.props.comment.student}
             </p>
         </div>

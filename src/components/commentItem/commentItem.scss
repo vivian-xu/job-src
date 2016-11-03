@@ -1,10 +1,7 @@
-// @import "../commons/common.scss";
-// @import "../../styles/variables.scss";
-
 $commaSizeW: 20px;
 $commaSizeH: 17px;
 
-.commentItem {
+.comment-item {
     display: -webkit-flex;
     display:    -moz-box;
     display: -ms-flexbox;
@@ -13,45 +10,49 @@ $commaSizeH: 17px;
 
     width: 100%;
     margin-bottom: .2rem;
-    .comma-img {
-        width: $commaSizeW;
-        // height: $commaSizeH;
-        /*普通显示屏(设备像素比例小于等于1)使用1倍的图*/
+}
+.c-comment__comma {
+    width: $commaSizeW;
+    // height: $commaSizeH;
+    /*普通显示屏(设备像素比例小于等于1)使用1倍的图*/
 
-        background: url(../imgs/comma.png) no-repeat top left ;
-        background-position-y: 8px;
-        background-size: $commaSizeW $commaSizeH;
-        /*高清显示屏(设备像素比例大于等于2)使用2倍图 */
-        @mediaonlyscreenand(-webkit-min-device-pixel-ratio:2) {
-            .css {
-                background: url(../imgs/comma@2x.png) no-repeat top left ;
-                background-position-y: 8px;
-                background-size: $commaSizeW $commaSizeH;
-            }
-        }
-        /*高清显示屏(设备像素比例大于等于3)使用3倍图 */
-        @mediaonlyscreenand(-webkit-min-device-pixel-ratio:3) {
-            .css {
-                background: url(../imgs/comma@3x.png) no-repeat top left ;
-                background-position-y: 8px;
-                background-size: $commaSizeW $commaSizeH;
-            }
+    background: url(../imgs/comma.png) no-repeat top left ;
+    background-position-y: 8px;
+    background-size: $commaSizeW $commaSizeH;
+    /*高清显示屏(设备像素比例大于等于2)使用2倍图 */
+    @mediaonlyscreenand(-webkit-min-device-pixel-ratio:2) {
+        .css {
+            background: url(../imgs/comma@2x.png) no-repeat top left ;
+            background-position-y: 8px;
+            background-size: $commaSizeW $commaSizeH;
         }
     }
-    div.comment {
-        position: relative;
-
-        margin-left: .21rem;
-
-        -webkit-flex: 1;
-           -moz-box-flex: 1;
-            -ms-flex: 1;
-                flex: 1;
-        -webkit-box-flex: 1; /* 兼容 andior 微信 */
+    /*高清显示屏(设备像素比例大于等于3)使用3倍图 */
+    @mediaonlyscreenand(-webkit-min-device-pixel-ratio:3) {
+        .css {
+            background: url(../imgs/comma@3x.png) no-repeat top left ;
+            background-position-y: 8px;
+            background-size: $commaSizeW $commaSizeH;
+        }
     }
 }
+.c-comment__body {
+    position: relative;
 
-.foldBtn {
+    margin-left: .21rem;
+
+    -webkit-flex: 1;
+       -moz-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+    -webkit-box-flex: 1; /* 兼容 andior 微信 */
+}
+
+.c-comment__content {
+    overflow: hidden;
+}
+
+.c-comment__foldBtn {
     font-size: 13px;
 
     position: absolute;
@@ -66,73 +67,13 @@ $commaSizeH: 17px;
     color: $color-btn;
 }
 
-.author {
+.c-comment__author {
     font-size: $font-size-small-text;
-
     color: $color-sub;
-    .time {
-        margin-left: .16rem;
-
-        color: $color-sub-title;
-    }
 }
 
-.comment-body {
-    overflow: hidden;
-}
-
-.down-in {
-  -webkit-animation: downIn 0.3s both;
-  animation: downIn 0.3s both;
-}
-
-@-webkit-keyframes downIn {
-    from {
-        transform: translate(0, 100%);
-        opacity: 0;
-    }
-    to {
-        transform: translate(0, 0);
-        opacity: 1;
-    }
-
-}
-
-@keyframes downIn {
-    from {
-        transform: translate(0, 100%);
-        opacity: 0;
-    }
-    to {
-        transform: translate(0, 0);
-        opacity: 1;
-    }
-}
-
-
-.down-out {
-  -webkit-animation: downOut 0.3s both;
-  animation: downOut 0.3s both;
-}
-
-@-webkit-keyframes downOut {
-    from {
-        transform: translate(0, 0);
-        opacity: 1;
-    }
-    to {
-        transform: translate(0, 100%);
-        opacity: 0;
-    }
-}
-@keyframes downOut {
-    from {
-        transform: translate(0, 0);
-        opacity: 1;
-    }
-    to {
-        transform: translate(0, 100%);
-        opacity: 0;
-    }
+.c-comment__time {
+    margin-left: .16rem;
+    color: $color-sub-title;
 }
 

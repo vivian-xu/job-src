@@ -1,40 +1,38 @@
 @import '../../components/commentItem/commentItem.scss';
 @import '../../components/commentUl/commentUl.scss';
 
-.all-comments {
-    .wrap-block {
-        padding: .45rem .4rem;
-    }
-    .comments-list {
-        margin: 0;
-    }
-    .all-comments--title-block {
-        position: relative;
-        height: 47px;
-        margin: .2rem;
-        height: .86rem;
-        text-align: left;
-
-        span,
-        h1 {
-            height: 100%;
-            background-color: $color-bg;
-            line-height: 47px;
-            text-align: center;
-        }
-
-        span {
-            display: inline-block;
-            width: 47px;
-        }
-
-        h1 {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            width: 3rem;
-            margin-left: -1.5rem;
-            font-weight: normal;
-        }
-    }
+.wrap-block--vertical-small {
+    padding: .45rem .4rem;
 }
+
+.all-comments__header {
+    position: relative;
+    height: 47px;
+    margin: 0 .2rem .2rem;
+    height: .86rem;
+    text-align: left;
+}
+
+.all-comments__back,
+.all-comments__title {
+    height: 100%;
+    background-color: $color-bg;
+    line-height: 47px;
+    text-align: center;
+}
+
+.all-comments__back {
+    display: inline-block;
+    width: 47px;
+}
+
+.all-comments__title {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 3rem;
+    margin-left: -1.5rem;
+    font-weight: normal;
+}
+
+
