@@ -18,7 +18,13 @@ module.exports = {
     app: './src/index.js',
   },
 
-  output: config.output,
+  output: {
+    path: path.join(__dirname, 'dist'),
+    // publicPath: '/',
+    publicPath: '/static/', //模板、样式、脚本、图片等资源对应的server上的路径
+    filename: 'bundle.[hash:8].js'
+    // chunkFilename: 'js/[id].bundle.js'   //dundle生成的配置
+  },
 
   module: config.module,
 

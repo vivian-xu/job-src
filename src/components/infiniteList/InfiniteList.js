@@ -5,18 +5,17 @@ import ajax from 'superagent';
 var ListItem = React.createClass({
     render: function() {
         return <div className="infinite-list-item">
-        List Item {this.props.data}
+        List Item {this.props.num}
         </div>;
     }
 });
-
 
 class InfiniteList extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      pages: 0,
+      // pages: 0,
       elements: this.buildElements(0, 20),
       isInfiniteLoading: false
     };
@@ -60,18 +59,14 @@ class InfiniteList extends React.Component {
     fetchingDatas(url, this.handleSuccessFetch);
   }
 */
+
   buildElements(start, end) {
       let elements = [];
+
       console.log('%c' + start, 'color: green; background: yellow; font-size: 20px');
+
       for (var i = start; i < end; i++) {
-/*        let comment = {
-          id: i ,
-          notes: '以前在豌豆荚负责产品，略懂产',
-          student: '小明',
-          day: i
-        };*/
-        // elements.push(<CommentItem comment={comment} key={i}/>)
-        elements.push(<ListItem key={i} data={i}/>)
+        elements.push(<ListItem key={i} num={i}/>)
       }
       return elements;
   }
@@ -100,21 +95,32 @@ class InfiniteList extends React.Component {
 
   render() {
     console.log('%c infiniteList', 'green');
-    return (<Infinite elementHeight={20}
-                           containerHeight={250}
-                           infiniteLoadingBeginBottomOffset={200}
-                           onInfiniteLoad={this.handleInfiniteLoad}
-                           loadingSpinnerDelegate={this.elementInfiniteLoad()}
-                           isInfiniteLoading={this.state.isInfiniteLoading}
+        return <Infinite elementHeight={40}
 
-                           >
-              {this.state.elements}
-          </Infinite>);
+                         infiniteLoadBeginEdgeOffset={200}
+                         onInfiniteLoad={this.handleInfiniteLoad}
+                         loadingSpinnerDelegate={this.elementInfiniteLoad()}
+                         isInfiniteLoading={this.state.isInfiniteLoading}
+                         useWindowAsScrollContainer>
+            {this.state.elements}
+        </Infinite>;
   }
+
+
+}
+
+  // <Infinite elementHeight={20}
+  //    containerHeight={250}
+  //    infiniteLoadingBeginBottomOffset={200}
+  //    onInfiniteLoad={this.handleInfiniteLoad}
+  //    loadingSpinnerDelegate={this.elementInfiniteLoad()}
+  //    isInfiniteLoading={this.state.isInfiniteLoading}
+// // >
+//             {this.state.elements}
+//         </Infinite>);
                            // preloadBatchSize={300}
             // <ul>
             // </ul>
-}
                            // useWindowAsScrollContainer={true}
                            // timeScrollStateLastsForAfterUserScrolls={1000}
 export default InfiniteList;
