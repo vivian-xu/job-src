@@ -5,7 +5,7 @@ class Date extends React.PureComponent {
     }
     render() {
         return (
-            <section className="wrap-block date">
+            <section className="wrap-block">
                 <p className="section-title">
                     放心约
                 </p>

@@ -1,35 +1,32 @@
+.section-title--bigger {
+    height: 15px;
+    line-height: 15px;
+}
+
+.section-title--circle {
+    display: inline-block;
+    padding: 0 5px;
+    margin-right: 7px;
+    border: 1px solid $color-sub;
+    border-radius: 1rem;
+    font-size: $font-size-sub-small-text;
+    text-align: center;
+}
+
+.info__img {
+    width: 1.3rem;
+    height: 1.3rem;
+    margin-left: 5px;
+}
+
 .info {
+    line-height: 30px;
+}
 
-    .img {
-        width: 1.3rem;
-        height: 1.3rem;
-        margin-left: 5px;
-    }
-
-    .section-title {
-        height: 15px;
-        line-height: 15px;
-    }
-
-    .section-title .circle {
-        display: inline-block;
-        padding: 0 5px;
-        margin-right: 7px;
-        border: 1px solid $color-sub;
-        border-radius: 1rem;
-        font-size: $font-size-sub-small-text;
-        text-align: center;
-    }
-
-    .name {
-        margin: .2rem 0;
-        font-size: $font-size-big-title;
-        font-family: "Yuanti-SC-Bold",Tahoma,Verdana,Arial,"sans-serif";
-        -webkit-font-smoothing: antialiased;
-        // font-weight: bold;
-    }
-
-    &>p {
-        line-height: 30px;
-    }
+.info__name {
+    margin: .2rem 0;
+    font-size: $font-size-big-title;
+    line-height: 1;
+    font-family: "Yuanti-SC-Bold",Tahoma,Verdana,Arial,"sans-serif";
+    -webkit-font-smoothing: antialiased;
 }
