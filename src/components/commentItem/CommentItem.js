@@ -1,5 +1,3 @@
-// import "./commentItem.scss";
-
 import {
   getDomStyle,
   _each,

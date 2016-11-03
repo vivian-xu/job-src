@@ -2,7 +2,12 @@ import React from 'react';
 import CommentUl from '../commentUl/CommentUl'
 
 class Comments extends React.PureComponent {
-
+    static defaultProps = {
+      data: {
+        commentsData: [],
+        count: 0
+      }
+    }
     static propTypes = {
         data: React.PropTypes.object.isRequired,
      }
@@ -19,13 +24,10 @@ class Comments extends React.PureComponent {
     }
 
     render() {
-        console.log( 'comments render start');
-            console.log(this.props.data);
-
         let btn =( () => {
             if( this.props.data.commentsData.length < this.props.data.count) {
                 return (
-                    <a className="show-comments" onClick={this.checkAllComments}>
+                    <a className="c-btn" onClick={this.checkAllComments}>
                         查看全部评论
                     </a>
                 );
@@ -34,7 +36,7 @@ class Comments extends React.PureComponent {
 
         return (
             <section className="wrap-block comments">
-                <p className="section-title">
+                <p className="section-title--text-left">
                     同学们的评价
                 </p>
                 <CommentUl comments = {this.props.data.commentsData} />
