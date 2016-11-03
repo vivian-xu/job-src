@@ -2,101 +2,98 @@ import CommentItem from '../commentItem/CommentItem';
 import Infinite from 'react-infinite';
 import ajax from 'superagent';
 
-var ListItem = React.createClass({
-    render: function() {
-        return <div className="infinite-list-item">
-        List Item {this.props.num}
-        </div>;
-    }
-});
-
 class InfiniteList extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      // pages: 0,
-      elements: this.buildElements(0, 20),
+      pages: 0,
+      elements: [],
       isInfiniteLoading: false
     };
 
-    this.elements;
+// 存储原始的 请求回来的数据
+    this.comments = [];
+    // 基本的url
+    this.baseURL = 'http://wuguishifu.com/api/mentors/5/comments/';
+    // 下一页的url
+    this.nextURL = "";
 
-    this.buildElements = this.buildElements.bind(this);
+    // 屏幕滚动到了该请求新数据的时候调用，
+    // 将 isInfiniteLoading 设为 true,
+   // 调用 buildElements 创建／请求 新的elements
     this.handleInfiniteLoad = this.handleInfiniteLoad.bind(this);
     this.elementInfiniteLoad = this.elementInfiniteLoad.bind(this);
-    // this.fetchingDatas = this.fetchingDatas.bind(this);
+
+    // buildElements 请求新数据并且创建新的节点 concat 到 this.state.elements 中
+    this.buildElements = this.buildElements.bind(this);
+    // 向服务器发送 get 请求，获得下一页的 comments 数据
+    this.fetchingDatas = this.fetchingDatas.bind(this);
+    // 当 fetch 数据，成功时所做的。。
+    this.successFetch = this.successFetch.bind(this);
   }
-
 /*
-  fetchingDatas(url, successback) {
-    ajax.get(url)
-        .end((error, response) => {
-                if( !error && response ) {
-                    let data = response.body.data;
+  @ page: num  请求的页数
+  @ commentsArray: array 请求得到的 comments 数组
+*/
+  successFetch(page, commentsArray) {
+    let newElements = commentsArray.map((comment, index) => (<CommentItem key={comment.id} comment = {comment} />));
 
-                    console.log('data nnnnnnnnnn');
-                } else {
-                console.error(`Error fetching ${name} `, error);
-         }
-    });
-  }*/
-/*
-  handleSuccessFetch() {
-    let data = response.body.data;
-    把数据 push  到 this.elements 中
-    this.elements.concat(data);
+    console.warn(page);
+    console.warn(this.state.elements.length);
+
     this.setState({
-      pages: this.state.pages + 1,
+      elements: this.state.elements.concat(newElements),
       isInfiniteLoading: false,
     })
-
   }
-
+/*
+    @ url: string 请求的 url 地址；
+    @ page: num 请求的 页数; ( 之后可能不需要)
+    @ successcallback: function 请求成功的回调函数
 */
-  componentWillMount() {
-    let baseURL = 'http://wuguishifu.com/api/mentors';
-    let id = '5';
-
-    ajax.get(`${baseURL}/${id}/comments`)
-        .end((error, response) => {
-                if( !error && response ) {
-                    let data = response.body;
-                    console.log(data);
-                    console.log('data nnnnnnnnnn');
-                } else {
-                console.error(`Error fetching ${name} `, error);
-         }
+  fetchingDatas(url, page, successcallback) {
+    ajax
+    .get(url)
+    .send({page: page})
+    .end((error, response) => {
+      if( !error && response ) {
+          let data = response.body;
+          console.log(data);
+          successcallback(page,data.comments);
+          return data;
+      } else {
+      console.error(`Error fetching ${name} `, error);
+     }
     });
-
-    // let url = baseURL + this.state.pages + 1;
-    // fetchingDatas(url, this.handleSuccessFetch);
   }
-
-  buildElements(start, end) {
+  /*
+      @ page: num 请求的 页数; ( 之后可能不需要)
+      @ successback: function 请求成功的回调函数
+  */
+  buildElements(page, successback) {
       let elements = [];
+      console.log('%c' + 'page:'+ page, 'color: green; background: yellow; font-size: 20px');
+      let url = this.baseURL;
 
-      console.log('%c' + start, 'color: green; background: yellow; font-size: 20px');
-
-      for (var i = start; i < end; i++) {
-        elements.push(<ListItem key={i} num={i}/>)
-      }
-      return elements;
+      this.fetchingDatas( url, page, successback);
+  }
+  componentWillMount() {
+    console.log('%c pages in will Mountend! '+ this.state.pages, 'background-color: red ;font-size: 22px');
+    this.buildElements(this.state.pages,this.successFetch);
   }
 
   handleInfiniteLoad() {
     console.log('%c loading', 'color: green; background: yellow; font-size: 20px');
       let that = this;
       this.setState({
-          isInfiniteLoading: true
+          isInfiniteLoading: true,
+          pages: this.state.pages + 1
       });
+
       setTimeout(function() {
-          let elemLength = that.state.elements.length,
-              newElements = that.buildElements(elemLength, elemLength + 100);
-          that.setState({
-              isInfiniteLoading: false,
-              elements: that.state.elements.concat(newElements)
-          });
+          let page = that.state.pages;
+          that.buildElements(page, that.successFetch);
       }, 2500);
   }
 
@@ -108,31 +105,18 @@ class InfiniteList extends React.Component {
 // 50
   render() {
     console.log('%c infiniteList', 'green');
-        return <Infinite elementHeight={20}
-                         infiniteLoadBeginEdgeOffset={200}
-                         onInfiniteLoad={this.handleInfiniteLoad}
-                         loadingSpinnerDelegate={this.elementInfiniteLoad()}
-                         isInfiniteLoading={this.state.isInfiniteLoading}
-                         useWindowAsScrollContainer>
-            {this.state.elements}
-        </Infinite>;
+
+    return (
+      <Infinite elementHeight={35}
+        infiniteLoadBeginEdgeOffset={200}
+        onInfiniteLoad={this.handleInfiniteLoad}
+        loadingSpinnerDelegate={this.elementInfiniteLoad()}
+        isInfiniteLoading={this.state.isInfiniteLoading}
+        useWindowAsScrollContainer>
+        {this.state.elements}
+      </Infinite>
+    );
   }
-
-
 }
 
-  // <Infinite elementHeight={20}
-  //    containerHeight={250}
-  //    infiniteLoadingBeginBottomOffset={200}
-  //    onInfiniteLoad={this.handleInfiniteLoad}
-  //    loadingSpinnerDelegate={this.elementInfiniteLoad()}
-  //    isInfiniteLoading={this.state.isInfiniteLoading}
-// // >
-//             {this.state.elements}
-//         </Infinite>);
-                           // preloadBatchSize={300}
-            // <ul>
-            // </ul>
-                           // useWindowAsScrollContainer={true}
-                           // timeScrollStateLastsForAfterUserScrolls={1000}
 export default InfiniteList;
