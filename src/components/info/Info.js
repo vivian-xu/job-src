@@ -1,6 +1,4 @@
-import React from 'react';
-
-class Info extends React.Component {
+class Info extends React.PureComponent {
 
     static defaultProps = {
         data : {

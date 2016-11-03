@@ -1,7 +1,7 @@
 import React from 'react';
 import CommentUl from '../commentUl/CommentUl'
 
-class Comments extends React.Component {
+class Comments extends React.PureComponent {
 
     static propTypes = {
         data: React.PropTypes.object.isRequired,

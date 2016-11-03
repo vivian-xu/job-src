@@ -9,7 +9,6 @@ const ROOT_PATH = path.resolve(_dirname);
 // const dist = path.resolve(ROOT_PATH, 'dist');
 const PORT = 7070;
 
-
 module.exports {
 /*
   现在的代码是合并以后的代码,这样出错以后就会采用source-map的形式直接显示你出错代码的位置。

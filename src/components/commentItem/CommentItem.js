@@ -1,13 +1,11 @@
 // import "./commentItem.scss";
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import {
   getDomStyle,
   _each,
 } from '../../commons/utiles';
 
-
-class CommentItem extends React.Component {
+class CommentItem extends React.PureComponent {
   static defaultProps = {
     comment: []
   }

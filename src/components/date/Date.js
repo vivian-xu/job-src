@@ -1,6 +1,4 @@
-import React from 'react';
-
-class Date extends React.Component {
+class Date extends React.PureComponent {
     constructor(props) {
         super(props);
         this.displayName = 'Date';

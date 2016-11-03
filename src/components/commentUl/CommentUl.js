@@ -1,16 +1,12 @@
 import "./commentUl.scss";
-
-import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-
-import ReactTransitionGroup from 'react-addons-transition-group';
 
 import {getDomStyle, _each} from '../../commons/utiles';
 
 import CommentItem from '../commentItem/CommentItem';
 
-class CommentUl extends React.Component {
+class CommentUl extends React.PureComponent {
     static defaultProps = {
         comments: []
     }

@@ -1,6 +1,4 @@
-import React from 'react';
-
-class Call extends React.Component {
+class Call extends React.PureComponent {
     constructor(props) {
         super(props);
         this.displayName = 'Call';
@@ -18,10 +16,6 @@ class Call extends React.Component {
                  }
             ]
         };
-    }
-
-    componentWillMount() {
-       // console.log(this.state.checktimelist);
     }
 
     alertCheckTime() {

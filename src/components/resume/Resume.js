@@ -1,6 +1,5 @@
 import React from 'react';
-
-class Resume extends React.Component {
+class Resume extends React.PureComponent {
     static propTypes = {
         data: React.PropTypes.any.isRequired,
      }

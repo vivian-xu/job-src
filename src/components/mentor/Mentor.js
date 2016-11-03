@@ -1,6 +1,4 @@
-import React from 'react';
-
-class Mentor extends React.Component {
+class Mentor extends React.PureComponent {
     constructor(props) {
         super(props);
         this.displayName = 'Mentor';
