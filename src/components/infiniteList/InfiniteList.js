@@ -53,12 +53,25 @@ class InfiniteList extends React.Component {
 
   }
 
-  componentWillMount() {
-    let baseURL = '';
-    let url = baseURL + this.state.pages + 1;
-    fetchingDatas(url, this.handleSuccessFetch);
-  }
 */
+  componentWillMount() {
+    let baseURL = 'http://wuguishifu.com/api/mentors';
+    let id = '5';
+
+    ajax.get(`${baseURL}/${id}/comments`)
+        .end((error, response) => {
+                if( !error && response ) {
+                    let data = response.body;
+                    console.log(data);
+                    console.log('data nnnnnnnnnn');
+                } else {
+                console.error(`Error fetching ${name} `, error);
+         }
+    });
+
+    // let url = baseURL + this.state.pages + 1;
+    // fetchingDatas(url, this.handleSuccessFetch);
+  }
 
   buildElements(start, end) {
       let elements = [];
@@ -79,7 +92,7 @@ class InfiniteList extends React.Component {
       });
       setTimeout(function() {
           let elemLength = that.state.elements.length,
-              newElements = that.buildElements(elemLength, elemLength + 1000);
+              newElements = that.buildElements(elemLength, elemLength + 100);
           that.setState({
               isInfiniteLoading: false,
               elements: that.state.elements.concat(newElements)
@@ -92,11 +105,10 @@ class InfiniteList extends React.Component {
           Loading...
       </div>;
   }
-
+// 50
   render() {
     console.log('%c infiniteList', 'green');
-        return <Infinite elementHeight={40}
-
+        return <Infinite elementHeight={20}
                          infiniteLoadBeginEdgeOffset={200}
                          onInfiniteLoad={this.handleInfiniteLoad}
                          loadingSpinnerDelegate={this.elementInfiniteLoad()}

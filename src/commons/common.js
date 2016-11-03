@@ -13,3 +13,6 @@ document.documentElement.style.fontSize = deviceWidth/7.5 + 'px';
 console.log('font-size: ' + document.documentElement.style.fontSize);
 
 
+// mockfetch
+
+import './mockfetch';
