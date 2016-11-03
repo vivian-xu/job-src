@@ -20,26 +20,6 @@ class CommentUl extends React.PureComponent {
         this.displayName = 'CommentUl';
     }
 
-    call ( ) {
-        console.error("Appear");
-    }
-
-    componentWillAppear( call ) {
-        console.error("Appear");
-
-    }
-    componentDidAppear() {
-        console.error("Appear");
-    }
-
-    componentDidEnter() {
-        console.error("Enter");
-    }
-
-    componentDidLeave() {
-        console.error("Leave");
-    }
-
     render() {
         let commentsList = this.props.comments.map(function(comment, index) {
             return (<CommentItem comment = {comment} key={index} />)
@@ -49,7 +29,7 @@ class CommentUl extends React.PureComponent {
             <div>
                 <ul id="comments-list" className="comments-list">
                     <ReactCSSTransitionGroup
-                        transitionName="commentComeOut"
+                        transitionName="fadeToggle"
                         transitionEnterTimeout={500}
                         transitionLeaveTimeout={1000}
                         transitionAppearTimeout={1000}
