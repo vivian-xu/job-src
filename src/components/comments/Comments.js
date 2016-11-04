@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router';
 import CommentUl from '../commentUl/CommentUl'
 
 class Comments extends React.PureComponent {
@@ -27,9 +28,9 @@ class Comments extends React.PureComponent {
         let btn =( () => {
             if( this.props.data.commentsData.length < this.props.data.count) {
                 return (
-                    <a className="c-btn" onClick={this.checkAllComments}>
+                    <Link to={`/mentors/${this.param.mentorId}/comments`} className="c-btn" onClick={this.checkAllComments}>
                         查看全部评论
-                    </a>
+                    </Link>
                 );
             }
         })();
