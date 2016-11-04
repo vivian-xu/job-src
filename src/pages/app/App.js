@@ -1,4 +1,6 @@
-class App extends React.Component {
+import Loading from '../../components/loading/Loading';
+
+class App extends React.PureComponent {
   constructor(props) {
     super(props);
   }

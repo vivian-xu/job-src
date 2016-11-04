@@ -9,9 +9,12 @@ import Date from '../../components/date/Date';
 import Call from '../../components/call/Call';
 
 class Profile extends React.Component {
+    static propTypes = {
+        children: React.PropTypes.node
+    }
+
     constructor(props) {
         super(props);
-
         this.state = {
             mentorId: this.props.params.mentorId,
             error: {
@@ -91,15 +94,11 @@ class Profile extends React.Component {
                 <Call />
                 <Resume data={this.state.resume} />
                 <Mentor data={this.state.mentor} />
-                <Comments data={this.state.comments} />
+                <Comments data={this.state.comments} {...this.props} />
                 <Date />
             </div>
             );
     }
-}
-
-Profile.propTypes = {
-    children: React.PropTypes.node
 }
 
 export default Profile;

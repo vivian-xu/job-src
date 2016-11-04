@@ -13,8 +13,12 @@ class Comments extends React.PureComponent {
         data: React.PropTypes.object.isRequired,
      }
 
-    constructor(props) {
-        super(props);
+    static contextTypes = {
+       router: React.PropTypes.object,
+     }
+
+    constructor(props, context) {
+        super(props, context);
         this.displayName = 'Comments';
 
         this.checkAllComments = this.checkAllComments.bind(this);
@@ -25,10 +29,11 @@ class Comments extends React.PureComponent {
     }
 
     render() {
+        let {pathname} = this.context.router.location;
         let btn =( () => {
             if( this.props.data.commentsData.length < this.props.data.count) {
                 return (
-                    <Link to={`/mentors/${this.param.mentorId}/comments`} className="c-btn" onClick={this.checkAllComments}>
+                    <Link to={`${pathname}/comments`} className="c-btn" onClick={this.checkAllComments}>
                         查看全部评论
                     </Link>
                 );

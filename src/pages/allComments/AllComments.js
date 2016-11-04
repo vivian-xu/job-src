@@ -12,11 +12,10 @@ class Allcomments extends React.Component {
   }
 
   onhandleBack() {
-    window.history.back();
+    this.props.router.goBack();
   }
 
   render() {
-    console.log("render started");
     return (
       <div className="all-comments">
         <div className="all-comments__header">

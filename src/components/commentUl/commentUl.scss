@@ -2,21 +2,3 @@
     margin: .25rem 0;
     text-align: left;
 }
-
-.fadeToggle-enter {
-  opacity: 0.01;
-}
-
-.fadeToggle-enter.fadeToggle-enter-active {
-  opacity: 1;
-  transition: opacity .5s ease-in;
-}
-
-.fadeToggle-leave {
-  opacity: 1;
-}
-
-.fadeToggle-leave.fadeToggle-leave-active {
-  opacity: 0.01;
-  transition: opacity .5s ease-in;
-}
