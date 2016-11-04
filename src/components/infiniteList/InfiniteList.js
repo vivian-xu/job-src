@@ -78,6 +78,14 @@ class InfiniteList extends React.Component {
 
       this.fetchingDatas( url, page, successback);
   }
+
+
+/*
+null ,undefined, "", NaN
+if( !this.nextUrl ) {
+    return;
+}
+*/
   componentWillMount() {
     console.log('%c pages in will Mountend! '+ this.state.pages, 'background-color: red ;font-size: 22px');
     this.buildElements(this.state.pages,this.successFetch);
