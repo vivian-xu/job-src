@@ -25,7 +25,7 @@ ReactDOM.render(
         <Route path="/" component={ ArticleListBlock } />
         <Route path="/article" component={ Article } />
         <Route path="/mentors/:mentorId" component={ Profile } />
-        <Route path="/allComments" component={ AllComments } />
+        <Route path="/mentors/:mentorId/comments" component={ AllComments } />
   </Router>,
   document.getElementById('app')
 );
