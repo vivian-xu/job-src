@@ -34,6 +34,12 @@ class CommentItem extends React.PureComponent {
     let lh = parseInt(getDomStyle(body, 'lineHeight'));
     let h = body.clientHeight;
 
+
+  //  针对在 comments 页面的 此组件
+    if(this.props.setLineHeight ){
+      this.props.setLineHeight(lh);
+    }
+
     if(h > lh * 5) {
       // console.log("%c over" ,"color: red");
 
@@ -81,23 +87,35 @@ class CommentItem extends React.PureComponent {
     }
   }
 
-  FirstChild(props) {
-    const childrenArray = React.Children.toArray(props.children);
-    return childrenArray[0] || null;
-  }
-
   render() {
+    console.log(this.props.lineHeight + 'jsssss');
+    console.log(this.props.lineHeight !== 0 && this.foldHeight === "" );
     let btnDisplay = this.state.hasFoldBtn ? {display: ''}: {display:'none'};
+
+    // 什么情况下 maxHeight = this.props.lineHeight
+    // 第一次加载 且 this.props.lineHeight !== 0
+    //  第一次加载 ---- this.foldHeight === ""
+    let maxHeight = (this.props.lineHeight !== 0 && this.foldHeight === "" ) ? this.props.lineHeight*6 : "" ;
+    console.log(maxHeight);
+    // style={{
+    //   height: (this.state.isFold === true) ? this.foldHeight : "",
+    //   maxHeight:maxHeight
+    // }}
 
     return (
     <li className="comment-item">
         <div className="c-comment__comma"></div>
-        <div className = "c-comment__body"  key={this.props.comment.id}>
+        <div className = "c-comment__body"
+                key={this.props.comment.id}
+                style={{
+                  height: (this.state.isFold === true) ? this.foldHeight : "",
+                  maxHeight:maxHeight,
+                  overflow: "hidden"
+                }}
+                >
             <p
               className="c-comment__content"
-              style={{
-                height : (this.state.isFold == true)? this.foldHeight : ""
-              }}
+
               ref={(c) => this.bodyNode = c } >
               {this.props.comment.notes}
               <span style={{visibility: "hidden"}}>占位</span>

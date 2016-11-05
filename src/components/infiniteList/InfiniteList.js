@@ -14,6 +14,8 @@ class InfiniteList extends React.Component {
 
 // 存储原始的 请求回来的数据
     this.comments = [];
+    // 储存 render 页面显示部分的行高
+    this.lineHeight =0;
     // 基本的url
     this.baseURL = 'http://wuguishifu.com/api/mentors/5/comments/';
     // 下一页的url
@@ -31,13 +33,31 @@ class InfiniteList extends React.Component {
     this.fetchingDatas = this.fetchingDatas.bind(this);
     // 当 fetch 数据，成功时所做的。。
     this.successFetch = this.successFetch.bind(this);
+
+    this.setLineHeight = this.setLineHeight.bind(this);
+  }
+
+  setLineHeight( lh ) {
+    console.log(lh);
+    console.log(this.lineHeight);
+    if (this.lineHeight === 0 || this.lineHeight != lh ) {
+      this.lineHeight = lh;
+    } else {
+      return false;
+    }
   }
 /*
   @ page: num  请求的页数
   @ commentsArray: array 请求得到的 comments 数组
 */
   successFetch(page, commentsArray) {
-    let newElements = commentsArray.map((comment, index) => (<CommentItem key={comment.id} comment = {comment} />));
+    // let newElements = commentsArray.map((comment, index) => (<CommentItem key={comment.id} comment = {comment} />));
+    let newElements = commentsArray.map((comment, index) => (
+      <CommentItem key={comment.id}
+                                comment = {comment}
+                                setLineHeight={this.setLineHeight}
+                                lineHeight={this.lineHeight}
+                                />));
 
     console.warn(page);
     console.warn(this.state.elements.length);
@@ -79,7 +99,6 @@ class InfiniteList extends React.Component {
       this.fetchingDatas( url, page, successback);
   }
 
-
 /*
 null ,undefined, "", NaN
 if( !this.nextUrl ) {
@@ -116,11 +135,14 @@ if( !this.nextUrl ) {
 
     return (
       <Infinite elementHeight={35}
-        infiniteLoadBeginEdgeOffset={200}
-        onInfiniteLoad={this.handleInfiniteLoad}
-        loadingSpinnerDelegate={this.elementInfiniteLoad()}
-        isInfiniteLoading={this.state.isInfiniteLoading}
-        useWindowAsScrollContainer>
+                    containerHeight={window.innerHeight}
+                    infiniteLoadBeginEdgeOffset={200}
+                    onInfiniteLoad={this.handleInfiniteLoad}
+                    loadingSpinnerDelegate={this.elementInfiniteLoad()}
+                    isInfiniteLoading={this.state.isInfiniteLoading}
+                    timeScrollStateLastsForAfterUserScrolls={1000}
+                    useWindowAsScrollContainer={true}
+                    >
         {this.state.elements}
       </Infinite>
     );

@@ -1,0 +1,68 @@
+$labelPadT: 10px;
+$labelH: 21px;
+$checkedW: 14px;
+$ballW: 9px;
+
+.c-radio {
+    position: relative;
+    margin-bottom: .1rem;
+    background-color: #F4F4F4;
+}
+
+.c-radio--checked {
+    background-color: #6BE4CD ;
+}
+
+.c-radio__label {
+    display: block;
+    position: relative;
+
+    height:  $labelH;
+    line-height:  $labelH;
+    padding: $labelPadT .4rem $labelPadT 0;
+    margin-left: .8rem;
+    -webkit-transition: all 0.25s linear;
+}
+
+input[type="radio"] {
+    position: absolute;
+    visibility: hidden;
+
+    &:checked ~ .c-radio__check-circle {
+        border: 2px solid #fff;
+
+        &::before {
+            background-color: #fff;
+        }
+    }
+
+    &:checked ~ label {
+        color: #fff;
+    }
+}
+
+.c-radio__check-circle {
+    display: block;
+    position: absolute;
+    top: ($labelPadT + $labelH )/2 - $checkedW/3 ;
+    left: .36rem;
+    width: $checkedW;
+    height: $checkedW;
+    border: 1px solid #aaa;
+    border-radius: 100%;
+
+    &::before {
+        display: block;
+        position: absolute;
+        top: ($checkedW - $ballW )/2 + .5;
+        left: ($checkedW - $ballW )/2 ;
+        content: '';
+        width: $ballW;
+        height: $ballW;
+        border-radius: 100%;
+
+        transition: background .25s linear;
+        -webkit-transition: background .25s linear;
+    }
+}
+

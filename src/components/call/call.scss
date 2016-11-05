@@ -1,3 +1,5 @@
+@import '../TimeItem/TimeItem.scss';
+
 .wrap-block.call {
     padding: .4rem;
 }
@@ -18,107 +20,35 @@
     }
 }
 
-.wrap-timeList{
-    .mask-timeList {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        z-index: 2;
-        background-color: rgba(76, 76, 76, 0.8);
-    }
-
-    .timeList {
-        position: fixed;
-        z-index: 3;
-        left: 0;
-        bottom: 0;
-        box-sizing: border-box;
-        width: 100%;
-        height: 70%;
-        padding: .2rem;
-        background-color: #fff;
-        /*color: #fff;*/
-        overflow: scroll;
-
-        p {
-            padding: .3rem 0 .3rem;
-            color: rgba( 76, 77, 80, .5);
-            text-align: center;
-        }
-
-        ul > li {
-            @extend .clearfix;
-            position: relative;
-            margin-bottom: .1rem;
-            background-color: #F4F4F4;
-
-            &.checked {
-                background-color: #6BE4CD ;
-            }
-
-            input[type="radio"] {
-                position: absolute;
-                visibility: hidden;
-
-                &:checked ~ .check {
-                    border: 2px solid #fff;
-
-                    &::before {
-                        background-color: #fff;
-                    }
-                }
-
-                &:checked ~ label {
-                    color: #fff;
-                }
-            }
-
-            $labelPadT: 10px;
-            $labelH: 21px;
-            label {
-                display: block;
-                position: relative;
-
-                height:  $labelH;
-                line-height:  $labelH;
-                padding: $labelPadT .4rem $labelPadT 0;
-                margin-left: .8rem;
-                -webkit-transition: all 0.25s linear;
-            }
-
-            span{
-                float: right;
-            }
-
-            $checkedW: 14px;
-            $ballW: 9px;
-            .check {
-                display: block;
-                position: absolute;
-                top: ($labelPadT + $labelH )/2 - $checkedW/3 ;
-                left: .36rem;
-                width: $checkedW;
-                height: $checkedW;
-                border: 1px solid #aaa;
-                border-radius: 100%;
-
-                &::before {
-                    display: block;
-                    position: absolute;
-                    top: ($checkedW - $ballW )/2 + .5;
-                    left: ($checkedW - $ballW )/2 ;
-                    content: '';
-                    width: $ballW;
-                    height: $ballW;
-                    border-radius: 100%;
-
-                    transition: background .25s linear;
-                    -webkit-transition: background .25s linear;
-                }
-            }
-        }
-    }
+.c-mask {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    background-color: rgba(76, 76, 76, 0.8);
 }
+
+.c-panel--half {
+    position: fixed;
+    z-index: 3;
+    left: 0;
+    bottom: 0;
+    box-sizing: border-box;
+    width: 100%;
+    height: 70%;
+    padding: .2rem;
+    background-color: #fff;
+    overflow: scroll;
+}
+
+.c-panel__title {
+    padding: .3rem 0 .3rem;
+    color: rgba( 76, 77, 80, .5);
+    text-align: center;
+}
+
+
+
 

@@ -4,7 +4,7 @@ import ajax from 'superagent';
 import CommentUl from '../../components/commentUl/CommentUl'
 import InfiniteList from '../../components/infiniteList/InfiniteList'
 
-class Allcomments extends React.Component {
+class Allcomments extends React.PureComponent {
   constructor(props) {
     super(props);
 
