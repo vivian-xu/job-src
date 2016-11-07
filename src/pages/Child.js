@@ -14,7 +14,6 @@ class Child extends React.Component {
         });
     }
 
-
     render() {
         return <div>{this.state.data}</div>;
     }

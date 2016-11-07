@@ -19,12 +19,12 @@ class ArticleItem extends React.Component {
 
     render() {
       let imgShow = !this.props.article.imgsrc ? null : (
-            <img src={this.props.article.imgsrc} alt={this.props.article.imgdetail} className="article__img" />);
+            <img src={this.props.article.imgsrc} alt={this.props.article.imgdetail} className="article-item__img" />);
 
 
         console.log('render');
         return (
-            <li className="wrap-block">
+            <li className="wrap-block article-item">
                 <Link to="article" className="flex-box" >
                     <div className="flex-item" >
                         <p className="c-tag">
@@ -32,8 +32,8 @@ class ArticleItem extends React.Component {
 c-tag--bluebg c-tag--rectangular">{this.props.article.topic}</span>
                             {this.props.article.no}
                         </p>
-                        <h2 className="article__title">{this.props.article.title}</h2>
-                        <p className="article__body" ref={(o)=>{this.articleBody = o}}>{this.props.article.body}</p>
+                        <h2 className="article-item__title">{this.props.article.title}</h2>
+                        <p className="article-item__body" ref={(o)=>{this.articleBody = o}}>{this.props.article.body}</p>
                     </div>
                     {imgShow}
                 </Link>

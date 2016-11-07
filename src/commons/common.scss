@@ -113,6 +113,38 @@ a {
     }
 }
 
+.c-tag {
+    height: 18px;
+    margin-bottom: .2rem;
+    color: $color-sub;
+    font-size: $font-size-sub-text;
+    line-height: 18px;
+}
+
+.c-tag--bluebg {
+    color: #fff;
+    background-color: $color-btn;
+}
+
+.c-tag--bluefont {
+    color: $color-btn;
+}
+
+.c-tag--circle {
+    padding: 0 5px;
+    border: 1px solid $color-sub;
+    border-radius: 1rem;
+}
+.c-tag--rectangular {
+    padding: .01rem .2rem;
+}
+
+.c-tag--circle,
+.c-tag--rectangular {
+    margin-right: .2rem;
+    font-size: $font-size-sub-small-text;
+}
+
 .fadeToggle-enter {
   opacity: 0.01;
 }

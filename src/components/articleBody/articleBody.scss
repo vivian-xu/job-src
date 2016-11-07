@@ -1,53 +1,65 @@
-.article {
-    h2 {
-        text-align: center;
-        font-size: $font-size-title;
+.article__time {
+    margin: 5px 0 10px;
+    color: $color-sub;
+    font-size: $font-size-small-text;
+}
+
+.article__title {
+    text-align: center;
+    font-size: $font-size-title;
+}
+
+.article__title-img {
+    width: 6.3rem;
+}
+
+.article__container {
+    position: relative;
+    box-sizing: border-box;
+    width: 6.3rem;
+    height: 1.4rem;
+    padding: .3rem;
+    margin: .3rem 0;
+    line-height: 1;
+    background-color: #ECFBF8;
+}
+
+.article__mentor{
+    color: $color-sub-title;
+    font-size: $font-size-sub-text;
+
+    span {
+        display: block;
     }
 
-    .date {
-        margin: 5px 0 10px;
-        color: $color-sub;
-        font-size: $font-size-small-text;
-    }
-
-    .note {
-        padding: 10px;
-        background-color: #ECFBF8;
-        @extend .flex-box;
-
-        div,
-        p {
-            @extend .flex-item ;
-        }
-
-        .author{
-            @extend .clearfix;
-            color: $color-text;
-            font-size: 12px;
-
-            .img {
-                float: left;
-                margin-right:10px;
-            }
-
-            .name {
-                color: #333;
-                font-size: 16px;
-            }
-        }
-
-        .icon {
-            width: 20px;
-            text-align: right;
-            .iconfont {
-                display: inline-block;
-                margin-top: 10px;
-            }
-        }
-    }
-
-    .article-body {
-        line-height: 2;
+    .name {
+        margin-top: .12rem;
+        color: $color-text;
+        font-size: $font-size-sub-title;
     }
 }
 
+.article__avatar {
+    width: .8rem;
+    height: .8rem;
+    margin-right: .3rem;
+}
+
+.article__go-mentor {
+    position: absolute;
+    top: 50%;
+    right: .3rem;
+    margin-top: -$font-size-sub-small-text/2;
+    font-size: $font-size-sub-small-text;
+}
+
+.article__content {
+    font-size: $font-size-text;
+    line-height: $line-height-text;
+
+    img {
+        display: block;
+        max-width: 6.3rem;
+        margin: 0 auto;
+    }
+}
