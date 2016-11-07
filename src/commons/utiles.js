@@ -73,9 +73,29 @@ let _getTime = function(strTime) {
   }
   return returnObj;
 }
+/*
+    multiline text overflow display ellipses
+    @ param dom 原生 js dom 节点，最靠近文本的外层dom;
+    @ param numberRows (number)设置多少行后属于溢出
+
+    只显示3行， 三行末尾用 ... 代替
+    注意！是用的 while 函数／ while 的参数 必须是 实时的 parseInt(getDomStyle(me, "height"))
+
+*/
+let _headleMultilineTextOverflow = (dom, numberRows ) => {
+        console.log('hi');
+
+  let me = dom;
+  let lineH = getDomStyle(me, 'line-height');
+  let goalHeight = parseInt(lineH)*numberRows;
+  while(parseInt(getDomStyle(me, "height")) > goalHeight){
+       me.innerText = me.innerText.replace(/(\s)*([a-zA-Z0-9]+|\W)(\.\.\.)?$/, "...");
+  }
+};
 
 export {
   getDomStyle,
   _each,
-  _getTime
+  _getTime,
+  _headleMultilineTextOverflow
 };

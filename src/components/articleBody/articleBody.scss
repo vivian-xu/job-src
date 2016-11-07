@@ -1,12 +1,13 @@
-
 .article {
     h2 {
         text-align: center;
+        font-size: $font-size-title;
     }
 
     .date {
         margin: 5px 0 10px;
-        color: #AFB0B1;
+        color: $color-sub;
+        font-size: $font-size-small-text;
     }
 
     .note {
@@ -21,7 +22,7 @@
 
         .author{
             @extend .clearfix;
-            color: #C1CCCA;
+            color: $color-text;
             font-size: 12px;
 
             .img {

@@ -9,7 +9,8 @@ class InfiniteList extends React.Component {
     this.state = {
       pages: 0,
       elements: [],
-      isInfiniteLoading: false
+      isInfiniteLoading: false,
+      isover: false
     };
 
 // 存储原始的 请求回来的数据
@@ -38,8 +39,8 @@ class InfiniteList extends React.Component {
   }
 
   setLineHeight( lh ) {
-    console.log(lh);
-    console.log(this.lineHeight);
+    // console.log(lh);
+    // console.log(this.lineHeight);
     if (this.lineHeight === 0 || this.lineHeight != lh ) {
       this.lineHeight = lh;
     } else {
@@ -52,20 +53,28 @@ class InfiniteList extends React.Component {
 */
   successFetch(page, commentsArray) {
     // let newElements = commentsArray.map((comment, index) => (<CommentItem key={comment.id} comment = {comment} />));
-    let newElements = commentsArray.map((comment, index) => (
-      <CommentItem key={comment.id}
-                                comment = {comment}
-                                setLineHeight={this.setLineHeight}
-                                lineHeight={this.lineHeight}
-                                />));
+    if(commentsArray.length !== 0) {
+      let newElements = commentsArray.map((comment, index) => (
+        <CommentItem key={comment.id}
+                                  comment = {comment}
+                                  setLineHeight={this.setLineHeight}
+                                  lineHeight={this.lineHeight}
+                                  />));
 
-    console.warn(page);
-    console.warn(this.state.elements.length);
+      console.warn(page);
+      console.log('Fetch New Comments : ' + commentsArray );
+      console.warn(this.state.elements.length);
 
-    this.setState({
-      elements: this.state.elements.concat(newElements),
-      isInfiniteLoading: false,
-    })
+      this.setState({
+        elements: this.state.elements.concat(newElements),
+        isInfiniteLoading: false,
+      })
+    }else {
+        this.setState({
+          isover: true
+        });
+      }
+
   }
 /*
     @ url: string 请求的 url 地址；
@@ -113,6 +122,10 @@ if( !this.nextUrl ) {
   handleInfiniteLoad() {
     console.log('%c loading', 'color: green; background: yellow; font-size: 20px');
       let that = this;
+      if(this.state.isover){
+        console.log("it's over");
+        return false;
+      }
       this.setState({
           isInfiniteLoading: true,
           pages: this.state.pages + 1
@@ -134,7 +147,7 @@ if( !this.nextUrl ) {
     console.log('%c infiniteList', 'green');
 
     return (
-      <Infinite elementHeight={35}
+      <Infinite elementHeight={300}
                     containerHeight={window.innerHeight}
                     infiniteLoadBeginEdgeOffset={200}
                     onInfiniteLoad={this.handleInfiniteLoad}

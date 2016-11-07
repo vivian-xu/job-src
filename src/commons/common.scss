@@ -50,8 +50,8 @@
 
 body {
     position: relative;
-    font-family: Yuanti-SC-Regular;
-    // font-family: Yuanti-SC-Regular,Tahoma,Verdana,Arial,sans-serif;
+    // font-family: Yuanti-SC-Regular;
+    font-family: Yuanti-SC-Regular,Tahoma,Verdana,Arial,sans-serif;
     color: $color-text;
     font-size: $font-size-text;
     line-height: $line-height-text;
@@ -92,6 +92,9 @@ a {
     &>div {
         @extend .clearfix;
     }
+}
+.wrap-block--no-padding {
+  padding: 0;
 }
 
 .flex-box {

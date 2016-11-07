@@ -22,16 +22,16 @@ class Info extends React.PureComponent {
 
         let industryLi = this.props.data.industrys.map(function( industry, index ) {
             return (
-                <span className="section-title--bigger section-title--circle"  key={index}> {industry.name}
+                <span className="c-tag--circle"  key={index}> {industry.name}
                 </span>
             );
         });
-
+// section-title
         return (
             <section className = "wrap-block info">
                 <div className="flex-box">
                     <div className="flex-item">
-                        <p className="section-title">
+                        <p className=" c-tag">
                             {industryLi}
                             {this.props.data.gender}
                         </p>

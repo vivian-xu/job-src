@@ -28,8 +28,9 @@ class ArticleBody extends React.Component {
     render() {
         return (
             <div className="wrap-block" >
-                <p className="tag">
-                    <span >{this.state.topic}</span>
+                <p className="c-tag">
+                    <span className="
+c-tag--bluebg c-tag--rectangular">{this.state.topic}</span>
                     {this.state.no}
                 </p>
                 <h2>{this.state.title}</h2>
