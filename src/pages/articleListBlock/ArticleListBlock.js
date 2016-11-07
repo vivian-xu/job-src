@@ -1,5 +1,6 @@
 import Slide from '../../components/slide/Slide';
 import ArticleList from '../../components/articleList/ArticleList';
+import Loading from '../../components/loading/Loading';
 
 import src1 from '../../imgs/img1.png';
 import src2 from '../../imgs/img2.png';
@@ -26,7 +27,6 @@ class ArticleListBlock extends React.Component {
                     src3,
                     imgdetail: "slide 3"
                 }
-
             ],
             "articlelist" : [
                 {"topic": "师兄师姐说职场",
@@ -57,6 +57,7 @@ class ArticleListBlock extends React.Component {
         let {slide, articlelist} = this.state;
         return (
             <div>
+                <Loading />
                 <Slide imgs={slide} />
                 <ArticleList articlelist={articlelist} />
             </div>

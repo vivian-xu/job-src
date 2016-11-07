@@ -1,0 +1,37 @@
+.loading,
+.icon-loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+.icon-loading {
+  z-index: 200;
+  margin: -20px 0 0 -20px;
+  color: rgba(76, 76, 76, .8);
+  font-size: 40px;
+  line-height: 1;
+  text-align: center;
+  background-color: transparent;
+
+  animation: circle 1s linear infinite;
+}
+
+.loading {
+  z-index: 5;
+  margin: - 25px 0 0 -25px;
+  content: "";
+  width: 50px;
+  height: 50px;
+  background-color: rgba(255, 255, 255, .8);
+  border-radius: 4px;
+}
+
+@keyframes circle {
+   0% {
+    transform: rotateZ(0deg);
+   }
+   100% {
+    transform: rotateZ(360deg);
+   }
+}

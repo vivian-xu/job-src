@@ -30,6 +30,18 @@
   url('../fonts/iconfont.ttf?t=1470403222') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
   url('../fonts/iconfont.svg?t=1470403222#iconfont') format('svg'); /* iOS 4.1- */
 }
+/*
+  在线代码
+ */
+@font-face {
+  font-family: 'iconfont';  /* project id："176693" */
+  src: url('//at.alicdn.com/t/font_0mqsiqk6q32nvcxr.eot');
+  src: url('//at.alicdn.com/t/font_0mqsiqk6q32nvcxr.eot') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_0mqsiqk6q32nvcxr.woff') format('woff'),
+  url('//at.alicdn.com/t/font_0mqsiqk6q32nvcxr.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_0mqsiqk6q32nvcxr.svg#iconfont') format('svg');
+}
+
 
 .iconfont {
   font-family:"iconfont" !important;

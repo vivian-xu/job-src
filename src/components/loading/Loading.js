@@ -6,8 +6,10 @@ class Loading extends React.PureComponent {
 
   render() {
     return(
-      <div className="loading">
-
+      <div className=" loading">
+        <span className="icon-loading iconfont">
+          &#xe756;
+        </span>
       </div>
     );
   }

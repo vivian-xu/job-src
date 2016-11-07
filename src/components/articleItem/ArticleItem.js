@@ -21,7 +21,6 @@ class ArticleItem extends React.Component {
       let imgShow = !this.props.article.imgsrc ? null : (
             <img src={this.props.article.imgsrc} alt={this.props.article.imgdetail} className="article-item__img" />);
 
-
         console.log('render');
         return (
             <li className="wrap-block article-item">

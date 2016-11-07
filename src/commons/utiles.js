@@ -41,8 +41,6 @@ let _each = function(obj, fn) {
   }
 }
 
-//
-
 /**
  * @param  ( js dom Node ) js 原声dom 节点
  * @param styleName (string ) 需要查询的属性名称
@@ -84,7 +82,6 @@ let _getTime = function(strTime) {
 */
 let _headleMultilineTextOverflow = (dom, numberRows ) => {
         console.log('hi');
-
   let me = dom;
   let lineH = getDomStyle(me, 'line-height');
   let goalHeight = parseInt(lineH)*numberRows;

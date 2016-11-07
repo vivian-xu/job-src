@@ -29,7 +29,8 @@ time, mark, audio, video {
   background: transparent; }
 
 html, body {
-  width: 100%; }
+  width: 100%;
+  height: 100%; }
 
 :focus {
   outline: 1; }
@@ -56,7 +57,8 @@ a {
   font-size: 100%;
   vertical-align: baseline;
   background: transparent;
-  text-decoration: none; }
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent; }
 
 ins {
   background-color: #ff9;
@@ -90,6 +92,9 @@ hr {
 
 input, select {
   vertical-align: middle; }
+
+button {
+  -webkit-appearance: none; }
 
 .float_right {
   float: right; }
@@ -148,7 +153,8 @@ time, mark, audio, video {
   background: transparent; }
 
 html, body {
-  width: 100%; }
+  width: 100%;
+  height: 100%; }
 
 :focus {
   outline: 1; }
@@ -175,7 +181,8 @@ a {
   font-size: 100%;
   vertical-align: baseline;
   background: transparent;
-  text-decoration: none; }
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent; }
 
 ins {
   background-color: #ff9;
@@ -209,6 +216,9 @@ hr {
 
 input, select {
   vertical-align: middle; }
+
+button {
+  -webkit-appearance: none; }
 
 .float_right {
   float: right; }
@@ -304,12 +314,15 @@ a {
   background-color: #fff;
   border-radius: 4px; }
 
-.flex-box, .articleList li a, .article .note {
+.wrap-block--no-padding {
+  padding: 0; }
+
+.flex-box, .article .note {
   display: -ms-flexbox;
   display: flex;
   display: -webkit-box;
   /* 兼容 andior 微信 */ }
-  .flex-box .flex-item, .articleList li a .flex-item, .article .note .flex-item, .flex-box .articleList li a div, .articleList li a .flex-box div, .articleList li a div, .article .note div, .article .note p {
+  .flex-box .flex-item, .article .note .flex-item, .article .note div, .article .note p {
     -ms-flex: 1;
     flex: 1;
     -webkit-box-flex: 1;
@@ -320,16 +333,16 @@ a {
 
 .fadeToggle-enter.fadeToggle-enter-active {
   opacity: 1;
-  -webkit-transition: opacity .5s ease-in;
-  transition: opacity .5s ease-in; }
+  -webkit-transition: opacity .3s ease-in;
+  transition: opacity .3s ease-in; }
 
 .fadeToggle-leave {
   opacity: 1; }
 
 .fadeToggle-leave.fadeToggle-leave-active {
   opacity: 0.01;
-  -webkit-transition: opacity .5s ease-in;
-  transition: opacity .5s ease-in; }
+  -webkit-transition: opacity .3s ease-in;
+  transition: opacity .3s ease-in; }
 
 .rightBlock-title span {
   float: right;
@@ -451,7 +464,8 @@ time, mark, audio, video {
   background: transparent; }
 
 html, body {
-  width: 100%; }
+  width: 100%;
+  height: 100%; }
 
 :focus {
   outline: 1; }
@@ -478,7 +492,8 @@ a {
   font-size: 100%;
   vertical-align: baseline;
   background: transparent;
-  text-decoration: none; }
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent; }
 
 ins {
   background-color: #ff9;
@@ -512,6 +527,9 @@ hr {
 
 input, select {
   vertical-align: middle; }
+
+button {
+  -webkit-appearance: none; }
 
 .float_right {
   float: right; }
@@ -607,12 +625,15 @@ a {
   background-color: #fff;
   border-radius: 4px; }
 
-.flex-box, .articleList li a, .article .note {
+.wrap-block--no-padding {
+  padding: 0; }
+
+.flex-box, .article .note {
   display: -ms-flexbox;
   display: flex;
   display: -webkit-box;
   /* 兼容 andior 微信 */ }
-  .flex-box .flex-item, .articleList li a .flex-item, .article .note .flex-item, .flex-box .articleList li a div, .articleList li a .flex-box div, .articleList li a div, .article .note div, .article .note p {
+  .flex-box .flex-item, .article .note .flex-item, .article .note div, .article .note p {
     -ms-flex: 1;
     flex: 1;
     -webkit-box-flex: 1;
@@ -623,16 +644,16 @@ a {
 
 .fadeToggle-enter.fadeToggle-enter-active {
   opacity: 1;
-  -webkit-transition: opacity .5s ease-in;
-  transition: opacity .5s ease-in; }
+  -webkit-transition: opacity .3s ease-in;
+  transition: opacity .3s ease-in; }
 
 .fadeToggle-leave {
   opacity: 1; }
 
 .fadeToggle-leave.fadeToggle-leave-active {
   opacity: 0.01;
-  -webkit-transition: opacity .5s ease-in;
-  transition: opacity .5s ease-in; }
+  -webkit-transition: opacity .3s ease-in;
+  transition: opacity .3s ease-in; }
 
 .rightBlock-title span {
   float: right;
@@ -673,7 +694,8 @@ a {
   -webkit-transition: all 0.25s linear; }
 
 input[type="radio"] {
-  position: absolute; }
+  position: absolute;
+  visibility: hidden; }
   input[type="radio"]:checked ~ .c-radio__check-circle {
     border: 2px solid #fff; }
     input[type="radio"]:checked ~ .c-radio__check-circle::before {
@@ -750,55 +772,54 @@ input[type="radio"] {
 .slideBox {
   position: relative;
   overflow: hidden;
-  width: 100%; }
+  width: 7.1rem;
+  height: 2.9rem; }
   .slideBox .hd {
     position: absolute;
     z-index: 1;
     bottom: 9px;
     width: 100%; }
-    .slideBox .hd ul {
-      text-align: center; }
-      .slideBox .hd ul li {
-        display: inline-block;
-        width: 5px;
-        height: 5px;
-        margin: 3px;
-        text-indent: -99999px;
-        border-radius: 50%;
-        background-color: #bec7c2; }
-        .slideBox .hd ul li.on {
-          background-color: #3b3c3f; }
   .slideBox .bd {
     position: relative;
     z-index: 0;
     height: 100%; }
-    .slideBox .bd li img {
-      width: 100%; }
+
+.slide__btn-group {
+  text-align: center; }
+
+.slide__btn {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  margin: 3px;
+  text-indent: -99999px;
+  border-radius: 50%;
+  background-color: #bec7c2; }
+  .slide__btn.on {
+    background-color: #3b3c3f; }
+
+.slide__img {
+  width: 100%; }
 
 /*articleList*/
-.articleList li {
-  width: 100%; }
-  .articleList li a .flex-img {
-    width: 35%;
-    margin-left: 10px; }
+.article__img {
+  width: 35%;
+  margin-left: 10px; }
 
-.articleList .article-body {
-  font-size: 14px;
-  line-height: 21px; }
+.article__body {
+  font-size: 15px;
+  line-height: 24px; }
 
-.articleList .tag,
-.article .tag {
-  color: #ccc;
-  font-size: 12px; }
-  .articleList .tag span,
-  .article .tag span {
+.article__tag {
+  color: #4C4D50;
+  font-size: 11px; }
+  .article__tag span {
     padding: 2px 8px;
     margin-right: 5px;
     color: #fff;
-    background-color: #7fffd4; }
+    background-color: #6BE4CD; }
 
-.articleList h2,
-.article h2 {
+.article {
   font-size: 16px;
   margin: 5px 0; }
 
@@ -910,7 +931,6 @@ input[type="radio"] {
   position: relative;
   height: 47px;
   margin: 0 .2rem .2rem;
-  height: .86rem;
   text-align: left; }
 
 .all-comments__back,
@@ -931,3 +951,29 @@ input[type="radio"] {
   width: 3rem;
   margin-left: -1.5rem;
   font-weight: normal; }
+
+.c-mask {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  background-color: rgba(76, 76, 76, 0.8); }
+
+.c-panel--half {
+  position: fixed;
+  z-index: 3;
+  left: 0;
+  bottom: 0;
+  box-sizing: border-box;
+  width: 100%;
+  height: 70%;
+  padding: .2rem;
+  background-color: #fff;
+  overflow: scroll; }
+
+.c-panel__title {
+  padding: .3rem 0 .3rem;
+  color: rgba(76, 77, 80, 0.5);
+  text-align: center; }
