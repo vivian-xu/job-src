@@ -59,6 +59,7 @@ class InfiniteList extends React.Component {
                                   comment = {comment}
                                   setLineHeight={this.setLineHeight}
                                   lineHeight={this.lineHeight}
+
                                   />));
 
       console.warn(page);
@@ -122,38 +123,40 @@ if( !this.nextUrl ) {
   handleInfiniteLoad() {
     console.log('%c loading', 'color: green; background: yellow; font-size: 20px');
       let that = this;
-      if(this.state.isover){
-        console.log("it's over");
-        return false;
-      }
-      this.setState({
-          isInfiniteLoading: true,
-          pages: this.state.pages + 1
-      });
 
-      setTimeout(function() {
-          let page = that.state.pages;
-          that.buildElements(page, that.successFetch);
-      }, 2500);
-  }
+      if(this.state.isover){
+        console.warn("it's over");
+        return false;
+      } else {
+        this.setState({
+            isInfiniteLoading: true,
+            pages: this.state.pages + 1
+        });
+
+        let page = that.state.pages;
+        that.buildElements(page, that.successFetch);
+      }
+    }
 
   elementInfiniteLoad() {
-      return <div className="infinite-list-item">
-          Loading...
-      </div>;
+    return (
+      <p className="infinite__loading">
+        {this.state.isover?'已经到底啦～' : '加载中...'}
+      </p>);
   }
+
 // 50
   render() {
     console.log('%c infiniteList', 'green');
 
     return (
-      <Infinite elementHeight={300}
+      <Infinite elementHeight={50}
                     containerHeight={window.innerHeight}
                     infiniteLoadBeginEdgeOffset={200}
                     onInfiniteLoad={this.handleInfiniteLoad}
                     loadingSpinnerDelegate={this.elementInfiniteLoad()}
                     isInfiniteLoading={this.state.isInfiniteLoading}
-                    timeScrollStateLastsForAfterUserScrolls={1000}
+                    timeScrollStateLastsForAfterUserScrolls={0}
                     useWindowAsScrollContainer={true}
                     >
         {this.state.elements}

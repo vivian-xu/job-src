@@ -1,23 +1,19 @@
-@import '../TimeItem/TimeItem.scss';
-
 .wrap-block.call {
     padding: .4rem;
 }
 
-.call .rightBlock-title{
+.call__container {
     font-size: $font-size-sub-text;
     line-height: 1;
+}
 
-    strong {
-        font-size: $font-size-text;
-    }
-    span{
-        color: $color-btn;
+.call__go-check{
+    color: $color-btn;
+    font-size: $font-size-sub-text;
+}
 
-        .iconfont {
-            font-size: $font-size-sub-text;
-        }
-    }
+.call__prize {
+    font-size: $font-size-text;
 }
 
 .c-mask {

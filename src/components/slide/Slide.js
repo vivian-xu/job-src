@@ -1,3 +1,4 @@
+import Slider from 'react-slick';
 import src1 from '../../imgs/img1.png';
 import src2 from '../../imgs/img2.png';
 import src3 from '../../imgs/img3.png';
@@ -19,29 +20,38 @@ class Slide extends React.Component {
     }
 
     render() {
-        let btnList = [];
         let imgList = this.props.imgs.map((img, index)=> {
-
-            btnList.push(<li className="slide__btn" key={index} />);
-
             return(
-                <li key={index}>
+                <div key={index}>
                     <img className="slide__img" src= {img} />
-                </li>)
+                </div>)
         });
+
+        var settings = {
+            className: 'slideBox',
+                arrows: false,
+                autoplay: true,
+                // autoplaySpeed: 3000,
+                centerMode: true,
+                centerPadding: '0',
+                lazyLoad: false,
+                pauseOnHover: false,
+                swipe: true,
+                swipeToSlide: true,
+                touchMove: true,
+
+              dots: true,
+              dotsClass: 'slide__btn-group',
+              infinite: true,
+              speed: 500,
+              slidesToShow: 1,
+              slidesToScroll: 1
+            };
+
         return (
-            <div id="slideBox" className="slideBox wrap-block wrap-block--no-padding">
-                <div className="hd">
-                    <ul className="slide__btn-group">
-                        {btnList}
-                    </ul>
-                </div>
-                <div className="bd">
-                    <ul>
-                        {imgList}
-                    </ul>
-                </div>
-            </div>
+            <Slider {...settings}>
+                    {imgList}
+            </Slider>
         );
     }
 }

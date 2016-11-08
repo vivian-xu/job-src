@@ -25,27 +25,28 @@ class Resume extends React.PureComponent {
             let year = end- start;
 
             return (
-                <li key={index}>
-                    <p className="rightBlock-title">
-                        <span> {year}年 </span>
+                <li key={index} className='resume__item'>
+                    <p className="resume__container clearfix">
+                        <span className="float_right resume__time"> {year}年 </span>
                         {work.company}
                     </p>
-                    <span className="ps-word" >
+                    <p className="resume__detail" >
                         {work.position}
-                    </span>
+                    </p>
                 </li>
             );
         });
 
         let edusLi = this.props.data.edus.map(function( edu, index){
-            let the = edu.ended_at.slice(0,4)
+            let the = edu.ended_at.slice(0,4);
+
             return (
-              <li key={index}>
-                  <p className="rightBlock-title">
-                      <span> {the}届 </span>
+                <li key={index} className='resume__item'>
+                    <p className="resume__container clearfix">
+                      <span className="float_right resume__time"> {the}届 </span>
                       {edu.school}
                   </p>
-                  <span className="ps-word" >
+                  <span className="resume__detail" >
                       {edu.major} {edu.degree}
                   </span>
               </li>
@@ -55,10 +56,14 @@ class Resume extends React.PureComponent {
         return (
             <section className = "wrap-block resume">
                 <p className="section-title"> 简历 </p>
-                <ul className={(this.props.data.works.length > 0 && this.props.data.edus.length > 0) ? "border-bottom" : ""} >
+                <ul
+                    className={ `resume__list ${(this.props.data.works.length > 0 && this.props.data.edus.length > 0) ? "resume__list-border" : ""}`}
+                    >
+
                     {worksLi}
+
                 </ul>
-                <ul>
+                <ul className="resume__list">
                     {edusLi}
                 </ul>
            </section>

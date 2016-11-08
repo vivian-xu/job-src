@@ -42,7 +42,7 @@ class Comments extends React.PureComponent {
 
         return (
             <section className="wrap-block comments">
-                <p className="section-title section-title--text-left">
+                <p className="section-title">
                     同学们的评价
                 </p>
                 <CommentUl comments = {this.props.data.commentsData} />

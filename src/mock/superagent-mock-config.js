@@ -19,6 +19,7 @@ module.exports = [{
     let data = require('./comments');
     let {id, comments} = data.data;
     comments = comments.slice(count, count+20);
+    console.log('get log  page:' + params['page']);
     let shortdata = {
       id,
       comments

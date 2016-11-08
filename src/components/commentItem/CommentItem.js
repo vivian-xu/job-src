@@ -103,10 +103,8 @@ class CommentItem extends React.PureComponent {
     //   maxHeight:maxHeight
     // }}
 
-
-
     return (
-    <li className="comment-item">
+    <li className="comment-item" style={{height: '50px', overflow: 'hidden'}}>
         <div className="c-comment__comma"></div>
         <div className = "c-comment__body"
                 key={this.props.comment.id}

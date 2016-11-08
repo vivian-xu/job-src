@@ -20,6 +20,26 @@ $font-size-sub-text: 13px;
 /* 辅助 2 */
 $font-size-sub-small-text: 11px;
 
+@media screen and (min-width: 600px) {
+  /* 字号 */
+  /* 超大标题 */
+  $font-size-big-title: 30px;
+  /* 标题 */
+  $font-size-title: 22px;
+  /* 子标题 */
+  $font-size-sub-title: 19px;
+  /* 正文 */
+  $font-size-text: 19px;
+  $line-height-text: 31px;
+  /* 正文2 */
+  $font-size-small-text: 17px;
+  $line-height-small-text: 26px;
+  /* 辅助 */
+  $font-size-sub-text: 15px;
+  /* 辅助 2 */
+  $font-size-sub-small-text: 13px;
+}
+
 /* 颜色 */
 /* 背景色 */
 $color-bg: #fff;

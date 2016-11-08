@@ -73,11 +73,11 @@ class Call extends React.PureComponent {
                 <p className="section-title">
                     电话咨询
                 </p>
-                <p className="rightBlock-title">
-                    <span onClick={this.alertCheckTime}> 查看时间表
+                <p className="call__container clearfix">
+                    <span onClick={this.alertCheckTime} className="float_right call__go-check"> 查看时间表
                          <i className="iconfont icon-right" />
                      </span>
-                    <strong>¥200</strong> 元 / 次 , 45 分钟
+                    <strong className="call__prize">¥200</strong> 元 / 次 , 45 分钟
                 </p>
             </section>
         );

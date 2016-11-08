@@ -57,7 +57,6 @@ class ArticleListBlock extends React.Component {
         let {slide, articlelist} = this.state;
         return (
             <div>
-                <Loading />
                 <Slide imgs={slide} />
                 <ArticleList articlelist={articlelist} />
             </div>

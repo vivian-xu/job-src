@@ -27,6 +27,7 @@ time, mark, audio, video {
 }
 html {
     // font: 16px/24px Tahoma,Verdana,Arial,sans-serif;
+    -webkit-font-smoothing: antialiased;
 }
 
 @media only screen and (imax-width: 480px) {

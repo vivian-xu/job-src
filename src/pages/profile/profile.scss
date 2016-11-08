@@ -3,12 +3,7 @@
     color: $color-section-title;
     font-size: $font-size-sub-text;
     line-height: 1;
-
-    span {
-        .iconfont i{
-            font-size: 12px;
-        }
-    }
+    text-align: left;
 }
 
 /*info*/
@@ -21,5 +16,6 @@
 @import '../../components/comments/comments.scss';
 
 /* call */
+@import '../../components/timeItem/timeItem.scss';
 @import '../../components/call/call.scss';
 
