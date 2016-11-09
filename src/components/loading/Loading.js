@@ -4,6 +4,10 @@ class Loading extends React.PureComponent {
     this.displayName = 'Loading';
   }
 
+  componentWillUnmount() {
+    console.log("LOADING will unmounted");
+  }
+
   render() {
     return(
       <div className=" loading">

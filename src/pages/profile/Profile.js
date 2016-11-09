@@ -1,6 +1,6 @@
-import React from 'react';
 import ajax from 'superagent';
 
+import Loading from '../../components/loading/Loading';
 import Info from '../../components/info/Info';
 import Resume from '../../components/resume/Resume';
 import Mentor from '../../components/mentor/Mentor';
@@ -16,11 +16,8 @@ class Profile extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            isloading: true,
             mentorId: this.props.params.mentorId,
-            error: {
-                code: 0,
-                msg: "ok"
-            },
             info: {
                 id: "",
                 avatar: "",
@@ -39,56 +36,72 @@ class Profile extends React.Component {
                 commentsData: [],
                 count: 0
             }
-        }
+        };
+
+        this.fetchingData = this.fetchingData.bind(this);
+        this.buildState = this.buildState.bind(this);
     }
 
-    componentWillMount () {
-        const baseURL = '/api/mentors';
-        const id = this.props.params.mentorId;
+//  fetch data 成功后的回调函数
+// setState
+// 将 isloading 改为 false
 
-        ajax.get(`${baseURL}/${id}`)
+    buildState(data) {
+        this.setState({
+            isloading: false,
+            info:{
+                id: data.id,
+                avatar: data.avatar_url,
+                gender: data.gender_description,
+                nick_name: data.nick_name,
+                latest_work: data.latest_work,
+                industrys: data.industrys
+            },
+            resume: {
+                works: data.workinfos,
+                edus: data.eduinfos
+            },
+            mentor: {
+                gender: data.gender_description,
+                text: data.bio
+            },
+            comments: {
+                count: data.comments_count,
+                commentsData: data.comments
+            }
+        });
+    }
+
+    fetchingData(url) {
+        ajax.get(url)
             .end((error, response) => {
-                    if( !error && response ) {
+                if( !error && response ) {
+                    let data = response.body.data;
+                    console.log("set state kkkkkkk");
 
-                        let data = response.body.data;
-                        console.log("set state kkkkkkk");
+                    this.buildState(data);
 
-                        this.setState({
-                            error: {
-                                code: response.body.errorCode,
-                                msg: response.body.errorMsg
-                            },
-                            info:{
-                                id: data.id,
-                                avatar: data.avatar_url,
-                                gender: data.gender_description,
-                                nick_name: data.nick_name,
-                                latest_work: data.latest_work,
-                                industrys: data.industrys
-                            },
-                            resume: {
-                                works: data.workinfos,
-                                edus: data.eduinfos
-                            },
-                            mentor: {
-                                gender: data.gender_description,
-                                text: data.bio
-                            },
-                            comments: {
-                                count: data.comments_count,
-                                commentsData: data.comments
-                            }
-                        });
-                        console.log('data nnnnnnnnnn');
-                    } else {
-                    console.error(`Error fetching ${name} `, error);
+                    console.log('data nnnnnnnnnn');
+                } else {
+                console.error(`Error fetching ${name} `, error);
              }
         });
     }
 
+    componentWillMount () {
+
+        const baseURL = '/api/mentors';
+        const id = this.props.params.mentorId;
+
+        let url = baseURL+ '/' +id;
+        this.fetchingData(url);
+    }
+
     render() {
         console.log("render started");
-        return (
+        console.log(this.state.isloading);
+
+        let content = this.state.isloading ? (<Loading />) : (
             <div>
                 <Info data={this.state.info} />
                 <Call />
@@ -98,7 +111,13 @@ class Profile extends React.Component {
                 <Date />
             </div>
             );
+        return (
+            <div>
+                {content}
+            </div>
+            );
     }
 }
 
 export default Profile;
+

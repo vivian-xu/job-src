@@ -1,4 +1,3 @@
-import React from 'react';
 import ArticleBody from '../../components/articleBody/ArticleBody';
 
 class Article extends React.Component {

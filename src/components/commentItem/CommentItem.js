@@ -87,9 +87,9 @@ class CommentItem extends React.PureComponent {
   }
 
   render() {
-    console.log(this.props.lineHeight + 'jsssss');
-    console.log(this.props.lineHeight !== 0 && this.foldHeight === "" );
-    console.log( !this.props.lineHeight == true );
+    // console.log(this.props.lineHeight + 'jsssss');
+    // console.log(this.props.lineHeight !== 0 && this.foldHeight === "" );
+    // console.log( !this.props.lineHeight == true );
 
     let btnDisplay = this.state.hasFoldBtn ? {display: ''}: {display:'none'};
 
