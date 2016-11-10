@@ -5,7 +5,8 @@ import App from './pages/app/App';
 import ArticleListBlock from './pages/articleListBlock/ArticleListBlock';
 import Profile from './pages/profile/Profile';
 import Article from './pages/article/Article';
-import AllComments from './pages/allComments/AllComments';
+// import AllComments from './pages/allComments/AllComments';
+import AllComments from './pages/allComments/CommentsTest';
 
 const routes = (
   <Route path='/' component={App}>

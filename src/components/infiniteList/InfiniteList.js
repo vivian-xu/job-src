@@ -14,6 +14,7 @@ class InfiniteList extends React.PureComponent {
 
   constructor(props) {
     super(props);
+    this.displayName = "InfiniteList";
 
     this.state = {
       commentsList: [],
@@ -99,14 +100,15 @@ class InfiniteList extends React.PureComponent {
     console.warn(this.state.commentsList.length);
 
     return (
-      <Infinite elementHeight={50}
-                    containerHeight={window.innerHeight}
-                    infiniteLoadBeginEdgeOffset={200}
-                    onInfiniteLoad={this.handleInfiniteLoad}
-                    loadingSpinnerDelegate={this.elementInfiniteLoad()}
-                    isInfiniteLoading={this.state.isInfiniteLoading}
-                    timeScrollStateLastsForAfterUserScrolls={0}
-                    useWindowAsScrollContainer={true}
+      <Infinite
+        elementHeight={60}
+        containerHeight={window.innerHeight}
+        infiniteLoadBeginEdgeOffset={200}
+        onInfiniteLoad={this.handleInfiniteLoad}
+        loadingSpinnerDelegate={this.elementInfiniteLoad()}
+        isInfiniteLoading={this.state.isInfiniteLoading}
+        timeScrollStateLastsForAfterUserScrolls={0}
+        useWindowAsScrollContainer={true}
                     >
         {this.state.commentsList}
       </Infinite>

@@ -1,12 +1,11 @@
 import ajax from 'superagent';
 
 import Loading from '../../components/loading/Loading';
-import InfiniteList from '../../components/infiniteList/InfiniteList';
+import InfiniteList from '../../components/infiniteList/InfiniteListTest';
 
 class Allcomments extends React.PureComponent {
   constructor(props) {
     super(props);
-    this.displayName = "Allcomments";
 
     this.state = {
       id: 0,
@@ -61,8 +60,9 @@ class Allcomments extends React.PureComponent {
     }
 
   onhandleNewDatas() {
-    let newPage = this.state.pageCount + 1;
-    this.fetchingDatas(this.baseURL, newPage);
+      console.log('newdata');
+    // let newPage = this.state.pageCount + 1;
+    // this.fetchingDatas(this.baseURL, newPage);
   }
 
   onhandleBack() {
