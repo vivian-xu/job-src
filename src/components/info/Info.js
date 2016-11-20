@@ -1,3 +1,5 @@
+import { _isArray } from '../../commons/utiles';
+
 class Info extends React.PureComponent {
     static defaultProps = {
         data : {
@@ -16,31 +18,37 @@ class Info extends React.PureComponent {
 
     constructor(props) {
         super(props);
+        this.displayName = "Info";
     }
 
     render() {
+        const { industrys, gender, nick_name, avatar, latest_work } = this.props.data;
 
-        let industryLi = this.props.data.industrys.map(function( industry, index ) {
-            return (
-                <span className="c-tag--circle"  key={index}> {industry.name}
-                </span>
-            );
-        });
-// section-title
+        let industryLi = null;
+
+        if(_isArray(industrys)){
+            industryLi = industrys.map(function( industry, index ) {
+                return (
+                    <span className="c-tag--circle"  key={index}> {industry.name}
+                    </span>
+                );
+            });
+        }
+
         return (
             <section className = "wrap-block info">
                 <div className="flex-box">
                     <div className="flex-item">
                         <p className=" c-tag">
                             {industryLi}
-                            {this.props.data.gender}
+                            {gender}
                         </p>
-                        <p className="info__name">{this.props.data.nick_name}</p>
+                        <p className="info__name">{nick_name}</p>
                     </div>
-                    <img src={this.props.data.avatar} className="info__img" />
+                    <img src={avatar} className="info__img" />
                 </div>
                 <p>
-                    {this.props.data.latest_work}
+                    {latest_work}
                 </p>
             </section>
         );

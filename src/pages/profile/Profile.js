@@ -15,6 +15,7 @@ class Profile extends React.Component {
 
     constructor(props) {
         super(props);
+        this.displayName = 'Profile';
         this.state = {
             isloading: true,
             mentorId: this.props.params.mentorId,

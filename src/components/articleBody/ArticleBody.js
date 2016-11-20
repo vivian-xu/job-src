@@ -41,7 +41,7 @@ c-tag--bluebg c-tag--rectangular">{this.state.topic}</span>
                     {this.state.date} &nbsp; {this.state.topic}
                  </p>
                  <img className="article__title-img" src={articleImg} alt='article-img' />
-                <Link to="/mentors/5" className="article__container flex-box">
+                <Link to="/mentors/11" className="article__container flex-box">
                     <img className="article__avatar"
                              src={avatar}
                              alt="师姐头像"

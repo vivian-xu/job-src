@@ -85,14 +85,25 @@ let _headleMultilineTextOverflow = (dom, numberRows ) => {
   let me = dom;
   let lineH = getDomStyle(me, 'line-height');
   let goalHeight = parseInt(lineH)*numberRows;
+
   while(parseInt(getDomStyle(me, "height")) > goalHeight){
        me.innerText = me.innerText.replace(/(\s)*([a-zA-Z0-9]+|\W)(\.\.\.)?$/, "...");
   }
 };
 
+/*
+   判断是否是数组
+
+*/
+
+ let _isArray = ( array ) => {
+     return array && Object.prototype.toString.call( array ) === '[object Array]'
+ }
+
 export {
   getDomStyle,
   _each,
   _getTime,
-  _headleMultilineTextOverflow
+  _headleMultilineTextOverflow,
+  _isArray
 };

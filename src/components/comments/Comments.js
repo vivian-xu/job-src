@@ -1,5 +1,5 @@
-import React from 'react';
 import {Link} from 'react-router';
+import { _isArray } from '../../commons/utiles';
 import CommentUl from '../commentUl/CommentUl'
 
 class Comments extends React.PureComponent {
@@ -9,8 +9,12 @@ class Comments extends React.PureComponent {
         count: 0
       }
     }
+
     static propTypes = {
-        data: React.PropTypes.object.isRequired,
+        data: React.PropTypes.shape({
+            commentsData: React.PropTypes.array.isRequired,
+            count: React.PropTypes.number.isRequired,
+        }),
      }
 
     static contextTypes = {
@@ -30,22 +34,27 @@ class Comments extends React.PureComponent {
 
     render() {
         let {pathname} = this.context.router.location;
-        let btn =( () => {
-            if( this.props.data.commentsData.length < this.props.data.count) {
-                return (
-                    <Link to={`${pathname}/comments`} className="c-btn" onClick={this.checkAllComments}>
-                        查看全部评论
-                    </Link>
-                );
-            }
-        })();
+        let {commentsData, count} = this.props.data;
+
+        let btn = null;
+        if(_isArray(commentsData)) {
+            btn =( () => {
+                if( commentsData.length < count) {
+                    return (
+                        <Link to={`${pathname}/comments`} className="c-btn" onClick={this.checkAllComments}>
+                            查看全部评论
+                        </Link>
+                    );
+                }
+            })();
+        }
 
         return (
             <section className="wrap-block comments">
                 <p className="section-title">
                     同学们的评价
                 </p>
-                <CommentUl comments = {this.props.data.commentsData} />
+                <CommentUl comments = {commentsData} />
                 {btn}
             </section>
         );

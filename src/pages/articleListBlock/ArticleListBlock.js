@@ -14,6 +14,7 @@ class ArticleListBlock extends React.Component {
         this.displayName = 'ArticleListBlock';
 
         this.state = {
+            isloading: true,
             slideImgs: [
                 {
                     src1,
@@ -54,7 +55,10 @@ class ArticleListBlock extends React.Component {
         };
     }
     render() {
-        let {slide, articlelist} = this.state;
+        let {isloading, slide, articlelist} = this.state;
+
+
+
         return (
             <div>
                 <Slide imgs={slide} />

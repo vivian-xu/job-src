@@ -1,15 +1,15 @@
 import ajax from 'superagent';
 
 import Loading from '../../components/loading/Loading';
-import InfiniteList from '../../components/infiniteList/InfiniteListTest';
+import CommentUl from '../../components/commentUl/CommentUl';
 
 class Allcomments extends React.PureComponent {
   constructor(props) {
     super(props);
 
     this.state = {
-      id: 0,
       isloading: true, // 是否关闭页面初进来时候的loading页面
+      id: 0,
       pageCount: 0,
       comments: [],
       isover: false, // 是否已经没有能请求的数据了
@@ -74,17 +74,17 @@ class Allcomments extends React.PureComponent {
   }
 
   render() {
-    console.log('render');
-    console.log(this.state.isloading);
     // comments 为空, 并且 isover 是 false 时候loading
-    let content = ( !this.state.comments && !this.state.isover ) ? (<Loading />) : (
+    let content = (this.state.isloading) ? (<Loading />) : (
         <div className="all-comments">
           <div className="all-comments__header">
               <span className="iconfont icon-left all-comments__back" onClick={this.onhandleBack}></span>
               <h1 className="all-comments__title"> 全部评论 </h1>
           </div>
           <section className="wrap-block wrap-block--vertical-small">
-              <InfiniteList comments={this.state.comments} getDatas={this.onhandleNewDatas} isover={this.state.isover} />
+              <CommentUl
+                comments={this.state.comments}
+              />
           </section>
       </div>
         );
