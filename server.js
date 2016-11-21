@@ -2,7 +2,6 @@ var webpack = require('webpack');
 var WebpackDevServer = require('webpack-dev-server');
 var config = require('./webpack.config.js');
 
-
 var compiler = webpack(config);
 const API_TARGET = "http://wuguishifu.com";
 
