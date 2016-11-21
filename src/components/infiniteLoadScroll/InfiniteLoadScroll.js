@@ -1,12 +1,9 @@
 import ajax from 'superagent';
 import CommentItem from '../commentItem/CommentItem';
-
 import Iscroll from 'iscroll/build/iscroll-probe';
 
 class InfiniteLoadScroll extends React.Component {
   static defaultProps = {
-    setTop: 20,
-
   }
 
   static propTypes = {
@@ -20,70 +17,81 @@ class InfiniteLoadScroll extends React.Component {
       comments: [],
     };
 
-
-    // true 的时候，不能fetch
-    // false 的时候可以
-    this.isloading = true; // 是否正在请求数据。
-    this.isrefreshing = true; // 一次 commponent updated 完成后，3000 毫秒内不能fetch 数据。
+    /*
+        变量注册
+    */
+    //  请求数据--更新完成（可以进行下一次fetching）的状态记录
+    this.loadingStatus = 0,
+    // 0 空闲中，可以 fetching 数据
+    // 1 正在 fetching 数据
+    // 2 component render ,
+    // 3 update, iscroll refresh() 重新计算 位置／大小
 
     this.pageCount = 0;
     this.isover = false; // 是否已经没有能请求的数据了
+    this.touch = false; // 是否是 touch 事件， 为了区分是惯性滚动还是手动滚动
 
-    // iScroll
+    // iScroll 实例
     this.myScroll = null;
-        // 基本的url
+    // 基本的url
     this.baseURL = 'http://wuguishifu.com/api/mentors/5/comments/';
-
+    /*
+     function 注册
+    */
     this.fetchingDatas = this.fetchingDatas.bind(this);
     this.onLoading = this.onLoading.bind(this);
     this.onScroll = this.onScroll.bind(this);
+    this.onTouchStart = this.onTouchStart.bind(this);
+    this.onTouchEnd = this.onTouchEnd.bind(this);
   }
 
   fetchingDatas(url, page) {
+    this.loadingStatus = 1;
+
     ajax
     .get(url)
     .send({page: page})
     .end((error, response) => {
       if( !error && response ) {
-          let isover = false;
           let data = response.body;
 
-          //  如果没有数据了，设置
+          //  如果没有数据了，设置 isover
           if( !data.comments || data.comments.length < 20) {
             this.isover = true;
           };
 
-          console.error(data.comments);
-
-          // 标记现在在第几页
-          // this.pageCount = page;
-          this.isloading = false;
-
+          // 赠添新的数据
           this.setState({
             comments: this.state.comments.concat(data.comments),
             id: data.id,
           });
-
+          // 将 loading 的状态改为 2
+          this.loadingStatus = 2;
           console.info('fetching success');
-
       } else {
       console.error(`Error fetching ${name} `, error);
      }
     });
   }
 
+  //  fetch 新数据
   onLoading() {
-
     if(!this.isover) {
-      this.isloading = true;
-      this.isrefreshing = true;
+      this.loadingStatus = 1;
       console.log('ready to fetch');
       // fetch 新的数据 并更新页数
       this.fetchingDatas(this.baseURL, ++this.pageCount);
     }
-
   }
 
+  //  监听是否有 touch
+  onTouchStart() {
+    this.touch = true;
+  }
+
+  onTouchEnd() {
+    this.touch = false;
+  }
 
   // options.tap
   // 设置此属性为true，当滚动区域被点击或者触摸但并没有滚动时，可以让iScroll抛出一个自定义的tap事件。
@@ -102,33 +110,27 @@ class InfiniteLoadScroll extends React.Component {
 
     this.fetchingDatas(this.baseURL, this.pageCount);
     const option = {
+       //是否显示默认滚动条
       scrollbars: true,
+      //是否屏蔽默认事件。
       preventDefault: false,
-      mouseWheel: true,
+      // 是否渐隐滚动条，关掉可以加速
+      fadeScrollbars: true,
+      // 这个属性是调节在scroll事件触发中探针的活跃度或者频率。有效值有：1, 2, 3。数值越高表示更活跃的探测。探针活跃度越高对CPU的影响就越大。
       probeType: 2,
+      //在用户快速触摸屏幕时，你可以开/关势能动画。关闭此功能将大幅度提升性能。
       momentum: true,
+      //是否监听鼠标滚轮事件。
       mouseWheel: true,
+      // 此属性可以让滚动条能拖动，用户可以与之交互
       interactiveScrollbars: true,
+      // 当滚动器到达容器边界时他将执行一个小反弹动画。在老的或者性能低的设备上禁用反弹对实现平滑的滚动有帮助。
       bounce: true,
     }
-      // interactiveScrollbars, 此属性可以让滚动条能拖动，用户可以与之交互
-      // bounce: false, 当滚动器到达容器边界时他将执行一个小反弹动画。在老的或者性能低的设备上禁用反弹对实现平滑的滚动有帮助。
-      // probeType: 1, 这个属性是调节在scroll事件触发中探针的活跃度或者频率。有效值有：1, 2, 3。数值越高表示更活跃的探测。探针活跃度越高对CPU的影响就越大。
-      // momentum: false, //在用户快速触摸屏幕时，你可以开/关势能动画。关闭此功能将大幅度提升性能。
-      // scrollbars: true, //是否显示默认滚动条
-      // fadeScrollbars: true, // 是否渐隐滚动条，关掉可以加速
-      // mouseWheel: true, //是否监听鼠标滚轮事件。
-      // preventDefault: true, //是否屏蔽默认事件。
-    // };
     const elem = document.getElementById('infiniteWrap');
-
-
     this.myScroll = new Iscroll(elem, option);
-
-
     this.myScroll.on('scroll', this.onScroll);
-
- // 阻止默认touchmove事件
+   // 阻止默认touchmove事件，否则，是页面在滚动
     document.addEventListener('touchmove', function(e) { e.preventDefault(); }, false);
   }
 
@@ -138,34 +140,28 @@ class InfiniteLoadScroll extends React.Component {
 
   componentDidUpdate() {
     console.log( 'did update');
+    this.loadingStatus = 3;
 
-    // this.myScroll.refresh();
-    // 刷新myScroll，重新计算高度
+    // 确保页面加载完成后，( 等待 50ms 要不然计算的可能不正确)
+    // 调用 myScroll.refresh()，重新计算高度
     setTimeout(()=>{
       this.myScroll.refresh();
     }, 50);
 
+    // 一次 commponent updated 完成后，3000 毫秒内不能fetch 数据。
+    // 防止短时间多次fetch 数据
     setTimeout(()=>{
-
-      console.log(this.myScroll.maxScrollY);
-      this.isrefreshing = false;
+      this.loadingStatus = 0;
     },3000)
-
   }
 
   onScroll() {
     console.log(`this.myScroll.y: ${this.myScroll.y}`);
     console.log(`this.myScroll.maxScrollY: ${this.myScroll.maxScrollY}`);
 
-    console.log(`this.myScroll.directionY: ${this.myScroll.directionY}`);
-
-    if(this.myScroll.y < this.myScroll.maxScrollY - 5) {
+    if((this.myScroll.y < this.myScroll.maxScrollY - 30) && (this.loadingStatus === 0) && this.touch ) {
       console.warn('more');
-      console.log(`isloading: ${this.isloading}`);
-      console.log(`isrefreshing: ${this.isrefreshing}`);
-      if(!this.isloading && !this.isrefreshing){
-        this.onLoading();
-      }
+      this.onLoading();
     }
   }
 
@@ -187,8 +183,7 @@ class InfiniteLoadScroll extends React.Component {
 
     let wrapStyle = {
       position: 'relative',
-      height: window.innerHeight - 10,
-      // overflow: 'scroll',
+      height: window.innerHeight,
     }
 
     let testArray = (obj) => {
@@ -199,12 +194,26 @@ class InfiniteLoadScroll extends React.Component {
       } );
     }
 
-// 如果你有一个复杂的DOM结构，最好在onload事件之后适当的延迟，再去初始化iScroll。最好给浏览器100或者200毫秒的间隙再去初始化iScroll。
+    let loadStyle = {
+      position: 'absolute',
+      bottom: '-30px',
+      width: '100%',
+      height: '30px',
+      textAlign: 'center',
+    };
+
     return (
-      <div id="infiniteWrap" style={wrapStyle}>
+      <div
+        id="infiniteWrap"
+        style={wrapStyle}
+        onTouchStart = {this.onTouchStart}
+        onTouchEnd = {this.onTouchEnd}
+      >
         <ul>
          {commentList}
-          <p>上啦发起加载 </p>
+          <p style={loadStyle}>
+            {this.isover? '已经到底了！！' : '正在加载中...'}
+          </p>
          </ul>
       </div>
     );
