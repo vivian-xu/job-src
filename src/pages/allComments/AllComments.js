@@ -1,8 +1,7 @@
 import ajax from 'superagent';
 import Loading from '../../components/loading/Loading';
 import InfiniteLoadScroll from '../../components/infiniteLoadScroll/InfiniteLoadScroll';
-import CommentUl from '../../components/commentUl/CommentUl';
-
+import CommentsList from '../../components/commentsList/CommentsList';
 
 class Allcomments extends React.PureComponent {
   constructor(props) {
@@ -14,8 +13,7 @@ class Allcomments extends React.PureComponent {
       isloading: true, // loading 页面
     };
 
-    this.hasMore = true;
-
+    this.hasMore = true; // 是否还有更多的数据可以请求
     this.baseURL = 'http://wuguishifu.com/api/mentors/5/comments/';
 
 /*
@@ -23,14 +21,12 @@ class Allcomments extends React.PureComponent {
 */
     this.loadingBlock = this.loadingBlock.bind(this);
     this.onLoading = this.onLoading.bind(this);
-    this.infiniteHeight = window.innerHeight;
 
 /*
   自己的
 */
     this.fetchingDatas = this.fetchingDatas.bind(this);
   }
-
 
   fetchingDatas(url, page) {
     ajax
@@ -55,15 +51,6 @@ class Allcomments extends React.PureComponent {
       console.error(`Error fetching ${name} `, error);
      }
     });
-  }
-
-  getHeight() {
-    if(this.commentsWrap.getBoundingClientRect()){
-      this.infiniteHeight = window.innerHeight - this.commentsWrap.getBoundingClientRect().top;
-      console.log(this.infiniteHeight);
-    } else {
-
-    }
   }
 
   //  fetch 新数据
@@ -98,26 +85,25 @@ class Allcomments extends React.PureComponent {
       <div>
         {isloading ? '<Loading />' : null}
         <div className="all-comments">
-          <div
-            className="all-comments__header"
-            ref={(o)=>{this.title = o}}
-          >
-              <span className="iconfont icon-left all-comments__back" onClick={this.onhandleBack}></span>
-              <h1 className="all-comments__title"> 全部评论 </h1>
-          </div>
           <InfiniteLoadScroll
             loadingBlock = {this.loadingBlock}
             loadMore = {this.onLoading}
             pageStart = {0}
             hasMore = {this.hasMore}
             gapTime = {1000}
-            needHeight = {fa}
+            needHeight = {false}
           >
+          <div
+            className="all-comments__header"
+          >
+              <span className="iconfont icon-left all-comments__back" onClick={this.onhandleBack}></span>
+              <h1 className="all-comments__title"> 全部评论 </h1>
+          </div>
             <section
               className="wrap-block wrap-block--vertical-small"
               ref={(o) => this.commentsWrap = o}
               >
-                <CommentUl
+                <CommentsList
                   comments={this.state.comments}
                 />
             </section>
@@ -128,6 +114,4 @@ class Allcomments extends React.PureComponent {
   }
 }
 
-
-            // addStyle = {contentStyle}
 export default Allcomments;

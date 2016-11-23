@@ -1,7 +1,7 @@
 import ajax from 'superagent';
 
 import Loading from '../../components/loading/Loading';
-import CommentUl from '../../components/commentUl/CommentUl';
+import CommentsList from '../../components/commentsList/CommentsList';
 
 class Allcomments extends React.PureComponent {
   constructor(props) {
@@ -82,7 +82,7 @@ class Allcomments extends React.PureComponent {
               <h1 className="all-comments__title"> 全部评论 </h1>
           </div>
           <section className="wrap-block wrap-block--vertical-small">
-              <CommentUl
+              <CommentsList
                 comments={this.state.comments}
               />
           </section>

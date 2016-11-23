@@ -57,8 +57,6 @@ class ArticleListBlock extends React.Component {
     render() {
         let {isloading, slide, articlelist} = this.state;
 
-
-
         return (
             <div>
                 <Slide imgs={slide} />
