@@ -7,6 +7,9 @@ class InfiniteLoadScroll extends React.Component {
     hasMore: true,
     pageStart: 0,
     gapTime: 2000,
+    // addStyle: {},
+    needHeight: false,
+    height: window.innerHeight,
   }
 
   static propTypes = {
@@ -15,6 +18,9 @@ class InfiniteLoadScroll extends React.Component {
     hasMore: React.PropTypes.bool, // 还有下一页么？
     loadingBlock: React.PropTypes.func.isRequired, // loading 等待 最下方的 显示
     gapTime: React.PropTypes.number, // 每一次 update 后 多久可以开始再次请求加载数据 , 最小 1000
+    // addStyle: React.PropTypes.object, // （非必需）有需要控制最外层的 样式。
+    needHeight: React.PropTypes.bool, //是否需要自定义 height
+    height: React.PropTypes.number, // myScroll 最外层的高度
   }
 
   constructor(props) {
@@ -27,6 +33,8 @@ class InfiniteLoadScroll extends React.Component {
     this.loading = false; // 是否还没有更新完（ false 表示一个阶段完了，可以 fetch 新的数据了）
     this.pageLoaded = this.props.pageStart; // 从第几页开始
     this.touch = false; // 是否是 touch 事件， 为了区分是惯性滚动还是手动滚动
+    //  myScroll 的最外层的 height
+    this.height = window.innerHeight;
 
     // iScroll 实例
     this.myScroll = null;
@@ -49,6 +57,8 @@ class InfiniteLoadScroll extends React.Component {
   }
 
   componentDidMount() {
+    // 矫正 height
+    this.height = window.innerHeight - this.wrap.offsetTop;
     // 将 loading 状态改为 true ，防止短时间多次 fetch
     this.loading = true;
     //  fetch 首页
@@ -84,8 +94,6 @@ class InfiniteLoadScroll extends React.Component {
   }
 
   componentDidUpdate() {
-    console.log( 'did update');
-
     // 确保页面加载完成后，( 等待 50ms 要不然计算的可能不正确)
     // 调用 myScroll.refresh()，重新计算高度
     setTimeout(()=>{
@@ -111,19 +119,18 @@ class InfiniteLoadScroll extends React.Component {
     }
   }
 
-
   render() {
     console.log('%c infiniteList', 'green');
 
+    let { needHeight, height } = this.props;
     let wrapStyle = {
       position: 'relative',
-      height: window.innerHeight,
+      height: {(needHeight && height) ? height : this.height,
     }
 
     let relativeWrap = {
       position: 'relative'
-    }
-
+    };
     return (
       <div
         ref = {(o)=> this.wrap = o}

@@ -6,7 +6,7 @@ import Profile from './pages/profile/Profile';
 import Article from './pages/article/Article';
 // import AllComments from './pages/allComments/AllComments';
 import Comments from './pages/allComments/Comments';
-import Test from './pages/allComments/AllComments_test';
+import Test from './pages/allComments/AllComments';
 import InfiniteLoadScroll from './components/infiniteLoadScroll/InfiniteLoadScroll';
 
 const routes = (

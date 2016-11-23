@@ -27,17 +27,19 @@ class CommentUl extends React.PureComponent {
 
         return (
             <div>
-                <ul id="comments-list" className="comments-list">
-                    <ReactCSSTransitionGroup
-                        transitionName="fadeToggle"
-                        transitionEnterTimeout={500}
-                        transitionLeaveTimeout={1000}
-                        transitionAppearTimeout={1000}
-                        transitionAppear={true}
-                    >
-                    {commentsList}
-                    </ReactCSSTransitionGroup>
-                </ul>
+                <ReactCSSTransitionGroup
+                    transitionName="fadeToggle"
+                    transitionEnterTimeout={500}
+                    transitionLeaveTimeout={1000}
+                    transitionAppearTimeout={1000}
+                    transitionAppear={true}
+
+                    id="comments-list"
+                    className="comments-list"
+                    component={'ul'}
+                >
+                {commentsList}
+                </ReactCSSTransitionGroup>
             </div>
         );
     }
