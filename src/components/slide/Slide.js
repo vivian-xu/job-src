@@ -20,12 +20,15 @@ class Slide extends React.Component {
     }
 
     render() {
+        console.log( this.props);
         let imgList = this.props.imgs.map((img, index)=> {
+            const { imgdetail, src} = img;
+
             return(
                 <div key={index}>
-                    <img className="slide__img" src= {img} />
+                    <img className="slide__img" src= {src} alt={imgdetail} />
                 </div>)
-        });
+            });
 
         var settings = {
             className: 'slideBox',

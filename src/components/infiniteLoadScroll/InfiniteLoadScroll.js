@@ -2,6 +2,8 @@ import ajax from 'superagent';
 import CommentItem from '../commentItem/CommentItem';
 import Iscroll from 'iscroll/build/iscroll-probe';
 
+//  需要把需要 滚动的加进来
+//  可以提供 只有滚动的地方滚动，其他地方不滚动
 class InfiniteLoadScroll extends React.Component {
   static defaultProps = {
     hasMore: true,
@@ -58,7 +60,7 @@ class InfiniteLoadScroll extends React.Component {
 
   componentDidMount() {
     // 矫正 height
-    this.height = window.innerHeight - this.wrap.offsetTop;
+    // this.height = window.innerHeight - this.wrap.offsetTop;
     // 将 loading 状态改为 true ，防止短时间多次 fetch
     this.loading = true;
     //  fetch 首页
@@ -125,8 +127,9 @@ class InfiniteLoadScroll extends React.Component {
     let { needHeight, height } = this.props;
     let wrapStyle = {
       position: 'relative',
-      height: {(needHeight && height) ? height : this.height,
+      height: this.height,
     }
+      // height: needHeight && height ? height : this.height,
 
     let relativeWrap = {
       position: 'relative'

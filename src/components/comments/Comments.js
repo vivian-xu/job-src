@@ -1,6 +1,6 @@
 import {Link} from 'react-router';
 import { _isArray } from '../../commons/utiles';
-import CommentUl from '../commentUl/CommentUl'
+import CommentsList from '../commentsList/CommentsList'
 
 class Comments extends React.PureComponent {
     static defaultProps = {
@@ -54,7 +54,7 @@ class Comments extends React.PureComponent {
                 <p className="section-title">
                     同学们的评价
                 </p>
-                <CommentUl comments = {commentsData} />
+                <CommentsList comments = {commentsData} />
                 {btn}
             </section>
         );

@@ -6,6 +6,6 @@ let logger = function(log) {
   console.log('superagent call', log);
 };
 
-mock(ajax, mockconfig);
+mock(ajax, mockconfig, logger);
 
 console.log('this is in mockfetch.js');

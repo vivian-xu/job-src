@@ -1,24 +1,26 @@
+import ajax from 'superagent';
 import Loading from '../../components/loading/Loading';
 import InfiniteLoadScroll from '../../components/infiniteLoadScroll/InfiniteLoadScroll';
 import Slide from '../../components/slide/Slide';
 import ArticleList from '../../components/articleList/ArticleList';
 
 
-class ArticleList extends React.Component {
+class ArticleListPage extends React.Component {
     constructor(props) {
         super(props);
-        this.displayName = 'ArticleList';
+        this.displayName = 'ArticleListPage';
 
         this.state = {
             isloading: true,
-            slideImgs: [
+            slide: [
             ],
-            "articlelist" : [
+            articlelist : [
             ]
         };
 
         this.hasMore = true;
-        this.baseURL = 'http://wuguishifu.com/api/mentors/5/comments/';
+
+        this.baseURL = 'http://wuguishifu.com/api/articlelist/';
 
     /*
         向 InfiniteLoadScroll 输出的
@@ -40,16 +42,28 @@ class ArticleList extends React.Component {
         if( !error && response ) {
             let data = response.body;
 
+            let { articlelist } = data;
+              // 添加数据
+            if(page === 0) {
+                this.setState({
+                    isloading: false,
+                    slide: data.slide,
+                    articlelist,
+                })
+            } else {
+                this.setState({
+                    articlelist: [
+                        ...this.state.articlelist,
+                        ...articlelist
+                    ]
+                })
+            }
+
             //  如果没有数据了，设置 isover
             if( !data.articlelist || data.articlelist < 20) {
               this.hasMore = false;
             };
 
-            // 赠添新的数据
-            this.setState({
-              articlelist: this.state.articlelist.concat(data.articlelist),
-              isloading: false,
-            });
             console.info('fetching success');
         } else {
         console.error(`Error fetching ${name} `, error);
@@ -82,18 +96,22 @@ class ArticleList extends React.Component {
       )
     }
 
+    componentWillMount() {
+      this.onLoading(0);
+    }
+
     render() {
         let {isloading, slide, articlelist} = this.state;
 
         return (
             <div>
-                {isloading ? '<Loading />' : null}
+                {isloading ? <Loading /> : null}
                 <InfiniteLoadScroll
                   loadingBlock = {this.loadingBlock}
                   loadMore = {this.onLoading}
-                  pageStart = {0}
+                  pageStart = {1}
                   hasMore = {this.hasMore}
-                  gapTime = {1000}
+                  gapTime = {1500}
                   needHeight = {false}
                 >
 
@@ -105,4 +123,4 @@ class ArticleList extends React.Component {
     }
 }
 
-export default ArticleList;
+export default ArticleListPage;
