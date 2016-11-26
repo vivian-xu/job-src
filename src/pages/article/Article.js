@@ -29,8 +29,14 @@ class Article extends React.Component {
       .end((error, response) => {
         if( !error && response ) {
             let data = response.body;
+            const me = this;
+            setTimeout(() => {
+              me.setState({
+                  isloading: false,
+              })
+            }, 1000);
+
             this.setState({
-                isloading: false,
                 data
             })
 
@@ -48,6 +54,7 @@ class Article extends React.Component {
     render() {
         console.log(this.articleid);
         const {isloading, data} = this.state;
+
         let content = isloading ? <Loading /> :
         <ArticleBody article={data} />;
 
