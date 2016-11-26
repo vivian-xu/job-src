@@ -1,6 +1,7 @@
 import ajax from 'superagent';
-import CommentItem from '../commentItem/CommentItem';
 import Iscroll from 'iscroll/build/iscroll-probe';
+import CommentItem from '../commentItem/CommentItem';
+import {_addEvent} from '../../commons/utiles';
 
 //  需要把需要 滚动的加进来
 //  可以提供 只有滚动的地方滚动，其他地方不滚动
@@ -85,11 +86,7 @@ class InfiniteLoadScroll extends React.Component {
    //  防止在该开始的原生／非原生滚动造成计算的失误
    //  防止是页面自己原生的滚动
   componentWillMount() {
-    if (document.addEventListener) {
-      document.addEventListener('touchmove', this.prevTouch, false);
-    } else {
-      window.attachEvent('touchmove', this.prevTouch);
-    }
+    _addEvent('on', 'touchmove', this.prevTouch);
   }
 
   componentDidMount() {
@@ -149,11 +146,7 @@ class InfiniteLoadScroll extends React.Component {
     console.log('this will unmount' );
 
     // 解除绑定 touch move 否则其他页面不能正常滚动
-    if (document.removeEventListener) {
-      document.removeEventListener('touchmove', this.prevTouch, false);
-    } else {
-      window.detachEvent('touchmove', this.prevTouch);
-    }
+    _addEvent('remove', 'touchmove', this.prevTouch );
   }
 
   render() {
