@@ -81,12 +81,15 @@ class InfiniteLoadScroll extends React.Component {
     event.preventDefault();
   }
 
+   // 阻止默认touchmove事件，
+   //  防止在该开始的原生／非原生滚动造成计算的失误
+   //  防止是页面自己原生的滚动
   componentWillMount() {
-    // if (document.addEventListener) {
-    //   document.addEventListener('touchstart', this.prevTouch, false);
-    // } else {
-    //   window.attachEvent('touchstart', this.prevTouch);
-    // }
+    if (document.addEventListener) {
+      document.addEventListener('touchmove', this.prevTouch, false);
+    } else {
+      window.attachEvent('touchmove', this.prevTouch);
+    }
   }
 
   componentDidMount() {
@@ -120,13 +123,6 @@ class InfiniteLoadScroll extends React.Component {
     const elem = this.wrap;
     this.myScroll = new Iscroll(elem, option);
     this.myScroll.on('scroll', this.onScroll);
-
-   // 阻止默认touchmove事件，否则，是页面在滚动
-    if (document.addEventListener) {
-      document.addEventListener('touchmove', this.prevTouch, false);
-    } else {
-      window.attachEvent('touchmove', this.prevTouch);
-    }
   }
 
   shouldComponentUpdate(nextProps, nextState) {
