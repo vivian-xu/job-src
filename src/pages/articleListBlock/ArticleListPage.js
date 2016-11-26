@@ -4,7 +4,6 @@ import InfiniteLoadScroll from '../../components/infiniteLoadScroll/InfiniteLoad
 import Slide from '../../components/slide/Slide';
 import ArticleList from '../../components/articleList/ArticleList';
 
-
 class ArticleListPage extends React.Component {
     constructor(props) {
         super(props);
@@ -12,15 +11,13 @@ class ArticleListPage extends React.Component {
 
         this.state = {
             isloading: true,
-            slide: [
-            ],
-            articlelist : [
-            ]
+            slide: [],
+            articlelist : []
         };
 
         this.hasMore = true;
 
-        this.baseURL = 'http://wuguishifu.com/api/articlelist/';
+        this.baseURL = '/api/essay/';
 
     /*
         向 InfiniteLoadScroll 输出的
@@ -35,39 +32,47 @@ class ArticleListPage extends React.Component {
     }
 
     fetchingDatas(url, page) {
+
       ajax
       .get(url)
-      .send({page: page})
+      .query({limit: '3', offset: page})
       .end((error, response) => {
         if( !error && response ) {
-            let data = response.body;
+            let data = response.body.data;
+            console.log(data.results);
 
-            let { articlelist } = data;
+            //  如果没有数据了，设置 isover
+            if( !data.next ) {
+              this.hasMore = false;
+            };
+
+            console.log(this.hasMore );
+            console.log(data.next );
               // 添加数据
             if(page === 0) {
               const me = this;
+              this.setState({
+                  slide: Array.isArray(data.slide) ? data.slide : [] ,
+                  articlelist: [
+                  ...this.state.articlelist,
+                  ...data.results
+                  ],
+              })
+
               setTimeout(() => {
                 me.setState({
                     isloading: false,
                 })
-              }, 2000)
-                this.setState({
-                    slide: data.slide,
-                    articlelist,
-                })
+              }, 1000);
+
             } else {
                 this.setState({
                     articlelist: [
                         ...this.state.articlelist,
-                        ...articlelist
+                        ...results
                     ]
                 })
             }
-
-            //  如果没有数据了，设置 isover
-            if( !data.articlelist || data.articlelist < 20) {
-              this.hasMore = false;
-            };
 
             console.info('fetching success');
         } else {
@@ -101,13 +106,9 @@ class ArticleListPage extends React.Component {
       )
     }
 
-    componentWillMount() {
-      this.onLoading(0);
-    }
-
     render() {
         let {isloading, slide, articlelist} = this.state;
-
+        console.log('slide: ' + slide.length);
         let addStyle = {
           opacity: isloading ? 0 : 1
         };
@@ -118,14 +119,14 @@ class ArticleListPage extends React.Component {
                 <InfiniteLoadScroll
                   loadingBlock = {this.loadingBlock}
                   loadMore = {this.onLoading}
-                  pageStart = {1}
+                  pageStart = {0}
                   hasMore = {this.hasMore}
                   gapTime = {1500}
                   needHeight = {false}
                   addStyle = {addStyle}
                 >
 
-                    <Slide imgs={slide} />
+                    {(slide.length <= 0) ? <Slide /> : <Slide imgs={slide} />}
                     <ArticleList articlelist={articlelist} />
               </InfiniteLoadScroll>
             </div>

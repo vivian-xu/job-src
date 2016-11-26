@@ -6,9 +6,18 @@ import src3 from '../../imgs/img3.png';
 class Slide extends React.Component {
     static defaultProps = {
         imgs: [
-            src1,
-            src2,
-            src3,
+            {
+                imgdetail: "slide img",
+                src: src1
+            },
+            {
+                imgdetail: "slide img",
+                src: src2
+            },
+            {
+                imgdetail: "slide img",
+                src: src3
+            },
         ]
     }
     static propTypes = {

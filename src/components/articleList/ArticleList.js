@@ -12,6 +12,7 @@ class ArticleList extends React.PureComponent {
     }
 
     render() {
+        console.log( 'articlelist render' );
         let articles = this.props.articlelist.map((article, index) => {
                 return (
                     <ArticleItem article={article} key={index} />

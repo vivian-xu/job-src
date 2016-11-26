@@ -82,10 +82,12 @@ let _getTime = function(strTime) {
 
 */
 let _headleMultilineTextOverflow = (dom, numberRows ) => {
-        console.log('hi');
+
   let me = dom;
   let lineH = getDomStyle(me, 'line-height');
   let goalHeight = parseInt(lineH)*numberRows;
+        console.log(getDomStyle(me,"height"));
+        console.log(lineH);
 
   while(parseInt(getDomStyle(me, "height")) > goalHeight){
        me.innerText = me.innerText.replace(/(\s)*([a-zA-Z0-9]+|\W)(\.\.\.)?$/, "...");

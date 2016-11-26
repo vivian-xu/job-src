@@ -18,12 +18,13 @@ class ArticleItem extends React.PureComponent {
     }
 
     render() {
-      const {id, no, topic, imgdetail, imgsrc, title, body } = this.props.article;
+    console.log('articleItem render');
+      const {id, no, topic, cover_picture_desc, cover_picture, title, brief } = this.props.article;
 
-      let imgShow = !imgsrc ? null : (
-            <img src={imgsrc} alt={imgdetail} className="article-item__img" />);
+      let imgShow = !cover_picture ? null : (
+            <img src={cover_picture} alt={cover_picture_desc} className="article-item__img" />);
 
-        console.log('render');
+
         return (
             <li className="wrap-block article-item">
                 <Link to={`article/${id}`} className="flex-box" >
@@ -34,7 +35,7 @@ c-tag--bluebg c-tag--rectangular">{topic}</span>
                             {no}
                         </p>
                         <h2 className="article-item__title">{title}</h2>
-                        <p className="article-item__body" ref={(o)=>{this.articleBody = o}}>{body}</p>
+                        <p className="article-item__body" ref={(o)=>{this.articleBody = o}}>{brief}</p>
                     </div>
                     {imgShow}
                 </Link>

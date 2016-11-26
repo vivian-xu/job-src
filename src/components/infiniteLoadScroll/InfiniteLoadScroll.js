@@ -94,7 +94,6 @@ class InfiniteLoadScroll extends React.Component {
     // this.height = window.innerHeight - this.wrap.offsetTop;
     // 将 loading 状态改为 true ，防止短时间多次 fetch
     this.loading = true;
-    console.log(this.props.loadMore);
     //  fetch 首页
     this.props.loadMore(this.pageLoaded);
 
@@ -143,7 +142,7 @@ class InfiniteLoadScroll extends React.Component {
   }
 
   componentWillUnmount() {
-    console.log('this will unmount' );
+    console.log('infiniteLoadScroll will unmount' );
 
     // 解除绑定 touch move 否则其他页面不能正常滚动
     _addEvent(document, 'remove', 'touchmove', this.prevTouch );
@@ -151,13 +150,13 @@ class InfiniteLoadScroll extends React.Component {
 
   render() {
 
-    console.log('%c infiniteList', 'green');
+    console.log('%c infiniteList render', 'green');
 
     let { needHeight, height, addStyle } = this.props;
     let wrapStyle = {
       position: 'relative',
       height: this.height,
-      ...addStyle
+      ...addStyle,
     }
       // height: needHeight && height ? height : this.height,
 

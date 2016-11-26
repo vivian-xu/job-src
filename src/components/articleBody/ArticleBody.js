@@ -1,4 +1,3 @@
-
 import { IndexLink, Link } from 'react-router';
 import avatar from '../../imgs/avatar.png';
 import articleImg from '../../imgs/article-img.png';
