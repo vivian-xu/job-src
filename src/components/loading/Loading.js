@@ -27,20 +27,20 @@ class Loading extends React.PureComponent {
 
   componentWillMount() {
     if(this.props.prevent) {
-      _addEvent('on', 'touchstart', this.prevTouch);
-      _addEvent('on', 'touchmove', this.prevTouch);
-      _addEvent('on', 'touchend', this.prevTouch);
-      _addEvent('on', 'click', this.prevTouch);
+      _addEvent (document, 'on', 'touchstart', this.prevTouch);
+      _addEvent (document, 'on', 'touchmove', this.prevTouch);
+      _addEvent (document, 'on', 'touchend', this.prevTouch);
+      _addEvent (document, 'on', 'click', this.prevTouch);
     }
   }
 
   componentWillUnmount() {
     console.log("LOADING will unmounted");
     if(this.props.prevent) {
-      _addEvent('remove', 'touchstart', this.prevTouch);
-      _addEvent('remove', 'touchmove', this.prevTouch);
-      _addEvent('remove', 'touchend', this.prevTouch);
-      _addEvent('remove', 'click', this.prevTouch);
+      _addEvent (document, 'remove', 'touchstart', this.prevTouch);
+      _addEvent (document, 'remove', 'touchmove', this.prevTouch);
+      _addEvent (document, 'remove', 'touchend', this.prevTouch);
+      _addEvent (document, 'remove', 'click', this.prevTouch);
     }
   }
 

@@ -86,7 +86,7 @@ class InfiniteLoadScroll extends React.Component {
    //  防止在该开始的原生／非原生滚动造成计算的失误
    //  防止是页面自己原生的滚动
   componentWillMount() {
-    _addEvent('on', 'touchmove', this.prevTouch);
+    _addEvent(document, 'on', 'touchmove', this.prevTouch);
   }
 
   componentDidMount() {
@@ -146,7 +146,7 @@ class InfiniteLoadScroll extends React.Component {
     console.log('this will unmount' );
 
     // 解除绑定 touch move 否则其他页面不能正常滚动
-    _addEvent('remove', 'touchmove', this.prevTouch );
+    _addEvent(document, 'remove', 'touchmove', this.prevTouch );
   }
 
   render() {

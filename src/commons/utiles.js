@@ -100,26 +100,37 @@ let _headleMultilineTextOverflow = (dom, numberRows ) => {
  let _isArray = ( array ) => {
      return array && Object.prototype.toString.call( array ) === '[object Array]'
  }
-
-let _addEvent = (action, event, fn) => {
+/*
+  DOM0 / DOM2 / IE 方法来添加事件
+*/
+let _addEvent = (element, action, event, fn) => {
   if(action === 'on' ) {
 
-    if (document.addEventListener) {
-      document.addEventListener(event, fn, false);
+    if (element.addEventListener) {
+      // DOM2 级事件处理  ,
+      // 第三个参数 true ，添加到捕获阶段
+      // 为 false 添加到 冒泡阶段
+      element.addEventListener(event, fn, false);
+    } else if(element.attachEvent) {
+      //  IE 添加到冒泡阶段
+      element.attachEvent( "on" + event, fn);
     } else {
-      window.attachEvent(event, fn);
+      // DOM0 级事件处理
+      element["on" + event ] = fn;
     }
 
   }else if(action === 'remove') {
 
-    if (document.addEventListener) {
-      document.removeEventListener(event, fn, false);
+    if (element.addEventListener) {
+      element.removeEventListener(event, fn, false);
+    } else if(element.detachEvent) {
+      element.detachEvent( "on" + event, fn);
     } else {
-      window.detachEvent(event, fn);
+      element["on" + event ] = null;
     }
 
   } else {
-    throw Error('the first parameter of _addEvent Function can only be "on" or "remove" ');
+    throw Error('the second parameter of _addEvent Function can only be "on" or "remove" ');
   }
 }
 
