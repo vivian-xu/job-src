@@ -45,8 +45,14 @@ class ArticleListPage extends React.Component {
             let { articlelist } = data;
               // 添加数据
             if(page === 0) {
-                this.setState({
+              const me = this;
+              setTimeout(() => {
+                me.setState({
                     isloading: false,
+                })
+              }, 1000)
+                this.setState({
+                    // isloading: false,
                     slide: data.slide,
                     articlelist,
                 })
@@ -103,6 +109,10 @@ class ArticleListPage extends React.Component {
     render() {
         let {isloading, slide, articlelist} = this.state;
 
+        let addStyle = {
+          opacity: isloading ? 0 : 1
+        };
+
         return (
             <div>
                 {isloading ? <Loading /> : null}
@@ -113,6 +123,7 @@ class ArticleListPage extends React.Component {
                   hasMore = {this.hasMore}
                   gapTime = {1500}
                   needHeight = {false}
+                  addStyle = {addStyle}
                 >
 
                     <Slide imgs={slide} />
