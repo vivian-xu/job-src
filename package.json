@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "webpack-dev-server --config server.js --progress --profile --colors",
     "lint": "eslint src",
-    "clear": "cd dist/ && rm -rf `ls |grep -v 'libs'`",
+    "clear": "rm -rf dist/",
     "build": "npm run clear&&webpack --config webpack.prod.config.js --progress --profile --colors --display-error-details"
   },
   "repository": {

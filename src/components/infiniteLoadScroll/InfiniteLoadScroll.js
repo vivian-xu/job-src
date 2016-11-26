@@ -37,7 +37,7 @@ class InfiniteLoadScroll extends React.Component {
     this.touch = false; // 是否是 touch 事件， 为了区分是惯性滚动还是手动滚动
     //  myScroll 的最外层的 height
     this.height = window.innerHeight;
-    //  是否滚动了。（确保滚动的时候 LoadingBlock 才出现）
+    //     LoadingBlock 才出现）
     this.isOnScroll = false;
     // iScroll 实例
     this.myScroll = null;
@@ -65,7 +65,7 @@ class InfiniteLoadScroll extends React.Component {
     console.log(this.myScroll.maxScrollY);
 
     //  如果  isOnScroll 为 false 的话， 设置其为 true
-    if(this.isOnScroll) {
+    if(!this.isOnScroll) {
       this.isOnScroll = true;
     }
 

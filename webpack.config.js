@@ -73,7 +73,7 @@ module.exports = {
       template: './src/index.html',
       title: 'Job',
       inject: true,
-      hash: true,
+      // hash: true,
     }),
   ]
 };
