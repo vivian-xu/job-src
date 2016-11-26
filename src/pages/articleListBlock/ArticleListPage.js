@@ -31,11 +31,11 @@ class ArticleListPage extends React.Component {
         this.fetchingDatas = this.fetchingDatas.bind(this);
     }
 
-    fetchingDatas(url, page) {
+    fetchingDatas(url, page, limit) {
 
       ajax
       .get(url)
-      .query({limit: '3', offset: page})
+      .query({limit: limit, offset: page})
       .end((error, response) => {
         if( !error && response ) {
             let data = response.body.data;
@@ -46,7 +46,6 @@ class ArticleListPage extends React.Component {
               this.hasMore = false;
             };
 
-            console.log(this.hasMore );
             console.log(data.next );
               // 添加数据
             if(page === 0) {
@@ -69,7 +68,7 @@ class ArticleListPage extends React.Component {
                 this.setState({
                     articlelist: [
                         ...this.state.articlelist,
-                        ...results
+                        ...data.results
                     ]
                 })
             }
@@ -82,10 +81,10 @@ class ArticleListPage extends React.Component {
     }
 
     //  fetch 新数据
-    onLoading(page) {
+    onLoading(page, limit) {
         console.log('ready to fetch');
         // fetch 新的数据 并更新页数
-        this.fetchingDatas(this.baseURL, page);
+        this.fetchingDatas(this.baseURL, page, limit);
     }
 
     //  正在加载中。。 状态指示， 在页面最下方，向上拖动可看到
@@ -120,6 +119,7 @@ class ArticleListPage extends React.Component {
                   loadingBlock = {this.loadingBlock}
                   loadMore = {this.onLoading}
                   pageStart = {0}
+                  pageLimit = {2}
                   hasMore = {this.hasMore}
                   gapTime = {1500}
                   needHeight = {false}
