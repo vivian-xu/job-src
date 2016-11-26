@@ -19,6 +19,7 @@ let getDomStyle = function(dom, styleName) {
   }
 };
 
+//  遍历 数组 ／ object
 let _each = function(obj, fn) {
   if (!fn) return;
   if (obj instanceof Array) {
@@ -93,17 +94,41 @@ let _headleMultilineTextOverflow = (dom, numberRows ) => {
 
 /*
    判断是否是数组
-
+  @ param array 需要做判断的变量
 */
 
  let _isArray = ( array ) => {
      return array && Object.prototype.toString.call( array ) === '[object Array]'
  }
 
+let _addEvent = (action, event, fn) => {
+  if(action === 'on' ) {
+
+    if (document.addEventListener) {
+      document.addEventListener(event, fn, false);
+    } else {
+      window.attachEvent(event, fn);
+    }
+
+  }else if(action === 'remove') {
+
+    if (document.addEventListener) {
+      document.removeEventListener(event, fn, false);
+    } else {
+      window.detachEvent(event, fn);
+    }
+
+  } else {
+    throw Error('the first parameter of _addEvent Function can only be "on" or "remove" ');
+  }
+}
+
+
 export {
   getDomStyle,
   _each,
   _getTime,
   _headleMultilineTextOverflow,
-  _isArray
+  _isArray,
+  _addEvent
 };
