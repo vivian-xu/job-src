@@ -83,7 +83,7 @@ class Allcomments extends React.PureComponent {
 
     return (
       <div>
-        {isloading ? '<Loading />' : null}
+        {isloading ? <Loading /> : null}
         <div className="all-comments">
           <InfiniteLoadScroll
             loadingBlock = {this.loadingBlock}
