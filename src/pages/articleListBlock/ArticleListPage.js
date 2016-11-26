@@ -50,9 +50,8 @@ class ArticleListPage extends React.Component {
                 me.setState({
                     isloading: false,
                 })
-              }, 1000)
+              }, 2000)
                 this.setState({
-                    // isloading: false,
                     slide: data.slide,
                     articlelist,
                 })
