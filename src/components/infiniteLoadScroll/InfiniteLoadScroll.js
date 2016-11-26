@@ -9,7 +9,7 @@ class InfiniteLoadScroll extends React.Component {
     hasMore: true,
     pageStart: 0,
     gapTime: 2000,
-    // addStyle: {},
+    addStyle: {},
     needHeight: false,
     height: window.innerHeight,
   }
@@ -20,7 +20,7 @@ class InfiniteLoadScroll extends React.Component {
     hasMore: React.PropTypes.bool, // 还有下一页么？
     loadingBlock: React.PropTypes.func.isRequired, // loading 等待 最下方的 显示
     gapTime: React.PropTypes.number, // 每一次 update 后 多久可以开始再次请求加载数据 , 最小 1000
-    // addStyle: React.PropTypes.object, // （非必需）有需要控制最外层的 样式。
+    addStyle: React.PropTypes.object, // （非必需）有需要控制最外层的 样式。
     needHeight: React.PropTypes.bool, //是否需要自定义 height
     height: React.PropTypes.number, // myScroll 最外层的高度
   }
@@ -37,7 +37,8 @@ class InfiniteLoadScroll extends React.Component {
     this.touch = false; // 是否是 touch 事件， 为了区分是惯性滚动还是手动滚动
     //  myScroll 的最外层的 height
     this.height = window.innerHeight;
-
+    //  是否滚动了。（确保滚动的时候 LoadingBlock 才出现）
+    this.isOnScroll = false;
     // iScroll 实例
     this.myScroll = null;
 
@@ -47,6 +48,7 @@ class InfiniteLoadScroll extends React.Component {
     this.onScroll = this.onScroll.bind(this);
     this.onTouchStart = this.onTouchStart.bind(this);
     this.onTouchEnd = this.onTouchEnd.bind(this);
+    this.prevTouch = this.prevTouch.bind(this);
   }
 
   //  监听是否有 touch
@@ -58,13 +60,44 @@ class InfiniteLoadScroll extends React.Component {
     this.touch = false;
   }
 
+  onScroll() {
+    console.log(this.myScroll.y);
+    console.log(this.myScroll.maxScrollY);
+
+    //  如果  isOnScroll 为 false 的话， 设置其为 true
+    if(this.isOnScroll) {
+      this.isOnScroll = true;
+    }
+
+    if((this.myScroll.y < this.myScroll.maxScrollY - 30) && (!this.loading) && this.touch && this.props.hasMore ) {
+      console.warn('more');
+      this.loading = true;
+      this.props.loadMore( ++this.pageLoaded );
+    }
+  }
+
+  prevTouch() {
+    console.log('touch');
+    event.preventDefault();
+  }
+
+  componentWillMount() {
+    // if (document.addEventListener) {
+    //   document.addEventListener('touchstart', this.prevTouch, false);
+    // } else {
+    //   window.attachEvent('touchstart', this.prevTouch);
+    // }
+  }
+
   componentDidMount() {
     // 矫正 height
     // this.height = window.innerHeight - this.wrap.offsetTop;
     // 将 loading 状态改为 true ，防止短时间多次 fetch
     this.loading = true;
+    console.log(this.props.loadMore);
     //  fetch 首页
     this.props.loadMore(this.pageLoaded);
+
     const option = {
        //是否显示默认滚动条
       scrollbars: true,
@@ -87,8 +120,13 @@ class InfiniteLoadScroll extends React.Component {
     const elem = this.wrap;
     this.myScroll = new Iscroll(elem, option);
     this.myScroll.on('scroll', this.onScroll);
+
    // 阻止默认touchmove事件，否则，是页面在滚动
-    document.addEventListener('touchmove', function(e) { e.preventDefault(); }, false);
+    if (document.addEventListener) {
+      document.addEventListener('touchmove', this.prevTouch, false);
+    } else {
+      window.attachEvent('touchmove', this.prevTouch);
+    }
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -100,7 +138,7 @@ class InfiniteLoadScroll extends React.Component {
     // 调用 myScroll.refresh()，重新计算高度
     setTimeout(()=>{
       this.myScroll.refresh();
-    }, 50);
+    }, 100);
 
     // 一次 commponent updated 完成后，gapTime 毫秒内不能fetch 数据。
     // 防止短时间多次fetch 数据
@@ -111,29 +149,33 @@ class InfiniteLoadScroll extends React.Component {
     }, (gapTime >= 1000) ? gapTime : 1000)
   }
 
-  onScroll() {
-    console.log(this.myScroll.y);
-    console.log(this.myScroll.maxScrollY);
-    if((this.myScroll.y < this.myScroll.maxScrollY - 30) && (!this.loading) && this.touch && this.props.hasMore ) {
-      console.warn('more');
-      this.loading = true;
-      this.props.loadMore( ++this.pageLoaded );
+  componentWillUnmount() {
+    console.log('this will unmount' );
+
+    // 解除绑定 touch move 否则其他页面不能正常滚动
+    if (document.removeEventListener) {
+      document.removeEventListener('touchmove', this.prevTouch, false);
+    } else {
+      window.detachEvent('touchmove', this.prevTouch);
     }
   }
 
   render() {
+
     console.log('%c infiniteList', 'green');
 
-    let { needHeight, height } = this.props;
+    let { needHeight, height, addStyle } = this.props;
     let wrapStyle = {
       position: 'relative',
       height: this.height,
+      ...addStyle
     }
       // height: needHeight && height ? height : this.height,
 
     let relativeWrap = {
       position: 'relative'
     };
+
     return (
       <div
         ref = {(o)=> this.wrap = o}
@@ -142,8 +184,8 @@ class InfiniteLoadScroll extends React.Component {
         onTouchEnd = {this.onTouchEnd}
       >
         <div style={relativeWrap}>
-            {this.props.children}
-            {this.props.loadingBlock()}
+            { this.props.children }
+            { this.isOnScroll ? this.props.loadingBlock() : null}
         </div>
       </div>
     );
