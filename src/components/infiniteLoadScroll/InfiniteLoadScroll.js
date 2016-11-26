@@ -9,15 +9,22 @@ class InfiniteLoadScroll extends React.Component {
   static defaultProps = {
     hasMore: true,
     pageStart: 0,
+    pageLimit: 1,
     gapTime: 2000,
     addStyle: {},
     needHeight: false,
     height: window.innerHeight,
   }
 
+  //  pageStart, pageLimit 用法
+  //  假设 pageStart = 0, pageLimit = 2;
+  //  这一次请求的 datas 的数量为 2 个，id 是 1，2
+  //  下一次应该请求的 pageStart = 0 + 2 =2, 当 pageLimit = 3,
+  //  得到的 datas 的数量为 3个，id 是 3，4，5
   static propTypes = {
     loadMore: React.PropTypes.func.isRequired, // 在加载数据时执行的 loadMore 函数
     pageStart: React.PropTypes.number, // 从第几页开始
+    pageLimit: React.PropTypes.number, // 这一页请求的数量
     hasMore: React.PropTypes.bool, // 还有下一页么？
     loadingBlock: React.PropTypes.func.isRequired, // loading 等待 最下方的 显示
     gapTime: React.PropTypes.number, // 每一次 update 后 多久可以开始再次请求加载数据 , 最小 1000
@@ -30,16 +37,19 @@ class InfiniteLoadScroll extends React.Component {
     super(props);
     this.displayName = 'InfiniteLoadScroll';
 
+
+    this.state = {
+      pageLoaded: this.props.pageStart, // 从第几页开始,已经到第几页了（第几条数据了）
+      isOnScroll: false,     // LoadingBlock 才出现
+    }
     /*
         变量注册
     */
     this.loading = false; // 是否还没有更新完（ false 表示一个阶段完了，可以 fetch 新的数据了）
-    this.pageLoaded = this.props.pageStart; // 从第几页开始
+
     this.touch = false; // 是否是 touch 事件， 为了区分是惯性滚动还是手动滚动
     //  myScroll 的最外层的 height
     this.height = window.innerHeight;
-    //     LoadingBlock 才出现）
-    this.isOnScroll = false;
     // iScroll 实例
     this.myScroll = null;
 
@@ -66,14 +76,22 @@ class InfiniteLoadScroll extends React.Component {
     console.log(this.myScroll.maxScrollY);
 
     //  如果  isOnScroll 为 false 的话， 设置其为 true
-    if(!this.isOnScroll) {
-      this.isOnScroll = true;
+      console.log('%c'+ this.state.isOnScroll, 'color:green');
+    if(!this.state.isOnScroll) {
+      this.setState({
+        isOnScroll: true
+      })
     }
 
     if((this.myScroll.y < this.myScroll.maxScrollY - 30) && (!this.loading) && this.touch && this.props.hasMore ) {
       console.warn('more');
       this.loading = true;
-      this.props.loadMore( ++this.pageLoaded );
+      this.props.loadMore( this.state.pageLoaded, this.props.pageLimit );
+
+    // 更新 state 中的 pageLoaded
+      this.setState({
+        pageLoaded: this.state.pageLoaded + this.props.pageLimit
+      })
     }
   }
 
@@ -95,7 +113,10 @@ class InfiniteLoadScroll extends React.Component {
     // 将 loading 状态改为 true ，防止短时间多次 fetch
     this.loading = true;
     //  fetch 首页
-    this.props.loadMore(this.pageLoaded);
+    this.props.loadMore(this.state.pageLoaded, this.props.pageLimit);
+
+    // 更新 pageLoaded
+    this.state.pageLoaded = this.state.pageLoaded + this.props.pageLimit;
 
     const option = {
        //是否显示默认滚动条
@@ -150,7 +171,7 @@ class InfiniteLoadScroll extends React.Component {
 
   render() {
 
-    console.log('%c infiniteList render', 'green');
+    console.log('%c infiniteList render', 'color:green');
 
     let { needHeight, height, addStyle } = this.props;
     let wrapStyle = {
@@ -173,7 +194,7 @@ class InfiniteLoadScroll extends React.Component {
       >
         <div style={relativeWrap}>
             { this.props.children }
-            { this.isOnScroll ? this.props.loadingBlock() : null}
+            { this.state.isOnScroll ? this.props.loadingBlock() : null}
         </div>
       </div>
     );
