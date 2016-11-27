@@ -27,12 +27,12 @@ class ArticleItem extends React.PureComponent {
 
         return (
             <li className="wrap-block article-item">
-                <Link to={`article/${id}`} className="flex-box" >
+                <Link to={`/articles/${id}`} className="flex-box" >
                     <div className="flex-item" >
                         <p className="c-tag">
                             <span className="
 c-tag--bluebg c-tag--rectangular">{topic}</span>
-                            {no}
+                            No.{no}
                         </p>
                         <h2 className="article-item__title">{title}</h2>
                         <p className="article-item__body" ref={(o)=>{this.articleBody = o}}>{brief}</p>
