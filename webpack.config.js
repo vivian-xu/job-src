@@ -30,6 +30,14 @@ module.exports = {
   },
 
   module: {
+    // preLoaders: [
+    //   {
+    //     test: /\.js$/,
+    //     exclude: /node_modules/,
+    //     include: path.resolve(ROOT_PATH, 'src/pages/allComments/'),
+    //     loader: 'eslint'
+    //   }
+    // ],
     loaders: [{
         test: /\.js?$/,
         exclude: /node_modules/,
@@ -80,7 +88,7 @@ module.exports = {
       template: './src/index.html',
       title: 'Job',
       inject: true,
-      // hash: true,
+      hash: true,
     }),
   ]
 };
