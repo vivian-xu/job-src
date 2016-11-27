@@ -11,16 +11,17 @@ class ArticleBody extends React.Component {
         article: React.PropTypes.shape({
             body: React.PropTypes.string.isRequired,
             date: React.PropTypes.string.isRequired,
-            no: React.PropTypes.string.isRequired,
+            no: React.PropTypes.number.isRequired,
             title: React.PropTypes.string.isRequired,
+            cover_picture: React.PropTypes.string.isRequired,
+            cover_picture_desc: React.PropTypes.string,
             topic: React.PropTypes.string.isRequired,
             author: React.PropTypes.shape({
-                id: React.PropTypes.number,
-                name: React.PropTypes.string,
-                mentor: React.PropTypes.string,
-                avatar: React.PropTypes.string,
+                id: React.PropTypes.number.isRequired,
+                name: React.PropTypes.string.isRequired,
+                mentor: React.PropTypes.string.isRequired,
+                avatar: React.PropTypes.string.isRequired,
             }),
-
         })
      }
 
@@ -43,7 +44,7 @@ class ArticleBody extends React.Component {
     }
 
     render() {
-        const { title, body, date, no, topic, author: {
+        const { title, body, date, no, topic, cover_picture, cover_picture_desc, author: {
             avatar,
             name,
             id,
@@ -53,9 +54,12 @@ class ArticleBody extends React.Component {
         return (
             <div className="wrap-block article" >
                 <p className="c-tag">
-                    <span className="
-c-tag--bluebg c-tag--rectangular">{topic}</span>
-                    {no}
+                    <span
+                        className="c-tag--bluebg c-tag--rectangular"
+                    >
+                        {topic}
+                    </span>
+                    No.{no}
                 </p>
                 <h1 className="article__title">
                     {title}
@@ -63,7 +67,7 @@ c-tag--bluebg c-tag--rectangular">{topic}</span>
                 <p className="article__time">
                     {date} &nbsp; {topic}
                  </p>
-                 <img className="article__title-img" src={articleImg} alt='article-img' />
+                 <img className="article__title-img" src={cover_picture} alt={cover_picture_desc} />
                 <Link to=  {`/mentors/${id}`} className="article__container flex-box">
                     <img className="article__avatar"
                              src={avatar}

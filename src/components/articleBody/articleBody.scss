@@ -56,6 +56,7 @@
 .article__content {
     font-size: $font-size-text;
     line-height: $line-height-text;
+    overflow: hidden;
 
     img {
         display: block;

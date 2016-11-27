@@ -19,8 +19,7 @@ class Article extends React.Component {
         this.fetchingDatas = this.fetchingDatas.bind(this);
 
         //  变量
-        this.baseURL = 'http://wuguishifu.com/api/article';
-        this.articleid = (/[^0-9 ]/.test(this.props.params.articleid) ) ? 0 : this.props.params.articleid;
+        this.url = `/api/essay/${this.props.params.articleid}`;
     }
 
     fetchingDatas(url) {
@@ -28,16 +27,33 @@ class Article extends React.Component {
       .get(url)
       .end((error, response) => {
         if( !error && response ) {
-            let data = response.body;
+            let data = response.body.data;
             const me = this;
+            console.log(data);
             setTimeout(() => {
               me.setState({
                   isloading: false,
               })
             }, 1000);
 
+            const { no, content, title, topic, cover_picture, cover_picture_desc, create_time, author } = data;
+
             this.setState({
-                data
+                article: {
+                    body: content,
+                    date: create_time.split(" ")[0],
+                    no,
+                    title,
+                    topic,
+                    cover_picture,
+                    cover_picture_desc,
+                    author: {
+                        id: author.id,
+                        name: author.nick_name,
+                        mentor: (author.gender === 1) ? '师姐' : '师兄',
+                        avatar: author.avatar,
+                    }
+                }
             })
 
             console.info('fetching success');
@@ -48,15 +64,14 @@ class Article extends React.Component {
     }
 
     componentWillMount() {
-        this.fetchingDatas(`${this.baseURL}/${this.articleid}`);
+        this.fetchingDatas(this.url);
     }
 
     render() {
-        console.log(this.articleid);
-        const {isloading, data} = this.state;
+        const {isloading, article} = this.state;
 
         let content = isloading ? <Loading /> :
-        <ArticleBody article={data} />;
+        <ArticleBody article={article} />;
 
         return (
             <div className="article">
