@@ -12,8 +12,8 @@ import InfiniteLoadScroll from './components/infiniteLoadScroll/InfiniteLoadScro
 const routes = (
   <Route path='/' component={App}>
     <IndexRoute component={ArticleListPage} />
-    <Route path="/articlelist" com  ponent={ ArticleListPage } />
-    <Route path="/article/:articleid" component={ Article } />
+    <Route path="/articles" component={ ArticleListPage } />
+    <Route path="/articles/:articleid" component={ Article } />
     <Route path="/mentors/:mentorId" component={ Profile } />
     <Route path="/mentors/:mentorId/comments" component={ AllComments } />
   </Route>
