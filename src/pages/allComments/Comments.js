@@ -3,7 +3,7 @@ import ajax from 'superagent';
 import Loading from '../../components/loading/Loading';
 import CommentsList from '../../components/commentsList/CommentsList';
 
-class Allcomments extends React.PureComponent {
+class Allcomments extends React.Component {
   constructor(props) {
     super(props);
 

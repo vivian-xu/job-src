@@ -4,7 +4,7 @@ import InfiniteLoadScroll from '../../components/infiniteLoadScroll/InfiniteLoad
 import CommentItem from '../../components/commentItem/CommentItem';
 
 
-class Allcomments extends React.PureComponent {
+class Allcomments extends React.Component {
   constructor(props) {
     super(props);
     this.displayName = "Allcomments";

@@ -3,7 +3,7 @@ import Loading from '../../components/loading/Loading';
 import InfiniteLoadScroll from '../../components/infiniteLoadScroll/InfiniteLoadScroll';
 import CommentsList from '../../components/commentsList/CommentsList';
 
-class Allcomments extends React.PureComponent {
+class Allcomments extends React.Component {
   constructor(props) {
     super(props);
     this.displayName = "Allcomments";
@@ -14,7 +14,7 @@ class Allcomments extends React.PureComponent {
     };
 
     this.hasMore = true; // 是否还有更多的数据可以请求
-    this.baseURL = 'http://wuguishifu.com/api/mentors/5/comments/';
+    this.baseURL = '/api/mentors/' + this.props.params.mentorId+'/comments/';
 
 /*
     向 InfiniteLoadScroll 输出的
@@ -28,24 +28,41 @@ class Allcomments extends React.PureComponent {
     this.fetchingDatas = this.fetchingDatas.bind(this);
   }
 
-  fetchingDatas(url, page) {
+    fetchingDatas(url, page, limit) {
     ajax
     .get(url)
-    .send({page: page})
+    .query({limit: limit, offset: page})
     .end((error, response) => {
       if( !error && response ) {
-          let data = response.body;
+          let data = response.body.data;
 
-          //  如果没有数据了，设置 isover
-          if( !data.comments || data.comments.length < 20) {
-            this.hasMore = false;
-          };
+          //  如果没有数据了，设置 hasMore
+         if( !data.next ) {
+           this.hasMore = false;
+         };
 
+         console.log(data);
           // 赠添新的数据
-          this.setState({
-            comments: this.state.comments.concat(data.comments),
-            isloading: false,
-          });
+          if(page === 0) {
+            this.setState({
+              comments: this.state.comments.concat(data.results),
+            })
+
+            const me = this;
+            setTimeout(() => {
+              me.setState({
+                  isloading: false,
+              })
+            }, 1000);
+
+          } else {
+              this.setState({
+                  comments: [
+                      ...this.state.comments,
+                      ...data.results
+                  ]
+              })
+          }
           console.info('fetching success');
       } else {
       console.error(`Error fetching ${name} `, error);
@@ -54,10 +71,10 @@ class Allcomments extends React.PureComponent {
   }
 
   //  fetch 新数据
-  onLoading(page) {
+   onLoading(page, limit) {
       console.log('ready to fetch');
       // fetch 新的数据 并更新页数
-      this.fetchingDatas(this.baseURL, page);
+      this.fetchingDatas(this.baseURL, page, limit);
   }
 
   //  正在加载中。。 状态指示， 在页面最下方，向上拖动可看到
@@ -80,6 +97,10 @@ class Allcomments extends React.PureComponent {
 
   render() {
     let { comments , isloading} = this.state;
+    let addStyle = {
+      opacity: isloading ? 0 : 1
+    };
+    console.log(comments);
 
     return (
       <div>
@@ -89,9 +110,11 @@ class Allcomments extends React.PureComponent {
             loadingBlock = {this.loadingBlock}
             loadMore = {this.onLoading}
             pageStart = {0}
+            pageLimit = {5}
             hasMore = {this.hasMore}
             gapTime = {1000}
             needHeight = {false}
+            addStyle = {addStyle}
           >
           <div
             className="all-comments__header"
@@ -99,13 +122,12 @@ class Allcomments extends React.PureComponent {
               <span className="iconfont icon-left all-comments__back" onClick={this.onhandleBack}></span>
               <h1 className="all-comments__title"> 全部评论 </h1>
           </div>
-            <section
-              className="wrap-block wrap-block--vertical-small"
-              ref={(o) => this.commentsWrap = o}
-              >
+            <section className="wrap-block wrap-block--vertical-small" >
+
                 <CommentsList
-                  comments={this.state.comments}
+                  comments={comments}
                 />
+
             </section>
           </InfiniteLoadScroll>
         </div>
