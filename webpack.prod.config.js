@@ -7,6 +7,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 const ROOT_PATH = path.resolve(__dirname);
 const src = path.resolve(ROOT_PATH, 'src');
 const dist = path.resolve(ROOT_PATH, 'dist');
+const build = path.resolve(ROOT_PATH, 'build');
 
 module.exports = {
   devtool: false,
@@ -14,12 +15,13 @@ module.exports = {
   entry: {
     //配置入口文件，有几个写几个。我这里有两个文件。一个是所有我需要引入的文件，一个是我的入口文件，index.js
     //支持数组形式，将加载数组中的所有模块，但以最后一个模块作为输出,比如下面数组里面的js,全部压缩在了vendor这个文件这里
-    vendors: ['jquery'],
+    // vendors: ['jquery'],
     app: './src/index.js',
   },
 
   output: {
-    path: path.join(__dirname, 'dist'),
+    // path: path.join(__dirname, 'build'),
+    path: build,
     // publicPath: '/',
     publicPath: '/static/', //模板、样式、脚本、图片等资源对应的server上的路径
     filename: 'bundle.[hash:8].js'
@@ -38,9 +40,9 @@ module.exports = {
     }),
     new ExtractTextPlugin('./css/style.[hash:8].css'),
     new webpack.ProvidePlugin({
-      $: "jquery",
-      jQuery: "jquery",
-      "window.jQuery": "jquery",
+      // $: "jquery",
+      // jQuery: "jquery",
+      // "window.jQuery": "jquery",
       "React": "react"
     }),
     new HtmlWebpackPlugin({
@@ -66,9 +68,6 @@ module.exports = {
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.DedupePlugin(),
     //将引入的第三方库打包.这个要放到最后
-    new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.[hash:8].js'),
+    // new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.[hash:8].js'),
   ]
 };
-
-
-

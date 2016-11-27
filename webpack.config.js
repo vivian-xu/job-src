@@ -2,6 +2,7 @@ var path = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var autoprefixer = require('autoprefixer');
 
 const ROOT_PATH = path.resolve(__dirname);
 const src = path.resolve(ROOT_PATH, 'src');
@@ -50,9 +51,15 @@ module.exports = {
       }
     ]
   },
-  postcss: function () {
-    return [require('autoprefixer')];
-  },
+  // postcss: function () {
+  //   return [require('autoprefixer')];
+  // },
+  postcss: [ autoprefixer({
+    browsers: [
+      'last 2 versions',
+      'ie >= 8'
+    ]
+  }) ],
   resolve: {
     extensions: ['', '.js', '.jsx']
   },
@@ -63,9 +70,9 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     new webpack.ProvidePlugin({
-      $: "jquery",
-      jQuery: "jquery",
-      "window.jQuery": "jquery",
+      // $: "jquery",
+      // jQuery: "jquery",
+      // "window.jQuery": "jquery",
       "React": "react"
     }),
     new HtmlWebpackPlugin({
