@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "webpack-dev-server --config server.js --progress --profile --colors",
     "lint": "eslint src",
-    "clear": "rm -rf dist/",
+    "clear": "rm -rf build/",
     "build": "npm run clear&&webpack --config webpack.prod.config.js --progress --profile --colors --display-error-details"
   },
   "repository": {
@@ -22,14 +22,6 @@
       "react",
       "stage-0"
     ]
-  },
-  "postcss": {
-    "autoprefixer": {
-      "browsers": [
-        "last 2 versions",
-        "ie >= 8"
-      ]
-    }
   },
   "devDependencies": {
     "autoprefixer": "^6.5.1",
