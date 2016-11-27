@@ -41,7 +41,7 @@ class ArticleListPage extends React.Component {
             let data = response.body.data;
             console.log(data.results);
 
-            //  如果没有数据了，设置 isover
+            //  如果没有数据了，设置 hasMore
             if( !data.next ) {
               this.hasMore = false;
             };
