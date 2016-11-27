@@ -48,27 +48,30 @@ class Profile extends React.Component {
 // 将 isloading 改为 false
 
     buildState(data) {
+        let { id, avatar_url, gender_description, nick_name, latest_work, industrys, workinfos, eduinfos, bio, comments_count, comments } = data;
+
+        console.log(data );
         this.setState({
             isloading: false,
             info:{
-                id: data.id,
-                avatar: data.avatar_url,
-                gender: data.gender_description,
-                nick_name: data.nick_name,
-                latest_work: data.latest_work,
-                industrys: data.industrys
+                id: id,
+                avatar: avatar_url,
+                gender: gender_description,
+                nick_name: nick_name,
+                latest_work: latest_work,
+                industrys: industrys
             },
             resume: {
-                works: data.workinfos,
-                edus: data.eduinfos
+                works: workinfos,
+                edus: eduinfos
             },
             mentor: {
-                gender: data.gender_description,
-                text: data.bio
+                gender: gender_description,
+                text: bio
             },
             comments: {
-                count: data.comments_count,
-                commentsData: data.comments
+                count: comments_count,
+                commentsData: comments
             }
         });
     }
@@ -90,28 +93,26 @@ class Profile extends React.Component {
     }
 
     componentWillMount () {
-
-        const baseURL = '/api/mentors';
         const id = this.props.params.mentorId;
-
-        let url = baseURL+ '/' +id;
-        this.fetchingData(url);
+        this.fetchingData(`/api/mentors/${id}`);
     }
 
     render() {
         console.log("render started");
         console.log(this.state.isloading);
+        let {isloading, info, resume, mentor, comments} = this.state;
 
-        let content = this.state.isloading ? (<Loading />) : (
+        let content = isloading ? (<Loading />) : (
             <div>
-                <Info data={this.state.info} />
+                <Info data={info} />
                 <Call />
-                <Resume data={this.state.resume} />
-                <Mentor data={this.state.mentor} />
-                <Comments data={this.state.comments} {...this.props} />
+                <Resume data={resume} />
+                <Mentor data={mentor} />
+                <Comments data={comments} />
                 <Date />
             </div>
             );
+                // <Comments data={comments} {...this.props} />
         return (
             <div>
                 {content}
