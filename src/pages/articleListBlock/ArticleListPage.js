@@ -119,7 +119,7 @@ class ArticleListPage extends React.Component {
                   loadingBlock = {this.loadingBlock}
                   loadMore = {this.onLoading}
                   pageStart = {0}
-                  pageLimit = {2}
+                  pageLimit = {10}
                   hasMore = {this.hasMore}
                   gapTime = {1500}
                   needHeight = {false}
