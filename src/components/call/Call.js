@@ -2,24 +2,21 @@ import Mask from '../mask/Mask';
 import TimeList from '../timeList/TimeList';
 
 class Call extends React.PureComponent {
-    static defaultProps = {
-        checktimelist: [
-            {
-                 "day": "明天",
-                 "date": "6月13日",
-                 "time": "22:00 ~ 22:45"
-             },
-             {
-                 "day": "后天",
-                 "date": "6月14日",
-                 "time": "22:00 ~ 22:45"
-             }
-        ]
-    }
+  static defaultProps = {
+    checktimelist: [{
+      "day": "明天",
+      "date": "6月13日",
+      "time": "22:00 ~ 22:45"
+    }, {
+      "day": "后天",
+      "date": "6月14日",
+      "time": "22:00 ~ 22:45"
+    }]
+  }
 
-    static propTypes = {
-        checktimelist: React.PropTypes.array.isRequired,
-     }
+  static propTypes = {
+    checktimelist: React.PropTypes.array.isRequired,
+  }
 
     constructor(props) {
         super(props);

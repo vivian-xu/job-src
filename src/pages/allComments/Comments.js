@@ -1,3 +1,4 @@
+/*global React:true*/
 import ajax from 'superagent';
 
 import Loading from '../../components/loading/Loading';

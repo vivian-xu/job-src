@@ -1,3 +1,4 @@
+/*global React:true*/
 require('./commons/common.js');
 require('./styles/style.scss');
 require('./fonts/iconfont.eot');
