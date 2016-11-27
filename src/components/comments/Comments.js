@@ -33,15 +33,15 @@ class Comments extends React.PureComponent {
     }
 
     render() {
-        let {pathname} = this.context.router.location;
+        let {mentorId} = this.context.router.params;
         let {commentsData, count} = this.props.data;
-
         let btn = null;
+        console.log( mentorId);
         if(_isArray(commentsData)) {
             btn =( () => {
                 if( commentsData.length < count) {
                     return (
-                        <Link to={`${pathname}/comments`} className="c-btn" onClick={this.checkAllComments}>
+                        <Link to={`/mentors/${mentorId}/comments`} className="c-btn" onClick={this.checkAllComments}>
                             查看全部评论
                         </Link>
                     );
