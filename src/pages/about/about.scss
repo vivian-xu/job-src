@@ -1,0 +1,16 @@
+.about__my-info {
+  text-align: center;
+
+  .logo {
+    width: 1.6rem;
+    height: 1.6rem;
+    margin: .8rem auto .1rem;
+    background: $color-btn;
+    border-radius: .27rem;
+  }
+}
+
+.copyright {
+  color: $color-sub-title;
+  font-size: $font-size-sub-small-text;
+}
