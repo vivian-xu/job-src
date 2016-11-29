@@ -113,7 +113,7 @@ class ArticleListPage extends React.Component {
         };
 
         return (
-            <div>
+            <div className='wrap-block--top-margin' >
                 {isloading ? <Loading /> : null}
                 <InfiniteLoadScroll
                   loadingBlock = {this.loadingBlock}

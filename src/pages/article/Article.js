@@ -74,9 +74,9 @@ class Article extends React.Component {
         <ArticleBody article={article} />;
 
         return (
-            <div className="article">
+            <section className="article">
                 {content}
-            </div>
+            </section>
         );
     }
 }

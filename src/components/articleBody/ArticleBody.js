@@ -44,15 +44,11 @@ class ArticleBody extends React.Component {
     }
 
     render() {
-        const { title, body, date, no, topic, cover_picture, cover_picture_desc, author: {
-            avatar,
-            name,
-            id,
-            mentor
-        } } = this.props.article;
+        const { title, body, date, no, topic, cover_picture, cover_picture_desc, author: { avatar, name, id, mentor} } = this.props.article;
+
         console.log(this.props );
         return (
-            <div className="wrap-block article" >
+            <div className="wrap-block wrap-block--top-margin" >
                 <p className="c-tag">
                     <span
                         className="c-tag--bluebg c-tag--rectangular"
