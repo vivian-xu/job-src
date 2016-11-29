@@ -1,0 +1,14 @@
+.tabBtn {
+    height:  .8rem;
+    line-height:  .8rem;
+    // width: 50%,
+    font-size: $font-size-sub-title;
+    color: $color-sub;
+    text-align: center;
+    border-bottom: 1px solid $color-sub;
+}
+
+.tabBtn-on {
+    color: $color-btn;
+    border-bottom: 3px solid $color-btn;
+}
