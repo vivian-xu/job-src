@@ -1,0 +1,28 @@
+.c-nav-header {
+    position: relative;
+    height: 47px;
+    margin: .2rem;
+    text-align: left;
+}
+
+.c-nav-header__back,
+.c-nav-header__title {
+    height: 100%;
+    background-color: $color-bg;
+    line-height: 47px;
+    text-align: center;
+}
+
+.c-nav-header__back {
+    display: inline-block;
+    width: 47px;
+}
+
+.c-nav-header__title {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 3rem;
+    margin-left: -1.5rem;
+    font-weight: normal;
+}
