@@ -112,9 +112,9 @@ class Profile extends React.Component {
                 <Date />
             </div>
             );
-                // <Comments data={comments} {...this.props} />
+
         return (
-            <div>
+            <div className='wrap-block--top-margin' >
                 {content}
             </div>
             );
