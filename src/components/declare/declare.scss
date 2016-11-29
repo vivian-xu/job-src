@@ -1,0 +1,10 @@
+.declare {
+  width: 100%;
+  background: #fff;
+  overflow: scroll;
+}
+
+.declare__content {
+  font-size: $font-size-small-text;
+  line-height: $line-height-small-text;
+}
