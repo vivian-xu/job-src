@@ -2,6 +2,7 @@
 import ajax from 'superagent';
 import Loading from '../../components/loading/Loading';
 import InfiniteLoadScroll from '../../components/infiniteLoadScroll/InfiniteLoadScroll';
+import Header from '../../components/header/Header';
 import CommentsList from '../../components/commentsList/CommentsList';
 
 class Allcomments extends React.Component {
@@ -107,10 +108,9 @@ class Allcomments extends React.Component {
     const addStyle = {
       opacity: isloading ? 0 : 1,
     };
-    console.log(comments);
 
     return (
-      <div>
+      <div className='wrap-block--top-margin' >
         {isloading ? <Loading /> : null}
         <div className="all-comments">
           <InfiniteLoadScroll
@@ -123,12 +123,7 @@ class Allcomments extends React.Component {
             needHeight={false}
             addStyle={addStyle}
           >
-            <div
-              className="all-comments__header"
-            >
-              <span className="iconfont icon-left all-comments__back" onClick={this.onhandleBack} />
-              <h1 className="all-comments__title"> 全部评论 </h1>
-            </div>
+            <Header title='全部评论' />
             <section className="wrap-block wrap-block--vertical-small" >
 
               <CommentsList

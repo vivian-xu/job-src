@@ -1,38 +1,13 @@
 @import '../../components/commentItem/commentItem.scss';
 @import '../../components/commentsList/commentsList.scss';
 @import '../../components/infiniteList/infiniteList.scss';
+@import '../../components/header/Header.scss';
 
 .wrap-block--vertical-small {
     padding: .45rem .4rem;
 }
 
-.all-comments__header {
-    position: relative;
-    height: 47px;
-    margin: 0 .2rem .2rem;
-    text-align: left;
+.all-comments .c-nav-header {
+    margin-top: 0;
 }
-
-.all-comments__back,
-.all-comments__title {
-    height: 100%;
-    background-color: $color-bg;
-    line-height: 47px;
-    text-align: center;
-}
-
-.all-comments__back {
-    display: inline-block;
-    width: 47px;
-}
-
-.all-comments__title {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    width: 3rem;
-    margin-left: -1.5rem;
-    font-weight: normal;
-}
-
 
