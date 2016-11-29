@@ -110,19 +110,27 @@ a {
   padding: 0;
 }
 
+.wrap-block--double-margin {
+  width: 6.7rem;
+}
+
+.wrap-block--top-margin {
+  margin-top: .2rem;
+}
+
 .flex-box {
-    display: -webkit-flex;
-    display: -moz-box;
     display: -ms-flexbox;
-    display: flex;
     display: -webkit-box;  /* 兼容 andior 微信 */
+    display: -moz-box;
+    display: -webkit-flex;
+    display: flex;
 
     .flex-item {
+        -webkit-box-flex: 1; /* 兼容 andior 微信 */
         -webkit-flex:1;
            -moz-box-flex:1;
             -ms-flex:1;
                 flex:1;
-        -webkit-box-flex: 1; /* 兼容 andior 微信 */
     }
 }
 
