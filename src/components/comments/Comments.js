@@ -6,7 +6,7 @@ class Comments extends React.PureComponent {
     static defaultProps = {
       data: {
         commentsData: [],
-        count: 0
+        count: 0,
       }
     }
 
@@ -26,6 +26,9 @@ class Comments extends React.PureComponent {
         this.displayName = 'Comments';
 
         this.checkAllComments = this.checkAllComments.bind(this);
+
+        this.limit = 3;
+        this.hasBtn = false;
     }
 
     checkAllComments() {
@@ -36,25 +39,24 @@ class Comments extends React.PureComponent {
         let {mentorId} = this.context.router.params;
         let {commentsData, count} = this.props.data;
         let btn = null;
-        console.log( mentorId);
-        if(_isArray(commentsData)) {
-            btn =( () => {
-                if( commentsData.length < count) {
-                    return (
-                        <Link to={`/mentors/${mentorId}/comments`} className="c-btn" onClick={this.checkAllComments}>
+        if(Array.isArray(commentsData)) {
+            this.hasBtn = (this.limit > count) ? false : true;
+            btn = ( !this.hasBtn ) ? null : (
+                <Link
+                    to={`/mentors/${mentorId}/comments`} className="c-btn"
+                    onClick={this.checkAllComments}>
                             查看全部评论
-                        </Link>
-                    );
-                }
-            })();
+                </Link> );
         }
+
+        let commentsRes = this.hasBtn ? commentsData.slice(0, this.limit) : commentsData;
 
         return (
             <section className="wrap-block comments">
                 <p className="section-title">
                     同学们的评价
                 </p>
-                <CommentsList comments = {commentsData} />
+                <CommentsList comments = {commentsRes} />
                 {btn}
             </section>
         );

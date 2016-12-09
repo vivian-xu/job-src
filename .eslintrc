@@ -1,0 +1,19 @@
+{
+    "parser": "babel-eslint",
+    "extends": "airbnb",
+    "env": {
+      "browser": true,
+      "commonjs": true,
+      "es6": true,
+      "jquery": true
+    },
+    "rules": {
+      // "max-len": [1, 120, 2],
+      // "max-len": [1, 120, 2, {ignoreComments: true}],
+      "arrow-parens": 0,
+      "react/prop-types": [2, {ignore: ["children"]}],
+      "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+      "react/jsx-no-undef": 2,
+      "no-console": 0,
+    }
+}

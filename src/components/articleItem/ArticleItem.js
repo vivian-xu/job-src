@@ -19,8 +19,9 @@ class ArticleItem extends React.PureComponent {
 
     render() {
     console.log('articleItem render');
+      // const {id, no, topic, cover_picture_desc, cover_picture, title, brief } = this.props.article;
       const {id, no, topic, cover_picture_desc, cover_picture, title, brief } = this.props.article;
-
+        // console.log;
       let imgShow = !cover_picture ? null : (
             <img src={cover_picture} alt={cover_picture_desc} className="article-item__img" />);
 
@@ -30,8 +31,7 @@ class ArticleItem extends React.PureComponent {
                 <Link to={`/articles/${id}`} className="flex-box" >
                     <div className="flex-item" >
                         <p className="c-tag">
-                            <span className="
-c-tag--bluebg c-tag--rectangular">{topic}</span>
+                            <span className="c-tag--bluebg c-tag--rectangular">{topic}</span>
                             No.{no}
                         </p>
                         <h2 className="article-item__title">{title}</h2>

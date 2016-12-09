@@ -8,6 +8,7 @@ import Comments from '../../components/comments/Comments';
 import Date from '../../components/date/Date';
 import Call from '../../components/call/Call';
 
+
 class Profile extends React.Component {
     static propTypes = {
         children: React.PropTypes.node
@@ -77,7 +78,12 @@ class Profile extends React.Component {
     }
 
     fetchingData(url) {
-        ajax.get(url)
+        const mockData = require('../../mock/profile.js');
+        const data = mockData.data;
+        console.log(mockData.data);
+        this.buildState(data);
+
+/*        ajax.get(url)
             .end((error, response) => {
                 if( !error && response ) {
                     let data = response.body.data;
@@ -89,7 +95,7 @@ class Profile extends React.Component {
                 } else {
                 console.error(`Error fetching ${name} `, error);
              }
-        });
+        });*/
     }
 
     componentWillMount () {

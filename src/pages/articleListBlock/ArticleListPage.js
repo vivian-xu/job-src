@@ -4,6 +4,7 @@ import InfiniteLoadScroll from '../../components/infiniteLoadScroll/InfiniteLoad
 import Slide from '../../components/slide/Slide';
 import ArticleList from '../../components/articleList/ArticleList';
 
+
 class ArticleListPage extends React.Component {
     constructor(props) {
         super(props);
@@ -32,8 +33,28 @@ class ArticleListPage extends React.Component {
     }
 
     fetchingDatas(url, page, limit) {
+      // mock
+      const req = require('../../mock/articleList.js');
+      console.log(req);
+      const data = req.data;
+      this.setState({
+          slide: Array.isArray(data.slide) ? data.slide : [] ,
+          articlelist: [
+          ...this.state.articlelist,
+          ...data.results
+          ],
+      });
 
-      ajax
+      this.hasMore = false;
+
+      setTimeout(() => {
+        this.setState({
+            isloading: false,
+        })
+      }, 1000);
+
+
+    /*  ajax
       .get(url)
       .query({limit: limit, offset: page})
       .end((error, response) => {
@@ -77,7 +98,7 @@ class ArticleListPage extends React.Component {
         } else {
         console.error(`Error fetching ${name} `, error);
        }
-      });
+      });*/
     }
 
     //  fetch 新数据

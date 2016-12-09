@@ -59,17 +59,9 @@ module.exports = [{
     },
 
     get: function(match, data){
-      console.log('ready setTimeout');
        return  {
           body: data
         };
-      // return setTimeout(()=>{
-      //   console.log('heu');
-      //   console.log(data);
-      //   return  {
-      //     body: data
-      //   };
-      // }, 1000);
     },
 
     post: function(match, data){

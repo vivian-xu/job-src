@@ -28,8 +28,40 @@ module.exports = {
     // chunkFilename: 'js/[id].bundle.js'   //dundle生成的配置
   },
 
-  module: config.module,
+  // module: config.module,
 
+  module: {
+    // preLoaders: [
+    //   {
+    //     test: /\.js$/,
+    //     exclude: /node_modules/,
+    //     include: path.resolve(ROOT_PATH, 'src/pages/allComments/'),
+    //     loader: 'eslint'
+    //   }
+    // ],
+    loaders: [{
+        test: /\.js?$/,
+        exclude: /node_modules/,
+        include: [src, './mock'],
+        loader: 'babel',
+      },
+      {
+        test: /\.scss$/,
+        loader: ExtractTextPlugin.extract('style-loader', 'css!postcss!sass')
+      }, {
+        test: /\.css$/,
+        loader: ExtractTextPlugin.extract('style-loader', 'css'),
+      }, {
+        test: /\.(woff|woff2|ttf|eot|svg)\??.*$/,
+        loader: 'url-loader?limit=8192&name=./fonts/[name].[ext]'
+      }, {
+        test: /\.(png|jpe?g|gif)$/,
+        loader: 'url-loader?limit=8192&name=./imgs/[name].[ext]'
+      }
+    ]
+  },
+
+  postcss: config.postcss,
   resolve: config.resolve,
 
   plugins: [
@@ -43,7 +75,7 @@ module.exports = {
       // $: "jquery",
       // jQuery: "jquery",
       // "window.jQuery": "jquery",
-      "React": "react"
+      "React": "react" // 这个不能去，否则会出现 打包出来的React 识别不了
     }),
     new HtmlWebpackPlugin({
       filename: './index.html',

@@ -59,9 +59,7 @@ module.exports = {
       }
     ]
   },
-  // postcss: function () {
-  //   return [require('autoprefixer')];
-  // },
+
   postcss: [ autoprefixer({
     browsers: [
       'last 2 versions',
@@ -86,7 +84,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: './index.html',
       template: './src/index.html',
-      title: 'Job',
+      title: 'Sup-polo',
       inject: true,
       hash: true,
     }),

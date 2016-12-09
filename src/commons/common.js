@@ -14,4 +14,4 @@ console.log('font-size: ' + document.documentElement.style.fontSize);
 
 // mockfetch
 
-// import './mockfetch';
+import './mockfetch';

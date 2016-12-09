@@ -2,11 +2,11 @@ $commaSizeW: 20px;
 $commaSizeH: 17px;
 
 .comment-item {
-    display: -webkit-flex;
-    display:    -moz-box;
-    display: -ms-flexbox;
+    // display: -webkit-flex;
+    // display:    -moz-box;
+    // display: -ms-flexbox;
     display:         flex;
-    display: -webkit-box;  /* 兼容 andior 微信 */
+    // display: -webkit-box;  /* 兼容 andior 微信 */
 
     width: 100%;
     margin-bottom: .2rem;
@@ -41,11 +41,11 @@ $commaSizeH: 17px;
 
     margin-left: .21rem;
 
-    -webkit-flex: 1;
-       -moz-box-flex: 1;
-        -ms-flex: 1;
+    // -webkit-flex: 1;
+    //    -moz-box-flex: 1;
+    //     -ms-flex: 1;
             flex: 1;
-    -webkit-box-flex: 1; /* 兼容 andior 微信 */
+    // -webkit-box-flex: 1; /* 兼容 andior 微信 */
 }
 
 .c-comment__content {
@@ -56,13 +56,13 @@ $commaSizeH: 17px;
     font-size: 13px;
 
     position: absolute;
-    right: .5em;
+    right: 0;
     bottom: 30px;
 
     width: 3em;
     background-color: $color-bg;
 
-    text-align: right;
+    text-align: center;
 
     color: $color-btn;
 }

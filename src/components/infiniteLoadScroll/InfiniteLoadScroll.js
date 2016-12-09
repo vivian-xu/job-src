@@ -49,7 +49,7 @@ class InfiniteLoadScroll extends React.Component {
 
     this.touch = false; // 是否是 touch 事件， 为了区分是惯性滚动还是手动滚动
     //  myScroll 的最外层的 height
-    this.height = window.innerHeight;
+    this.height = window.innerHeight; // this.props.needHeight ? this.props.height : window.innerHeight
     // iScroll 实例
     this.myScroll = null;
 

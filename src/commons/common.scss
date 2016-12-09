@@ -41,8 +41,6 @@
   url('//at.alicdn.com/t/font_0mqsiqk6q32nvcxr.ttf') format('truetype'),
   url('//at.alicdn.com/t/font_0mqsiqk6q32nvcxr.svg#iconfont') format('svg');
 }
-
-
 .iconfont {
   font-family:"iconfont" !important;
   font-size:16px;
@@ -51,6 +49,7 @@
   -webkit-text-stroke-width: 0.2px;
   -moz-osx-font-smoothing: grayscale;
 }
+
 .icon-right:before { content: "\e602"; }
 .icon-star:before { content: "\e606"; }
 .icon-icon25:before { content: "\e600"; }
@@ -68,6 +67,9 @@ body {
     font-size: $font-size-text;
     line-height: $line-height-text;
     width: 100%;
+    min-width: 320px;
+    max-width: 900px;
+    margin: auto;
 
     /*普通显示屏(设备像素比例小于等于1)使用1倍的图*/
     background: url(../imgs/bg.png) top left ;

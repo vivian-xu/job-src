@@ -38,7 +38,25 @@ class Allcomments extends React.Component {
   }
 
   fetchingDatas(url, page, limit) {
-    ajax
+
+    const req = require("../../mock/allcomments.js");
+    let data = req.data;
+    console.log(data);
+
+    this.hasMore = false;
+
+    this.setState({
+      comments: this.state.comments.concat(data.results),
+    });
+
+    setTimeout(() => {
+      this.setState({
+        isloading: false,
+      });
+    }, 1000);
+  }
+
+/*    ajax
     .get(url)
     .query({ limit, offset: page })
     .end((error, response) => {
@@ -77,7 +95,8 @@ class Allcomments extends React.Component {
         console.error(`Error fetching ${name}`, error);
       }
     });
-  }
+    }
+*/
 
   //  正在加载中。。 状态指示， 在页面最下方，向上拖动可看到
   loadingBlock() {

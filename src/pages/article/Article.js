@@ -23,44 +23,74 @@ class Article extends React.Component {
     }
 
     fetchingDatas(url) {
-      ajax
-      .get(url)
-      .end((error, response) => {
-        if( !error && response ) {
-            let data = response.body.data;
-            const me = this;
-            console.log(data);
-            setTimeout(() => {
-              me.setState({
-                  isloading: false,
-              })
-            }, 1000);
+        const req = require('../../mock/article.js');
+        console.log(req);
+        const data = req.data;
 
-            const { no, content, title, topic, cover_picture, cover_picture_desc, create_time, author } = data;
 
+          const { no, content, title, topic, cover_picture, cover_picture_desc, date, author } = data;
+
+          this.setState({
+              article: {
+                  body: content,
+                  date: date,
+                  no,
+                  title,
+                  topic,
+                  cover_picture,
+                  cover_picture_desc,
+                  author: {
+                      id: author.id,
+                      name: author.nick_name,
+                      mentor: (author.gender === 1) ? '师姐' : '师兄',
+                      avatar: author.avatar,
+                  }
+              }
+          })
+          setTimeout(() => {
             this.setState({
-                article: {
-                    body: content,
-                    date: create_time.split(" ")[0],
-                    no,
-                    title,
-                    topic,
-                    cover_picture,
-                    cover_picture_desc,
-                    author: {
-                        id: author.id,
-                        name: author.nick_name,
-                        mentor: (author.gender === 1) ? '师姐' : '师兄',
-                        avatar: author.avatar,
-                    }
-                }
+                isloading: false,
             })
+          }, 1000);
 
-            console.info('fetching success');
-        } else {
-        console.error(`Error fetching ${name} `, error);
-       }
-      });
+      // ajax
+      // .get(url)
+      // .end((error, response) => {
+      //   if( !error && response ) {
+      //       let data = response.body.data;
+      //       const me = this;
+      //       console.log(data);
+      //       setTimeout(() => {
+      //         me.setState({
+      //             isloading: false,
+      //         })
+      //       }, 1000);
+
+      //       const { no, content, title, topic, cover_picture, cover_picture_desc, create_time, author } = data;
+
+      //       this.setState({
+      //           article: {
+      //               body: content,
+      //               date: create_time.split(" ")[0],
+      //               no,
+      //               title,
+      //               topic,
+      //               cover_picture,
+      //               cover_picture_desc,
+      //               author: {
+      //                   id: author.id,
+      //                   name: author.nick_name,
+      //                   mentor: (author.gender === 1) ? '师姐' : '师兄',
+      //                   avatar: author.avatar,
+      //               }
+      //           }
+      //       })
+
+      //       console.info('fetching success');
+      //   } else {
+      //   console.error(`Error fetching ${name} `, error);
+      //  }
+      // });
     }
 
     componentWillMount() {
